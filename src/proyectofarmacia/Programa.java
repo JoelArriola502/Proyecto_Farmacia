@@ -4,6 +4,11 @@
  */
 package proyectofarmacia;
 
+import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import java.awt.BorderLayout;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Joel Arriola
@@ -16,7 +21,15 @@ public class Programa extends javax.swing.JFrame {
     public Programa() {
         initComponents();
     }
-
+public void Usuario(){
+    Usuario ConsultarDatos=new Usuario();
+    ConsultarDatos.setSize(890,630);
+    ConsultarDatos.setLocation(0,0);
+    Mostrar.removeAll();
+    Mostrar.add(ConsultarDatos,BorderLayout.CENTER);
+    Mostrar.revalidate();
+    Mostrar.repaint();
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,63 +39,104 @@ public class Programa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        backgrour = new javax.swing.JPanel();
+        opciones = new javax.swing.JPanel();
+        UsuarioBoton = new javax.swing.JButton();
+        Mostrar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        backgrour.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1177, Short.MAX_VALUE)
+        opciones.setBackground(new java.awt.Color(0, 51, 255));
+        opciones.setPreferredSize(new java.awt.Dimension(290, 650));
+
+        UsuarioBoton.setText("Usuario");
+        UsuarioBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioBotonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
+        opciones.setLayout(opcionesLayout);
+        opcionesLayout.setHorizontalGroup(
+            opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(UsuarioBoton)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 625, Short.MAX_VALUE)
+        opcionesLayout.setVerticalGroup(
+            opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(opcionesLayout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addComponent(UsuarioBoton)
+                .addContainerGap(369, Short.MAX_VALUE))
+        );
+
+        Mostrar.setBackground(new java.awt.Color(255, 255, 255));
+        Mostrar.setPreferredSize(new java.awt.Dimension(850, 630));
+
+        javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar);
+        Mostrar.setLayout(MostrarLayout);
+        MostrarLayout.setHorizontalGroup(
+            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 890, Short.MAX_VALUE)
+        );
+        MostrarLayout.setVerticalGroup(
+            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout backgrourLayout = new javax.swing.GroupLayout(backgrour);
+        backgrour.setLayout(backgrourLayout);
+        backgrourLayout.setHorizontalGroup(
+            backgrourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(backgrourLayout.createSequentialGroup()
+                .addComponent(opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(Mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE))
+        );
+        backgrourLayout.setVerticalGroup(
+            backgrourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+            .addComponent(Mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgrour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgrour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void UsuarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioBotonActionPerformed
+
+        // TODO add your handling code here:
+        Usuario();
+    }//GEN-LAST:event_UsuarioBotonActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Programa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        FlatMaterialLighterIJTheme.setup();
+        
+      //.putClientProperty( "FlatLaf.styleClass", "h1" );
+       UIManager.put( "Button.arc", 999 );
+       UIManager.put( "Component.arc", 999 );
+UIManager.put( "ProgressBar.arc", 999 );
+UIManager.put( "TextComponent.arc", 999 );
+UIManager.put( "ScrollBar.showButtons", true );
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -93,6 +147,9 @@ public class Programa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel Mostrar;
+    private javax.swing.JButton UsuarioBoton;
+    private javax.swing.JPanel backgrour;
+    private javax.swing.JPanel opciones;
     // End of variables declaration//GEN-END:variables
 }

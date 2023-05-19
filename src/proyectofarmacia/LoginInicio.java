@@ -4,11 +4,13 @@
  */
 package proyectofarmacia;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -38,7 +40,7 @@ public void Validacion(){
             if(rs.next()){
                 setVisible(false);
                 Programa acceder=new Programa();
-                JOptionPane.showMessageDialog(null,"Bienvenido");
+                JOptionPane.showMessageDialog(null,"Bienvenido "+Usuario);
                 acceder.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto");
@@ -308,6 +310,11 @@ public void Validacion(){
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        
+        
+        
+       FlatLightLaf.setup();
+       UIManager.put( "Button.arc", 999 );
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
