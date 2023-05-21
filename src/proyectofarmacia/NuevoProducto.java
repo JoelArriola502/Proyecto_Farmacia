@@ -4,17 +4,38 @@
  */
 package proyectofarmacia;
 
-/**
- *
- * @author Joel Arriola
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
 public class NuevoProducto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NuevoProducto
-     */
+   Conexion conectar=new Conexion();
+   Connection ConectarBD=conectar.getConection();
+   PreparedStatement Insertar=null;
+   
     public NuevoProducto() {
         initComponents();
+    }
+    
+    public void InsertarNuevoProducto(){
+        String Consulta="INSERT INTO Productos(Codigo,Nombre,Descripcion,Costo,Precio,Existencia,idLaboratorio,idMarca)values(?,?,?,?,?,?,?,?)";
+        try {
+            Insertar=ConectarBD.prepareStatement(Consulta);
+            Insertar.setString(1, txtCodigo.getText());
+            Insertar.setString(2, txtNombre.getText());
+            Insertar.setString(3, txtDescripcion.getText());
+            Insertar.setString(4, txtCosto.getText());
+            Insertar.setString(5, txtPrecio.getText());
+            Insertar.setString(6, txtExistencia.getText());
+            Insertar.setInt(7, conLaboratorio.getSelectedIndex());
+             Insertar.setInt(8, conMarca.getSelectedIndex());
+            Insertar.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Datos Agregados");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error"+e.toString());
+        }
+        
     }
 
     /**
@@ -106,10 +127,15 @@ public class NuevoProducto extends javax.swing.JFrame {
         Fondo.setLayout(FondoLayout);
         FondoLayout.setHorizontalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+            .addGroup(FondoLayout.createSequentialGroup()
                 .addContainerGap(395, Short.MAX_VALUE)
-                .addComponent(NuevoProductoBo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136))
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+                        .addComponent(NuevoProductoBo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(136, 136, 136))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
+                        .addComponent(conLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95))))
             .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(FondoLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -153,19 +179,19 @@ public class NuevoProducto extends javax.swing.JFrame {
                                             .addGap(100, 100, 100)
                                             .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGap(34, 34, 34)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(conLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(FondoLayout.createSequentialGroup()
                                     .addGap(100, 100, 100)
                                     .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(0, 51, Short.MAX_VALUE)))
+                    .addGap(0, 111, Short.MAX_VALUE)))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
-                .addContainerGap(339, Short.MAX_VALUE)
+                .addContainerGap(223, Short.MAX_VALUE)
+                .addComponent(conLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
                 .addComponent(NuevoProductoBo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
             .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,8 +234,7 @@ public class NuevoProducto extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(conLaboratorio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGap(17, 17, 17)
                     .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,9 +262,8 @@ public class NuevoProducto extends javax.swing.JFrame {
 
     private void NuevoProductoBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoBoActionPerformed
         // TODO add your handling code here:
-        
-        NuevoProducto producto=new NuevoProducto();
-        producto.setVisible(true);
+        InsertarNuevoProducto();
+      
     }//GEN-LAST:event_NuevoProductoBoActionPerformed
 
     /**

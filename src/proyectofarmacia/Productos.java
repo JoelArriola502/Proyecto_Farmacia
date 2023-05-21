@@ -141,6 +141,11 @@ public void Mostrar(){
         NuevoProductoBo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         NuevoProductoBo.setText("NUEVO PRODUCTO");
         NuevoProductoBo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NuevoProductoBo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoProductoBoActionPerformed(evt);
+            }
+        });
         jPanel1.add(NuevoProductoBo, new org.netbeans.lib.awtextra.AbsoluteConstraints(686, 56, 180, 36));
 
         VerPBoton.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
@@ -300,6 +305,12 @@ public void Mostrar(){
         NuevoProductoBo.setVisible(true);
         ActualizarBoton.setVisible(false);
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void NuevoProductoBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoBoActionPerformed
+        // TODO add your handling code here:
+          NuevoProducto producto=new NuevoProducto();
+        producto.setVisible(true);
+    }//GEN-LAST:event_NuevoProductoBoActionPerformed
 public void Actualizar(){
     
     int Marca=conMarca.getSelectedIndex();
