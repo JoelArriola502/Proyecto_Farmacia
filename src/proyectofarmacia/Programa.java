@@ -10,6 +10,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighte
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -58,8 +59,9 @@ public void Productos(){
         backgrour = new javax.swing.JPanel();
         opciones = new javax.swing.JPanel();
         UsuarioBoton = new javax.swing.JButton();
-        UsuarioBoton1 = new javax.swing.JButton();
+        Cerrar = new javax.swing.JButton();
         ProductosBoton = new javax.swing.JButton();
+        UsuarioBoton2 = new javax.swing.JButton();
         Mostrar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,18 +88,18 @@ public void Productos(){
             }
         });
 
-        UsuarioBoton1.setText("Usuario");
-        UsuarioBoton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        Cerrar.setText("CERRAR SESIÓN");
+        Cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                UsuarioBoton1MouseEntered(evt);
+                CerrarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                UsuarioBoton1MouseExited(evt);
+                CerrarMouseExited(evt);
             }
         });
-        UsuarioBoton1.addActionListener(new java.awt.event.ActionListener() {
+        Cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsuarioBoton1ActionPerformed(evt);
+                CerrarActionPerformed(evt);
             }
         });
 
@@ -116,6 +118,21 @@ public void Productos(){
             }
         });
 
+        UsuarioBoton2.setText("Usuario");
+        UsuarioBoton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                UsuarioBoton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                UsuarioBoton2MouseExited(evt);
+            }
+        });
+        UsuarioBoton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuarioBoton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
         opcionesLayout.setHorizontalGroup(
@@ -123,10 +140,14 @@ public void Productos(){
             .addGroup(opcionesLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(UsuarioBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsuarioBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,9 +156,11 @@ public void Productos(){
                 .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(UsuarioBoton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(UsuarioBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         Mostrar.setBackground(new java.awt.Color(255, 255, 255));
@@ -227,17 +250,23 @@ public void Productos(){
         UsuarioBoton.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_UsuarioBotonMouseExited
 
-    private void UsuarioBoton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioBoton1MouseEntered
+    private void CerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_UsuarioBoton1MouseEntered
+    }//GEN-LAST:event_CerrarMouseEntered
 
-    private void UsuarioBoton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioBoton1MouseExited
+    private void CerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_UsuarioBoton1MouseExited
+    }//GEN-LAST:event_CerrarMouseExited
 
-    private void UsuarioBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioBoton1ActionPerformed
+    private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UsuarioBoton1ActionPerformed
+        
+        if(JOptionPane.showConfirmDialog(null,"ESTA SEGURO DE CERRAR SECCIÓN","SALIR" ,JOptionPane.YES_NO_CANCEL_OPTION)==0){
+            LoginInicio login=new LoginInicio();
+            login.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_CerrarActionPerformed
 
     private void ProductosBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBotonMouseEntered
         // TODO add your handling code here:
@@ -251,6 +280,18 @@ public void Productos(){
         // TODO add your handling code here:
         Productos();
     }//GEN-LAST:event_ProductosBotonActionPerformed
+
+    private void UsuarioBoton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioBoton2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsuarioBoton2MouseEntered
+
+    private void UsuarioBoton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioBoton2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsuarioBoton2MouseExited
+
+    private void UsuarioBoton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioBoton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UsuarioBoton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,10 +319,11 @@ public void Productos(){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cerrar;
     private javax.swing.JPanel Mostrar;
     private javax.swing.JButton ProductosBoton;
     private javax.swing.JButton UsuarioBoton;
-    private javax.swing.JButton UsuarioBoton1;
+    private javax.swing.JButton UsuarioBoton2;
     private javax.swing.JPanel backgrour;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
