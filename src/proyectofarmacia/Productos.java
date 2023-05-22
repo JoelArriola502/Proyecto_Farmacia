@@ -40,7 +40,6 @@ public class Productos extends javax.swing.JPanel {
 public void Mostrar(){
     DefaultTableModel Modelo=new DefaultTableModel();
     Modelo.addColumn("idProductos");
-    Modelo.addColumn("Codigo");
     Modelo.addColumn("Nombre");
     Modelo.addColumn("Descripción");
     Modelo.addColumn("costo");
@@ -51,10 +50,10 @@ public void Mostrar(){
    
     ProductosTable.setModel(Modelo);
     
-    String Consulta="select p.idProductos, p.Codigo,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre as Laboratorio\n" +
-"from Productos p, Marca m, Laboratorio l, TipoLaboratorio tp \n" +
-"where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio and l.idTipoLaboratorio=tp.idTipoLaboratorio";
-    String Datos[]=new String[9];
+    String Consulta="select p.idProductos,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre as Laboratorio\n" +
+"from Productos p, Marca m, Laboratorio l \n" +
+"where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio";
+    String Datos[]=new String[8];
     
     try {
         st=ConectarBd.createStatement();
@@ -68,7 +67,7 @@ public void Mostrar(){
             Datos[5]=rs.getString(6);
             Datos[6]=rs.getString(7);
             Datos[7]=rs.getString(8);
-            Datos[8]=rs.getString(9);
+            
           
             
             Modelo.addRow(Datos);
@@ -110,9 +109,8 @@ public void Mostrar(){
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
+        txtPRECIOsum = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductosTable = new javax.swing.JTable();
@@ -210,13 +208,10 @@ public void Mostrar(){
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 123, 43));
-        jPanel1.add(txtCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 126, 43));
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Codigo");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 123, 43));
         jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 126, 43));
+
+        txtPRECIOsum.setEnabled(false);
+        jPanel1.add(txtPRECIOsum, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 90, 30));
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 880, 290));
 
@@ -281,12 +276,12 @@ public void Mostrar(){
       NuevoProductoBo.setVisible(false);
         int fila=this.ProductosTable.getSelectedRow();
         this.txtID.setText(this.ProductosTable.getValueAt(fila, 0).toString());
-        this.txtCodigo.setText(this.ProductosTable.getValueAt(fila,1 ).toString());
-        this.txtNombre.setText(this.ProductosTable.getValueAt(fila,2).toString());
-        this.txtDescripcion.setText(this.ProductosTable.getValueAt(fila, 3).toString());
-        this.txtCosto.setText(this.ProductosTable.getValueAt(fila, 4).toString());
-        this.txtPrecio.setText(this.ProductosTable.getValueAt(fila, 5).toString());
-        this.txtExistencia.setText(this.ProductosTable.getValueAt(fila, 6).toString());
+        this.txtNombre.setText(this.ProductosTable.getValueAt(fila,1).toString());
+        this.txtDescripcion.setText(this.ProductosTable.getValueAt(fila, 2).toString());
+        this.txtCosto.setText(this.ProductosTable.getValueAt(fila, 3).toString());
+        this.txtPrecio.setText(this.ProductosTable.getValueAt(fila, 4).toString());
+        this.txtExistencia.setText(this.ProductosTable.getValueAt(fila, 5).toString());
+        this.txtPRECIOsum.setText(this.ProductosTable.getValueAt(fila, 6).toString());
         this.conMarca.setSelectedItem(this.ProductosTable.getValueAt(fila, 7).toString());
         this.conLaboratorio.setSelectedItem(this.ProductosTable.getValueAt(fila, 8).toString());
      
@@ -294,7 +289,7 @@ public void Mostrar(){
 
     private void ActualizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotonActionPerformed
         // TODO add your handling code here:
-        Actualizar();
+      Actualizar();
         
         
     }//GEN-LAST:event_ActualizarBotonActionPerformed
@@ -317,7 +312,35 @@ public void Actualizar(){
     int Laboratori=conLaboratorio.getSelectedIndex();
    
     try {
-        Actualizar=ConectarBd.prepareStatement("update Productos set Codigo='"+txtCodigo.getText()+"',Nombre='"+txtNombre.getText()+"',Descripcion='"+txtDescripcion.getText()+"',Costo='"+txtCosto.getText()+"',precio='"+txtPrecio.getText()+"',Existencia='"+txtExistencia.getText()+"',idLaboratorio='"+Laboratori+"',idMarca='"+Marca+"' where idProductos='"+txtID.getText()+"'");
+        Actualizar=ConectarBd.prepareStatement("update Productos set Nombre='"+txtNombre.getText()+"',Descripcion="
+                + "'"+txtDescripcion.getText()+"',Costo='"+txtCosto.getText()+"',precio='"+txtPrecio.getText()+
+                "',Existencia='"+txtExistencia.getText()+"',idLaboratorio='"+Laboratori+"',idMarca='"+Marca+"'"
+                        + " where idProductos='"+txtID.getText()+"'");
+    int Contador=Actualizar.executeUpdate();
+    if(Contador>0){
+        JOptionPane.showMessageDialog(null,"Datos Actualizados");
+        Mostrar();
+        
+    }else {
+          JOptionPane.showMessageDialog(null,"No selecciono la fila");
+    }
+    
+    } catch (Exception e) {
+          JOptionPane.showMessageDialog(null,"error"+e.toString());
+    }
+}
+
+public void ActualizarExistencia(){
+    
+    int Marca=conMarca.getSelectedIndex();
+    int Laboratori=conLaboratorio.getSelectedIndex();
+    int Existenciaa=Integer.parseInt(txtExistencia.getText());
+    int Existencia1=Integer.parseInt(txtPRECIOsum.getText());
+    int suma=Existencia1-Existenciaa;
+   
+   
+    try {
+        Actualizar=ConectarBd.prepareStatement("update Productos set Nombre='"+txtNombre.getText()+"',Descripcion='"+txtDescripcion.getText()+"',Costo='"+txtCosto.getText()+"',precio='"+txtPrecio.getText()+"',Existencia='"+suma+"',idLaboratorio='"+Laboratori+"',idMarca='"+Marca+"' where idProductos='"+txtID.getText()+"'");
     int Contador=Actualizar.executeUpdate();
     if(Contador>0){
         JOptionPane.showMessageDialog(null,"Datos Actualizados");
@@ -353,7 +376,6 @@ public void ActualizarTipoLaboratorio(){
 */
 public void Limpiar(){
     txtID.setText("");
-    txtCodigo.setText("");
     txtNombre.setText("");
     txtDescripcion.setText("");
     txtCosto.setText("");
@@ -363,6 +385,7 @@ public void Limpiar(){
     txtExistencia.setText("");
     
 }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoton;
     private javax.swing.JPanel Fondo;
@@ -372,7 +395,6 @@ public void Limpiar(){
     private javax.swing.JComboBox<String> conLaboratorio;
     private javax.swing.JComboBox<String> conMarca;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -383,12 +405,12 @@ public void Limpiar(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtExistencia;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPRECIOsum;
     private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

@@ -19,17 +19,16 @@ public class NuevoProducto extends javax.swing.JFrame {
     }
     
     public void InsertarNuevoProducto(){
-        String Consulta="INSERT INTO Productos(Codigo,Nombre,Descripcion,Costo,Precio,Existencia,idLaboratorio,idMarca)values(?,?,?,?,?,?,?,?)";
+        String Consulta="INSERT INTO Productos(Nombre,Descripcion,Costo,Precio,Existencia,idLaboratorio,idMarca)values(?,?,?,?,?,?,?)";
         try {
             Insertar=ConectarBD.prepareStatement(Consulta);
-            Insertar.setString(1, txtCodigo.getText());
-            Insertar.setString(2, txtNombre.getText());
-            Insertar.setString(3, txtDescripcion.getText());
-            Insertar.setString(4, txtCosto.getText());
-            Insertar.setString(5, txtPrecio.getText());
-            Insertar.setString(6, txtExistencia.getText());
-            Insertar.setInt(7, conLaboratorio.getSelectedIndex());
-             Insertar.setInt(8, conMarca.getSelectedIndex());
+            Insertar.setString(1, txtNombre.getText());
+            Insertar.setString(2, txtDescripcion.getText());
+            Insertar.setString(3, txtCosto.getText());
+            Insertar.setString(4, txtPrecio.getText());
+            Insertar.setString(5, txtExistencia.getText());
+            Insertar.setInt(6, conLaboratorio.getSelectedIndex());
+             Insertar.setInt(7, conMarca.getSelectedIndex());
             Insertar.executeUpdate();
             JOptionPane.showMessageDialog(null,"Datos Agregados");
         } catch (Exception e) {
@@ -49,14 +48,12 @@ public class NuevoProducto extends javax.swing.JFrame {
 
         Fondo = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
-        txtCodigo = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         txtCosto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -85,10 +82,6 @@ public class NuevoProducto extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre");
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Codigo");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -147,10 +140,6 @@ public class NuevoProducto extends javax.swing.JFrame {
                                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(FondoLayout.createSequentialGroup()
-                                    .addGap(110, 110, 110)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(FondoLayout.createSequentialGroup()
                                     .addGap(10, 10, 10)
                                     .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(FondoLayout.createSequentialGroup()
@@ -202,11 +191,7 @@ public class NuevoProducto extends javax.swing.JFrame {
                             .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(7, 7, 7)
-                            .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(7, 7, 7)
+                            .addGap(57, 57, 57)
                             .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(FondoLayout.createSequentialGroup()
                                     .addGap(10, 10, 10)
@@ -307,7 +292,6 @@ public class NuevoProducto extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> conLaboratorio;
     private javax.swing.JComboBox<String> conMarca;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -315,7 +299,6 @@ public class NuevoProducto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtExistencia;

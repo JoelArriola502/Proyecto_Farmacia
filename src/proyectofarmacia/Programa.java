@@ -47,6 +47,15 @@ public void Productos(){
     Mostrar.revalidate();
     Mostrar.repaint();
 }
+public void Compras(){
+    Compras compras=new Compras();
+    compras.setSize(890,530);
+    compras.setLocation(0,0);
+    Mostrar.removeAll();
+    Mostrar.add(compras,BorderLayout.CENTER);
+    Mostrar.revalidate();
+    Mostrar.repaint();
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,7 +70,7 @@ public void Productos(){
         UsuarioBoton = new javax.swing.JButton();
         Cerrar = new javax.swing.JButton();
         ProductosBoton = new javax.swing.JButton();
-        UsuarioBoton2 = new javax.swing.JButton();
+        ComprasBoton = new javax.swing.JButton();
         Mostrar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -118,18 +127,18 @@ public void Productos(){
             }
         });
 
-        UsuarioBoton2.setText("Usuario");
-        UsuarioBoton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        ComprasBoton.setText("COMPRAS");
+        ComprasBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                UsuarioBoton2MouseEntered(evt);
+                ComprasBotonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                UsuarioBoton2MouseExited(evt);
+                ComprasBotonMouseExited(evt);
             }
         });
-        UsuarioBoton2.addActionListener(new java.awt.event.ActionListener() {
+        ComprasBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsuarioBoton2ActionPerformed(evt);
+                ComprasBotonActionPerformed(evt);
             }
         });
 
@@ -140,7 +149,7 @@ public void Productos(){
             .addGroup(opcionesLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(UsuarioBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
@@ -157,7 +166,7 @@ public void Productos(){
                 .addGap(18, 18, 18)
                 .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(UsuarioBoton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
@@ -281,17 +290,18 @@ public void Productos(){
         Productos();
     }//GEN-LAST:event_ProductosBotonActionPerformed
 
-    private void UsuarioBoton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioBoton2MouseEntered
+    private void ComprasBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComprasBotonMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_UsuarioBoton2MouseEntered
+    }//GEN-LAST:event_ComprasBotonMouseEntered
 
-    private void UsuarioBoton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UsuarioBoton2MouseExited
+    private void ComprasBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComprasBotonMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_UsuarioBoton2MouseExited
+    }//GEN-LAST:event_ComprasBotonMouseExited
 
-    private void UsuarioBoton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioBoton2ActionPerformed
+    private void ComprasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprasBotonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UsuarioBoton2ActionPerformed
+        Compras();
+    }//GEN-LAST:event_ComprasBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,10 +330,10 @@ public void Productos(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cerrar;
+    private javax.swing.JButton ComprasBoton;
     private javax.swing.JPanel Mostrar;
     private javax.swing.JButton ProductosBoton;
     private javax.swing.JButton UsuarioBoton;
-    private javax.swing.JButton UsuarioBoton2;
     private javax.swing.JPanel backgrour;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
