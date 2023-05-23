@@ -187,14 +187,12 @@
             <Component class="javax.swing.JComboBox" name="conMarca">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="SELECCIONE LA MARCA"/>
-                    <StringItem index="1" value="Pfizer"/>
-                    <StringItem index="2" value="Roche"/>
-                    <StringItem index="3" value="Group"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="conMarcaMouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -207,12 +205,7 @@
             <Component class="javax.swing.JComboBox" name="conLaboratorio">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="SELECCIONE LA Laboratorio"/>
-                    <StringItem index="1" value="Laboratorio 1"/>
-                    <StringItem index="2" value="Laboratorio 2"/>
-                    <StringItem index="3" value="Laboratorio 3"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
               </Properties>
               <AuxValues>
@@ -265,6 +258,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCosto">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCostoKeyTyped"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="120" y="240" width="126" height="43"/>

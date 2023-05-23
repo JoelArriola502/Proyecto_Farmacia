@@ -10,7 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,6 +38,8 @@ public class Productos extends javax.swing.JPanel {
 
     public Productos() {
         initComponents();
+        CargarDatosConbox(conMarca);
+        CargarDatosLaboratorios(conLaboratorio);
     }
 
 public void Mostrar(){
@@ -177,10 +182,13 @@ public void Mostrar(){
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 123, 43));
         jPanel1.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 126, 43));
 
-        conMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE LA MARCA", "Pfizer", "Roche", "Group" }));
+        conMarca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                conMarcaMouseClicked(evt);
+            }
+        });
         jPanel1.add(conMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 140, 30));
 
-        conLaboratorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE LA Laboratorio", "Laboratorio 1", "Laboratorio 2", "Laboratorio 3" }));
         jPanel1.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 190, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -192,6 +200,12 @@ public void Mostrar(){
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 126, 43));
         jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 126, 43));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 126, 43));
+
+        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCostoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 126, 43));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -281,9 +295,9 @@ public void Mostrar(){
         this.txtCosto.setText(this.ProductosTable.getValueAt(fila, 3).toString());
         this.txtPrecio.setText(this.ProductosTable.getValueAt(fila, 4).toString());
         this.txtExistencia.setText(this.ProductosTable.getValueAt(fila, 5).toString());
-        this.txtPRECIOsum.setText(this.ProductosTable.getValueAt(fila, 6).toString());
-        this.conMarca.setSelectedItem(this.ProductosTable.getValueAt(fila, 7).toString());
-        this.conLaboratorio.setSelectedItem(this.ProductosTable.getValueAt(fila, 8).toString());
+        this.txtPRECIOsum.setText(this.ProductosTable.getValueAt(fila, 5).toString());
+        this.conMarca.setSelectedItem(this.ProductosTable.getValueAt(fila, 6).toString());
+        this.conLaboratorio.setSelectedItem(this.ProductosTable.getValueAt(fila, 7).toString());
      
     }//GEN-LAST:event_ProductosTableMouseClicked
 
@@ -306,10 +320,21 @@ public void Mostrar(){
           NuevoProducto producto=new NuevoProducto();
         producto.setVisible(true);
     }//GEN-LAST:event_NuevoProductoBoActionPerformed
+
+    private void conMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conMarcaMouseClicked
+        // TODO add your handling code here:
+        CargarDatosConbox(conMarca);
+    }//GEN-LAST:event_conMarcaMouseClicked
+
+    private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCostoKeyTyped
 public void Actualizar(){
     
-    int Marca=conMarca.getSelectedIndex();
-    int Laboratori=conLaboratorio.getSelectedIndex();
+    int Marca=1+conMarca.getSelectedIndex();
+    int Laboratori=1+conLaboratorio.getSelectedIndex();
+    
+    System.out.println("El id es "+Marca+"  labor"+Laboratori);
    
     try {
         Actualizar=ConectarBd.prepareStatement("update Productos set Nombre='"+txtNombre.getText()+"',Descripcion="
@@ -383,6 +408,39 @@ public void Limpiar(){
     conLaboratorio.setSelectedItem("");
     conMarca.setSelectedItem("");
     txtExistencia.setText("");
+    
+}
+public void CargarDatosConbox(JComboBox marcas){
+    DefaultComboBoxModel Datos=new DefaultComboBoxModel();
+    
+    marcas.setModel(Datos);
+    String consulta="select NombreMarca\n" +
+"from Marca";
+    try {
+        st=ConectarBd.createStatement();
+        rs=st.executeQuery(consulta);
+        while(rs.next()){
+          marcas.addItem(rs.getString("NombreMarca"));
+            
+        }
+    } catch (Exception e) {
+    }
+   
+    
+    
+}
+public void CargarDatosLaboratorios(JComboBox Laboratorio){
+    DefaultComboBoxModel Labor=new DefaultComboBoxModel();
+    Laboratorio.setModel(Labor);
+    String consulta="SELECT Nombre from Laboratorio";
+    try {
+        st=ConectarBd.createStatement();
+        rs=st.executeQuery(consulta);
+        while(rs.next()){
+            Laboratorio.addItem(rs.getString("Nombre"));
+        }
+    } catch (Exception e) {
+    }
     
 }
 
