@@ -59,6 +59,7 @@ public class CompraProveedor extends javax.swing.JFrame {
         ComprasTB = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 255));
 

@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
@@ -28,14 +30,15 @@ public void VerDatos(){
     DefaultTableModel Modelo=new DefaultTableModel();
     
     Modelo.addColumn("idCompraDetalle");
+    Modelo.addColumn("Codigo Proveedor");
     Modelo.addColumn("Nombre");
     Modelo.addColumn("Nit");
     Modelo.addColumn("Telefono");
     Modelo.addColumn("Precio");
     Modelo.addColumn("Cantidad");
     Modelo.addColumn("costoTotal");
+    Modelo.addColumn("Codigo Compra");
     Modelo.addColumn("Fecha");
-    Modelo.addColumn("Documento");
     Modelo.addColumn("CodigoProducto");
     Modelo.addColumn("Nombre");
     Modelo.addColumn("Descripcion");
@@ -47,12 +50,12 @@ public void VerDatos(){
     Modelo.addColumn("Pago");
     ComprasTB.setModel(Modelo);
     
-    String Consulta="select cd.idCompraDetalle,pr.Nombre,pr.Nit,pr.Telefono,cd.precio,cd.cantidad,cd.costoTotal,c.Fecha,c.Documento,p.idProductos,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago\n" +
+    String Consulta="select cd.idCompraDetalle,pr.idProveedores,pr.Nombre,pr.Nit,pr.Telefono,cd.precio,cd.cantidad,cd.costoTotal,c.idCompras,c.Fecha,p.idProductos,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago \n" +
 "from CompraDetalle cd, Compras c, Productos p, Proveedor pr, Marca m, Laboratorio l,formaPago fp\n" +
 "where cd.idCompras=c.idCompras and cd.idProductos=p.idProductos  and c.idProveedores=pr.idProveedores and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio\n" +
 "and fp.idFormaPago=pr.idFormaPago";
     
-    String Datos[] = new String[18];
+    String Datos[] = new String[19];
     
     try {
         st=ConectarBD.createStatement();
@@ -77,6 +80,8 @@ public void VerDatos(){
             Datos[15]=rs.getString(16);
             Datos[16]=rs.getString(17);
             Datos[17]=rs.getString(18);
+            Datos[18]=rs.getString(19);
+        
             Modelo.addRow(Datos);
         }
     } catch (Exception e) {
@@ -85,32 +90,14 @@ public void VerDatos(){
     
     
 }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         Fondo = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        txtDocumento = new javax.swing.JTextField();
-        txtidFactura = new javax.swing.JTextField();
-        txtNombreProveedor = new javax.swing.JTextField();
-        txtNit = new javax.swing.JTextField();
-        txtTelefono = new javax.swing.JTextField();
-        txtPrecioCompra = new javax.swing.JTextField();
-        txtCantidad = new javax.swing.JTextField();
-        txtCostoTotal = new javax.swing.JTextField();
-        txtFecha = new javax.swing.JTextField();
-        txtCodigoProducto = new javax.swing.JTextField();
-        txtMarca = new javax.swing.JTextField();
-        txtExistencia = new javax.swing.JTextField();
-        txtCosto = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
-        txtNombreProducto = new javax.swing.JTextField();
-        txtLaboratorio = new javax.swing.JTextField();
-        txtTipoPago = new javax.swing.JTextField();
-        txtPrecioVenta = new javax.swing.JTextField();
+        Menu = new javax.swing.JComboBox<>();
+        MenuVerDatos = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ComprasTB = new javax.swing.JTable();
@@ -121,67 +108,31 @@ public void VerDatos(){
         jPanel2.setBackground(new java.awt.Color(149, 115, 153));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("VER COMPRAS");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        Menu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Que datos desa agregar", "Nuevo Producto", "Agrege Datos Del Proveedor", "Agregar Fecha Compras", "Realizar compra", "Nueva Marca De producto", " " }));
+        Menu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuMouseClicked(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
+        Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 220, 60));
 
-        txtDocumento.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento"));
-        jPanel2.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 140, 40));
-
-        txtidFactura.setBorder(javax.swing.BorderFactory.createTitledBorder("codigo Farctura"));
-        jPanel2.add(txtidFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 140, 40));
-
-        txtNombreProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre Proveedor"));
-        jPanel2.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 140, 40));
-
-        txtNit.setBorder(javax.swing.BorderFactory.createTitledBorder("Nit"));
-        jPanel2.add(txtNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 140, 40));
-
-        txtTelefono.setBorder(javax.swing.BorderFactory.createTitledBorder("Telefono"));
-        jPanel2.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 140, 40));
-
-        txtPrecioCompra.setBorder(javax.swing.BorderFactory.createTitledBorder("Precio Compra"));
-        jPanel2.add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 140, 40));
-
-        txtCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad"));
-        jPanel2.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 140, 40));
-
-        txtCostoTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Costo Total"));
-        jPanel2.add(txtCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 140, 40));
-
-        txtFecha.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha"));
-        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 140, 40));
-
-        txtCodigoProducto.setBorder(javax.swing.BorderFactory.createTitledBorder("codigo Producto"));
-        jPanel2.add(txtCodigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 140, 40));
-
-        txtMarca.setBorder(javax.swing.BorderFactory.createTitledBorder("Marca Producto"));
-        jPanel2.add(txtMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 140, 40));
-
-        txtExistencia.setBorder(javax.swing.BorderFactory.createTitledBorder("Existencia"));
-        jPanel2.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 240, 140, 40));
-
-        txtCosto.setBorder(javax.swing.BorderFactory.createTitledBorder("Costo"));
-        jPanel2.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 140, 40));
-
-        txtDescripcion.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripcion"));
-        jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 140, 40));
-
-        txtNombreProducto.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre Producto"));
-        jPanel2.add(txtNombreProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 140, 40));
-
-        txtLaboratorio.setBorder(javax.swing.BorderFactory.createTitledBorder("Laboratorio"));
-        jPanel2.add(txtLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 140, 40));
-
-        txtTipoPago.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo Pago"));
-        jPanel2.add(txtTipoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 120, 140, 40));
-
-        txtPrecioVenta.setBorder(javax.swing.BorderFactory.createTitledBorder("Precio Venta"));
-        jPanel2.add(txtPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 190, 140, 40));
+        MenuVerDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ver Datos", "Ver Proveedor", "Ver Productos", "Ver Compras", "Ver Detalles de la Compra" }));
+        MenuVerDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuVerDatosMouseClicked(evt);
+            }
+        });
+        MenuVerDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuVerDatosActionPerformed(evt);
+            }
+        });
+        jPanel2.add(MenuVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 60));
 
         Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 300));
 
@@ -238,62 +189,230 @@ public void VerDatos(){
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        VerDatos();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void ComprasTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ComprasTBMouseClicked
         // TODO add your handling code here:
         
-        int fila=this.ComprasTB.getSelectedRow();
-        this.txtidFactura.setText(this.ComprasTB.getValueAt(fila, 0).toString());
-        this.txtNombreProveedor.setText(this.ComprasTB.getValueAt(fila, 1).toString());
-        this.txtNit.setText(this.ComprasTB.getValueAt(fila, 2).toString());
-        this.txtTelefono.setText(this.ComprasTB.getValueAt(fila, 3).toString());
-        this.txtPrecioCompra.setText(this.ComprasTB.getValueAt(fila, 4).toString());
-        this.txtCantidad.setText(this.ComprasTB.getValueAt(fila, 5).toString());
-        this.txtCostoTotal.setText(this.ComprasTB.getValueAt(fila, 6).toString());
-        this.txtFecha.setText(this.ComprasTB.getValueAt(fila, 7).toString());
-        this.txtDocumento.setText(this.ComprasTB.getValueAt(fila, 8).toString());
-        this.txtCodigoProducto.setText(this.ComprasTB.getValueAt(fila, 9).toString());
-        this.txtNombreProducto.setText(this.ComprasTB.getValueAt(fila, 10).toString());
-        this.txtDescripcion.setText(this.ComprasTB.getValueAt(fila, 11).toString());
-        this.txtCosto.setText(this.ComprasTB.getValueAt(fila, 12).toString());
-        this.txtPrecioVenta.setText(this.ComprasTB.getValueAt(fila, 13).toString());
-        this.txtExistencia.setText(this.ComprasTB.getValueAt(fila, 14).toString());
-         this.txtMarca.setText(this.ComprasTB.getValueAt(fila, 15).toString());
-        this.txtLaboratorio.setText(this.ComprasTB.getValueAt(fila, 16).toString());
-        this.txtTipoPago.setText(this.ComprasTB.getValueAt(fila, 17).toString());
+
     
         
     }//GEN-LAST:event_ComprasTBMouseClicked
 
+    private void MenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuMouseClicked
+
+    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
+        // TODO add your handling code here:
+
+        if(Menu.getSelectedItem().equals("Nuevo Producto")){
+            NuevoProducto Producto=new NuevoProducto();
+            Producto.setVisible(true);
+
+        }if(Menu.getSelectedItem().equals("Agrege Datos Del Proveedor")){
+            Proveedor proveedor=new Proveedor();
+            proveedor.setVisible(true);
+
+        }if(Menu.getSelectedItem().equals("Agregar Fecha Compras")){
+            Comprass compra=new Comprass();
+            compra.setVisible(true);
+
+        }if(Menu.getSelectedItem().equals("Realizar compra")){
+            CompraProveedor compra=new CompraProveedor();
+            compra.setVisible(true);
+
+        }
+    }//GEN-LAST:event_MenuActionPerformed
+
+    private void MenuVerDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuVerDatosMouseClicked
+
+    }//GEN-LAST:event_MenuVerDatosMouseClicked
+
+    private void MenuVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerDatosActionPerformed
+        if(MenuVerDatos.getSelectedItem().equals("Ver Proveedor")){
+            Proveedor();
+        }if(MenuVerDatos.getSelectedItem().equals("Ver Productos")){
+            MetodoMostrar();
+        }if(MenuVerDatos.getSelectedItem().equals("Ver Compras")){
+            Compra();
+        }if(MenuVerDatos.getSelectedItem().equals("Ver Detalles de la Compra")){
+            VerDatos();
+
+        }
+    }//GEN-LAST:event_MenuVerDatosActionPerformed
+   public void MetodoMostrar(){
+        DefaultTableModel Modelo=new  DefaultTableModel();
+        Modelo.addColumn("Codigo Producto");
+        Modelo.addColumn("Nombre Producto");
+        Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Costo");
+        Modelo.addColumn("Precio");
+        Modelo.addColumn("Existencia");
+        Modelo.addColumn("Laboratorio");
+        Modelo.addColumn("Marca");
+        ComprasTB.setModel(Modelo);
+        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
+"from Productos p, Marca m, Laboratorio l\n" +
+"where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca";
+        String Datos[]=new String[8];
+        
+        try {
+            st=ConectarBD.createStatement();
+            rs=st.executeQuery(consulta);
+            while(rs.next()){
+                Datos[0]=rs.getString(1);
+                Datos[1]=rs.getString(2);
+                Datos[2]=rs.getString(3);
+                Datos[3]=rs.getString(4);
+                Datos[4]=rs.getString(5);
+                Datos[5]=rs.getString(6);
+                Datos[6]=rs.getString(7);
+                Datos[7]=rs.getString(8);
+                Modelo.addRow(Datos);
+            }
+        } catch (Exception e) {
+        }
+        
+    }
+    public void Proveedor(){
+        DefaultTableModel Modelo=new DefaultTableModel();
+        Modelo.addColumn("Codigo Proveedor");
+        Modelo.addColumn("Nombre Proveedor");
+        Modelo.addColumn("Nit ");
+        Modelo.addColumn("Telefono");
+        Modelo.addColumn("Forma de Pago");
+        ComprasTB.setModel(Modelo);
+        String Datos[]=new String[5];
+        String Consulta="select p.idProveedores,p.Nombre,p.Nit,p.Telefono,fp.TipoPago\n" +
+"from Proveedor p, formaPago fp\n" +
+"where p.idFormaPago=fp.idFormaPago";
+        
+        try {
+            st=ConectarBD.createStatement();
+            rs=st.executeQuery(Consulta);
+            while(rs.next()){
+                Datos[0]=rs.getString(1);
+                Datos[1]=rs.getString(2);
+                Datos[2]=rs.getString(3);
+                Datos[3]=rs.getString(4);
+                Datos[4]=rs.getString(5);
+                Modelo.addRow(Datos);
+                
+            }
+        } catch (Exception e) {
+        }
+    }
+    public void Compra(){
+        DefaultTableModel Modelo=new DefaultTableModel();
+        Modelo.addColumn("Numero de Compra");
+        Modelo.addColumn("Fecha Compra");
+        Modelo.addColumn("Codigo Proveedor");
+        ComprasTB.setModel(Modelo);
+        String Consulta="SELECT *FROM Compras";
+        String Datos[]=new String[3];
+        
+        try {
+             st=ConectarBD.createStatement();
+            rs=st.executeQuery(Consulta);
+            while(rs.next()){
+                Datos[0]=rs.getString(1);
+                Datos[1]=rs.getString(2);
+                Datos[2]=rs.getString(3);
+                Modelo.addRow(Datos);
+            }
+            
+        } catch (Exception e) {
+        }
+    }
+    public void CargarDatosConbox(JComboBox marcas){
+    DefaultComboBoxModel Datos=new DefaultComboBoxModel();
+    
+    marcas.setModel(Datos);
+    String consulta="select NombreMarca\n" +
+"from Marca";
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(consulta);
+        while(rs.next()){
+          marcas.addItem(rs.getString("NombreMarca"));
+            
+        }
+    } catch (Exception e) {
+    }
+   
+    
+    
+}
+public void CargarDatosLaboratorios(JComboBox Laboratorio){
+    DefaultComboBoxModel Labor=new DefaultComboBoxModel();
+    Laboratorio.setModel(Labor);
+    String consulta="SELECT Nombre from Laboratorio";
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(consulta);
+        while(rs.next()){
+            Laboratorio.addItem(rs.getString("Nombre"));
+        }
+    } catch (Exception e) {
+    }
+    
+}
+public void CargarTipoPago(JComboBox Pago){
+    DefaultComboBoxModel pag=new DefaultComboBoxModel();
+    Pago.setModel(pag);
+    String Consulta="select TipoPago from formaPago";
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(Consulta);
+        while(rs.next()){
+            Pago.addItem(rs.getString("TipoPago"));
+            
+        }
+    } catch (Exception e) {
+    }
+    
+}
+public void CargarCodigoProducto(JComboBox Codigo){
+    DefaultComboBoxModel CodigModel=new DefaultComboBoxModel();
+    Codigo.setModel(CodigModel);
+    String consulta="select idProductos from Productos";
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(consulta);
+        while(rs.next()){
+            Codigo.addItem(rs.getString("idProductos"));
+        }
+    } catch (Exception e) {
+    }
+    
+}
+
+
+public void CargarDatosCodgoProveedor(JComboBox CodigoProveedor){
+        DefaultComboBoxModel Codigo=new DefaultComboBoxModel();
+        CodigoProveedor.setModel(Codigo);
+        String Consulta="select idProveedores from Proveedor";
+        try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(Consulta);
+        while(rs.next()){
+            CodigoProveedor.addItem(rs.getString("IdProveedores"));
+            
+        }
+        } catch (Exception e) {
+        }
+        
+        
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable ComprasTB;
     private javax.swing.JPanel Fondo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> Menu;
+    private javax.swing.JComboBox<String> MenuVerDatos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtCodigoProducto;
-    private javax.swing.JTextField txtCosto;
-    private javax.swing.JTextField txtCostoTotal;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtDocumento;
-    private javax.swing.JTextField txtExistencia;
-    private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtLaboratorio;
-    private javax.swing.JTextField txtMarca;
-    private javax.swing.JTextField txtNit;
-    private javax.swing.JTextField txtNombreProducto;
-    private javax.swing.JTextField txtNombreProveedor;
-    private javax.swing.JTextField txtPrecioCompra;
-    private javax.swing.JTextField txtPrecioVenta;
-    private javax.swing.JTextField txtTelefono;
-    private javax.swing.JTextField txtTipoPago;
-    private javax.swing.JTextField txtidFactura;
     // End of variables declaration//GEN-END:variables
 }

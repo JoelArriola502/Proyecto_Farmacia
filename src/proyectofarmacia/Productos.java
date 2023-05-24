@@ -40,7 +40,7 @@ public class Productos extends javax.swing.JPanel {
         initComponents();
         CargarDatosConbox(conMarca);
         CargarDatosLaboratorios(conLaboratorio);
-        CargarCodigoProducto(CodigoProductosCon);
+
     }
 
 public void Mostrar(){
@@ -117,7 +117,6 @@ public void Mostrar(){
         jLabel2 = new javax.swing.JLabel();
         txtPrecio = new javax.swing.JTextField();
         txtPRECIOsum = new javax.swing.JTextField();
-        CodigoProductosCon = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductosTable = new javax.swing.JTable();
@@ -191,7 +190,7 @@ public void Mostrar(){
         });
         jPanel1.add(conMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 140, 30));
 
-        jPanel1.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, 190, 30));
+        jPanel1.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 190, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -228,14 +227,6 @@ public void Mostrar(){
 
         txtPRECIOsum.setEnabled(false);
         jPanel1.add(txtPRECIOsum, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 90, 30));
-
-        CodigoProductosCon.setBorder(javax.swing.BorderFactory.createTitledBorder("Codigo Producto"));
-        CodigoProductosCon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CodigoProductosConActionPerformed(evt);
-            }
-        });
-        jPanel1.add(CodigoProductosCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 140, 50));
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 880, 290));
 
@@ -339,10 +330,6 @@ public void Mostrar(){
     private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCostoKeyTyped
-
-    private void CodigoProductosConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoProductosConActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CodigoProductosConActionPerformed
 public void Actualizar(){
     
     int Marca=1+conMarca.getSelectedIndex();
@@ -455,24 +442,10 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     }
     
 }
-public void CargarCodigoProducto(JComboBox Codigo){
-    DefaultComboBoxModel CodigModel=new DefaultComboBoxModel();
-    Codigo.setModel(CodigModel);
-    String consulta="sselect max(idProductos)as idProducto from Productos";
-    try {
-        st=ConectarBd.createStatement();
-        rs=st.executeQuery(consulta);
-        while(rs.next()){
-            Codigo.addItem(rs.getString("idProductos"));
-        }
-    } catch (Exception e) {
-    }
-    
-}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoton;
-    private javax.swing.JComboBox<String> CodigoProductosCon;
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton NuevoProductoBo;
     private javax.swing.JTable ProductosTable;
