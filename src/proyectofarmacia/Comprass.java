@@ -50,11 +50,13 @@ public class Comprass extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaCompras = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         Fondo.setBackground(new java.awt.Color(0, 204, 204));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,6 +70,11 @@ public class Comprass extends javax.swing.JFrame {
 
         DateFecha.setDateFormatString("yyy-MM-dd");
         DateFecha.setName("yyy-MM-dd"); // NOI18N
+        DateFecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DateFechaMouseClicked(evt);
+            }
+        });
 
         txtID.setEditable(false);
         txtID.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,6 +116,17 @@ public class Comprass extends javax.swing.JFrame {
 
         jLabel3.setText("CodigoCompra");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 0, 51));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("x");
+        jLabel4.setAutoscrolls(true);
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,11 +153,15 @@ public class Comprass extends javax.swing.JFrame {
                     .addComponent(NuevaCompra, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ActualizarBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(107, 107, 107))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(NuevaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,7 +271,7 @@ public class Comprass extends javax.swing.JFrame {
         NuevaCompra.setEnabled(true);
         CodigoProveedor.setEnabled(true);
         ActualizarBoton.setEnabled(false);
-        limpiar();
+        
         
                 
                 
@@ -259,6 +281,18 @@ public class Comprass extends javax.swing.JFrame {
     private void txtIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIDMouseClicked
          CodigoProveedor.setEnabled(true);
     }//GEN-LAST:event_txtIDMouseClicked
+
+    private void DateFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DateFechaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DateFechaMouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        if(JOptionPane.showConfirmDialog(null,"SEGURO QUE DESA SALIR","SALIENDO",JOptionPane.OK_CANCEL_OPTION)==0){
+            dispose();
+
+        }
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -319,12 +353,17 @@ public class Comprass extends javax.swing.JFrame {
     */
      String sql="INSERT INTO Compras(Fecha,idProveedores)values(?,?)";
     String FechaA=((JTextField)DateFecha.getDateEditor().getUiComponent()).getText();
-     int Codigo=1+CodigoProveedor.getSelectedIndex();
+    String Datos=(String) CodigoProveedor.getSelectedItem();
+    int Codigo=Integer.parseInt(Datos);
+    
+        System.out.println("El codigo es"+Codigo);
     try {
         Insertar=conectarBD.prepareStatement(sql);
         Insertar.setString(1, FechaA);
         Insertar.setInt(2,Codigo);
         Insertar.executeUpdate();
+        
+        
     JOptionPane.showMessageDialog(null,"Agregados Correcto" );
         limpiar();
     } catch (Exception e) {
@@ -360,6 +399,7 @@ public class Comprass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -21,7 +21,7 @@ public class Conexion {
             Conectar=DriverManager.getConnection("jdbc:mysql://localhost:3306/Farmacia","root","joelarriola");
            
             if(Conectar!=null){
-                JOptionPane.showMessageDialog(null,"Conexion Exitosa");
+               // JOptionPane.showMessageDialog(null,"Conexion Exitosa");
                
             }
         } catch (Exception e) {
