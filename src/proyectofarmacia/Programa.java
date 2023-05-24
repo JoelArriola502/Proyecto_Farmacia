@@ -56,6 +56,16 @@ public void Compras(){
     Mostrar.revalidate();
     Mostrar.repaint();
 }
+
+public void Ventas(){
+    VentasPanel ventas=new VentasPanel();
+    ventas.setSize(890,530);
+    ventas.setLocation(0,0);
+    Mostrar.removeAll();
+    Mostrar.add(ventas,BorderLayout.CENTER);
+    Mostrar.revalidate();
+    Mostrar.repaint();
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,6 +81,7 @@ public void Compras(){
         Cerrar = new javax.swing.JButton();
         ProductosBoton = new javax.swing.JButton();
         ComprasBoton = new javax.swing.JButton();
+        VentasBoton = new javax.swing.JButton();
         Mostrar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -142,21 +153,37 @@ public void Compras(){
             }
         });
 
+        VentasBoton.setText("VENTAS");
+        VentasBoton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VentasBotonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VentasBotonMouseExited(evt);
+            }
+        });
+        VentasBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VentasBotonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
         opcionesLayout.setHorizontalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
+            .addGroup(opcionesLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +192,11 @@ public void Compras(){
                 .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92)
                 .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
@@ -303,6 +332,18 @@ public void Compras(){
         Compras();
     }//GEN-LAST:event_ComprasBotonActionPerformed
 
+    private void VentasBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasBotonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VentasBotonMouseEntered
+
+    private void VentasBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasBotonMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VentasBotonMouseExited
+
+    private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
+        Ventas();
+    }//GEN-LAST:event_VentasBotonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -327,6 +368,7 @@ public void Compras(){
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cerrar;
@@ -334,6 +376,7 @@ public void Compras(){
     private javax.swing.JPanel Mostrar;
     private javax.swing.JButton ProductosBoton;
     private javax.swing.JButton UsuarioBoton;
+    private javax.swing.JButton VentasBoton;
     private javax.swing.JPanel backgrour;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

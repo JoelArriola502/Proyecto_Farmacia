@@ -25,8 +25,65 @@ public class Compras extends javax.swing.JPanel {
   
     public Compras() {
         initComponents();
+        CargarCodigoCompras(CodigoCompras);
+        CargarCodigoProducto(CodigoProductosCon);
     }
-public void VerDatos(){
+    public void InsertarCompraDEtalle(){
+        String insertarDatos="insert into CompraDetalle(idCompras,idProductos,precio,cantidad,costoTotal)values(?,?,?,?,?)";
+        float CostoTotal1=Float.valueOf(txtPrecioCompra.getText());
+        float Costototal2=Float.valueOf(txtCantidad.getText());
+        float Resul=CostoTotal1*Costototal2;
+       
+       
+        
+        String Produ=(String) CodigoProductosCon.getSelectedItem();
+        String Comp=(String) CodigoCompras.getSelectedItem();
+        int CodigoProducto=Integer.parseInt(Produ);
+        int CodigoCompra=Integer.parseInt(Comp);
+        
+        try {
+            insertar=ConectarBD.prepareStatement(insertarDatos);
+            insertar.setInt(1, CodigoCompra);
+            insertar.setInt(2, CodigoProducto);
+            insertar.setString(3, txtPrecioCompra.getText());
+            insertar.setString(4, txtCantidad.getText());
+            insertar.setFloat(5, Resul);
+            insertar.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Agregados Correctamente");
+            System.out.println("Compras "+CodigoCompra);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Eroror"+e.toString());
+        }
+    
+    }
+public void Actualizar(){
+    
+   
+    
+    
+    String CodigoP=(String) CodigoProductosCon.getSelectedItem();
+    
+    int CodigoProductos=Integer.parseInt(CodigoP);
+    
+    System.out.println("El id es "+CodigoProductos);
+   
+    try {
+        Actualizar=ConectarBD.prepareStatement("update Productos set Existencia=Existencia+'"+txtCantidad.getText()+"' where idProductos='"+CodigoProductos+"'");
+    int Contador=Actualizar.executeUpdate();
+    if(Contador>0){
+        JOptionPane.showMessageDialog(null,"Datos Actualizados");
+        MetodoMostrar();
+        
+    }else {
+          JOptionPane.showMessageDialog(null,"No selecciono la fila");
+    }
+    
+    } catch (Exception e) {
+          JOptionPane.showMessageDialog(null,"error"+e.toString());
+    }
+}
+
+    public void VerDatos(){
     DefaultTableModel Modelo=new DefaultTableModel();
     
     Modelo.addColumn("idCompraDetalle");
@@ -98,6 +155,14 @@ public void VerDatos(){
         jPanel2 = new javax.swing.JPanel();
         Menu = new javax.swing.JComboBox<>();
         MenuVerDatos = new javax.swing.JComboBox<>();
+        CodigoProductosCon = new javax.swing.JComboBox<>();
+        txtCostoTotal = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
+        txtPrecioCompra = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
+        CodigoCompras = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ComprasTB = new javax.swing.JTable();
@@ -119,7 +184,7 @@ public void VerDatos(){
                 MenuActionPerformed(evt);
             }
         });
-        jPanel2.add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 220, 60));
+        jPanel2.add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 220, 40));
 
         MenuVerDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ver Datos", "Ver Proveedor", "Ver Productos", "Ver Compras", "Ver Detalles de la Compra" }));
         MenuVerDatos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -132,7 +197,82 @@ public void VerDatos(){
                 MenuVerDatosActionPerformed(evt);
             }
         });
-        jPanel2.add(MenuVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 60));
+        jPanel2.add(MenuVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
+
+        CodigoProductosCon.setBorder(javax.swing.BorderFactory.createTitledBorder("Codigo Producto"));
+        CodigoProductosCon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CodigoProductosConMouseClicked(evt);
+            }
+        });
+        CodigoProductosCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CodigoProductosConActionPerformed(evt);
+            }
+        });
+        jPanel2.add(CodigoProductosCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 140, 40));
+
+        txtCostoTotal.setEditable(false);
+        txtCostoTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Costo Total"));
+        jPanel2.add(txtCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 140, 40));
+
+        txtCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad"));
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 140, 40));
+
+        txtPrecioCompra.setBorder(javax.swing.BorderFactory.createTitledBorder("Precio Compra"));
+        txtPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioCompraActionPerformed(evt);
+            }
+        });
+        txtPrecioCompra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioCompraKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 140, 40));
+
+        txtID.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Detalle Compra"));
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 140, 40));
+
+        CodigoCompras.setBorder(javax.swing.BorderFactory.createTitledBorder("Codigo Compra"));
+        CodigoCompras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CodigoComprasMouseClicked(evt);
+            }
+        });
+        jPanel2.add(CodigoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, 40));
+
+        jButton1.setText("Comprar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 140, 40));
+
+        jButton3.setText("VER COMPRAS");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 140, 40));
 
         Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 300));
 
@@ -239,6 +379,56 @@ public void VerDatos(){
 
         }
     }//GEN-LAST:event_MenuVerDatosActionPerformed
+
+    private void CodigoProductosConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoProductosConActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CodigoProductosConActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        char valida=evt.getKeyChar();
+        if(valida<'0'||valida>'9')evt.consume();
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtPrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioCompraActionPerformed
+
+    private void txtPrecioCompraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioCompraKeyTyped
+        // TODO add your handling code here:
+        char valida=evt.getKeyChar();
+        if(valida<'0'||valida>'9')evt.consume();
+    }//GEN-LAST:event_txtPrecioCompraKeyTyped
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //InsertarProveedor();
+        //InsertarCompra();
+        //InsertarNuevoProducto();
+
+        InsertarCompraDEtalle();
+        Actualizar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        VerDatos();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void CodigoProductosConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoProductosConMouseClicked
+        CargarCodigoProducto(CodigoProductosCon);
+    }//GEN-LAST:event_CodigoProductosConMouseClicked
+
+    private void CodigoComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoComprasMouseClicked
+        CargarCodigoCompras(CodigoCompras);
+    }//GEN-LAST:event_CodigoComprasMouseClicked
    public void MetodoMostrar(){
         DefaultTableModel Modelo=new  DefaultTableModel();
         Modelo.addColumn("Codigo Producto");
@@ -356,6 +546,19 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     }
     
 }
+public void CargarCodigoCompras(JComboBox CodigoCompras){
+    DefaultComboBoxModel CodigoCompraModelo=new DefaultComboBoxModel();
+       CodigoCompras.setModel(CodigoCompraModelo);
+       String Consulta="select idCompras from Compras";
+       try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(Consulta);
+        while(rs.next()){
+            this.CodigoCompras.addItem(rs.getString("idCompras"));
+        }
+    } catch (Exception e) {
+    }
+}
 public void CargarTipoPago(JComboBox Pago){
     DefaultComboBoxModel pag=new DefaultComboBoxModel();
     Pago.setModel(pag);
@@ -407,12 +610,20 @@ public void CargarDatosCodgoProveedor(JComboBox CodigoProveedor){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CodigoCompras;
+    private javax.swing.JComboBox<String> CodigoProductosCon;
     private javax.swing.JTable ComprasTB;
     private javax.swing.JPanel Fondo;
     private javax.swing.JComboBox<String> Menu;
     private javax.swing.JComboBox<String> MenuVerDatos;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtCostoTotal;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtPrecioCompra;
     // End of variables declaration//GEN-END:variables
 }

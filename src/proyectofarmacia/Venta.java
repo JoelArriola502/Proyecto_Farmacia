@@ -31,6 +31,7 @@ public class Venta extends javax.swing.JFrame {
         initComponents();
         CargarClientes(ClientesCon);
         
+        
     }
 
     /**
