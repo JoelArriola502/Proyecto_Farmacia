@@ -28,6 +28,7 @@ public class NuevoProducto extends javax.swing.JFrame {
         initComponents();
         CargarDatosConbox(conMarca);
         CargarDatosLaboratorios(conLaboratorio);
+        VerDatosProductos();
       
        
     }
@@ -46,7 +47,7 @@ public class NuevoProducto extends javax.swing.JFrame {
     
     String Consulta="select p.idProductos,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre as Laboratorio\n" +
 "from Productos p, Marca m, Laboratorio l \n" +
-"where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio";
+"where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio order by p.idProductos desc";
     String Datos[]=new String[8];
     
     try {
@@ -78,6 +79,7 @@ public class NuevoProducto extends javax.swing.JFrame {
         String Consulta="INSERT INTO Productos(Nombre,Descripcion,Costo,Precio,Existencia,idLaboratorio,idMarca)values(?,?,?,?,?,?,?)";
         int Laboratorio=1+conLaboratorio.getSelectedIndex();
         int Marca=1+conMarca.getSelectedIndex();
+        int Existencia=0;
         
         try {
             Insertar=ConectarBD.prepareStatement(Consulta);
@@ -85,12 +87,13 @@ public class NuevoProducto extends javax.swing.JFrame {
             Insertar.setString(2, txtDescripcion.getText());
             Insertar.setString(3, txtCosto.getText());
             Insertar.setString(4, txtPrecio.getText());
-            Insertar.setString(5, txtExistencia.getText());
+            Insertar.setInt(5, Existencia);
             Insertar.setInt(6, Laboratorio);
              Insertar.setInt(7, Marca);
             Insertar.executeUpdate();
             JOptionPane.showMessageDialog(null,"Datos Agregados");
             Limpiar();
+            VerDatosProductos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error"+e.toString());
         }
@@ -107,14 +110,17 @@ public class NuevoProducto extends javax.swing.JFrame {
     private void initComponents() {
 
         Fondo = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        NuevoProductoBo = new javax.swing.JButton();
+        ActualizarBoton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         txtCosto = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -123,11 +129,8 @@ public class NuevoProducto extends javax.swing.JFrame {
         conMarca = new javax.swing.JComboBox<>();
         txtExistencia = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        NuevoProductoBo = new javax.swing.JButton();
-        VerDatosBoton = new javax.swing.JButton();
-        ActualizarBoton = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProductos = new javax.swing.JTable();
@@ -138,140 +141,123 @@ public class NuevoProducto extends javax.swing.JFrame {
         Fondo.setBackground(new java.awt.Color(207, 155, 188));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Costo");
+        Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 80, 43));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Descripcion");
+        Fondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 90, 43));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nombre");
+        Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 43));
+
+        jPanel1.setBackground(new java.awt.Color(110, 207, 255));
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        NuevoProductoBo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        NuevoProductoBo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
+        NuevoProductoBo.setText("REGISTRAR PRODUCTO");
+        NuevoProductoBo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NuevoProductoBo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        NuevoProductoBo.setIconTextGap(15);
+        NuevoProductoBo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevoProductoBoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(NuevoProductoBo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 260, 60));
+
+        ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        ActualizarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
+        ActualizarBoton.setText("ACTUALIZAR  PRODUCTO");
+        ActualizarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ActualizarBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ActualizarBoton.setIconTextGap(15);
+        ActualizarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarBotonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 260, 60));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("ID");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 80, 43));
+
         txtID.setEnabled(false);
-        Fondo.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 126, 43));
-        Fondo.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 126, 43));
-        Fondo.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 126, 43));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 126, 43));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 126, 43));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 126, 43));
 
         txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCostoKeyTyped(evt);
             }
         });
-        Fondo.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 126, 43));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Costo");
-        Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 123, 43));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Descripcion");
-        Fondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 123, 43));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nombre");
-        Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 123, 43));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("ID");
-        Fondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 123, 43));
+        jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 126, 43));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Precio");
-        Fondo.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 123, 43));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 80, 43));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Existencia");
-        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 123, 43));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 80, 43));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Marca");
-        Fondo.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 123, 43));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 80, 43));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Laboratorio");
-        Fondo.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 123, 43));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 80, 43));
 
-        Fondo.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 190, 30));
+        conLaboratorio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 190, 43));
 
-        Fondo.add(conMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 140, 30));
-        Fondo.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 80, 126, 43));
-        Fondo.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 126, 43));
+        conMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(conMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 140, 43));
 
-        jPanel1.setBackground(new java.awt.Color(207, 155, 188));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtExistencia.setEditable(false);
+        jPanel1.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 126, 43));
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 126, 43));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimizar.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                jLabel10MouseClicked(evt);
             }
         });
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 50, -1));
 
-        NuevoProductoBo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        NuevoProductoBo.setText("NUEVO PRODUCTO");
-        NuevoProductoBo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        NuevoProductoBo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NuevoProductoBoActionPerformed(evt);
-            }
-        });
-
-        VerDatosBoton.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        VerDatosBoton.setText(" Ver Productos");
-        VerDatosBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        VerDatosBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VerDatosBotonActionPerformed(evt);
-            }
-        });
-
-        ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        ActualizarBoton.setText("Actualizar Producto");
-        ActualizarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ActualizarBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarBotonActionPerformed(evt);
-            }
-        });
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel9.setText("X");
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarVentana.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel9MouseClicked(evt);
+                jLabel11MouseClicked(evt);
             }
         });
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(692, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(NuevoProductoBo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ActualizarBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(VerDatosBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(NuevoProductoBo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(ActualizarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(VerDatosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-        );
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 878, 320));
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 878, 340));
-
-        jPanel2.setBackground(new java.awt.Color(207, 155, 188));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Productos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
         TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -326,8 +312,12 @@ public class NuevoProducto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NuevoProductoBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoBoActionPerformed
-        // TODO add your handling code here:
-        InsertarNuevoProducto();
+        if(txtNombre.getText().trim().isEmpty()||txtDescripcion.getText().trim().isEmpty()||txtCosto.getText().trim().isEmpty()||txtPrecio.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(null,"LLENAR CAMPOS OBLIGATORIOS","ERROR",JOptionPane.YES_NO_OPTION);
+        }else{
+         InsertarNuevoProducto();
+        }
+       
       
     }//GEN-LAST:event_NuevoProductoBoActionPerformed
 
@@ -376,10 +366,6 @@ public void ActualizarProducto(){
     }
 }
 
-    private void VerDatosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerDatosBotonActionPerformed
-        VerDatosProductos();
-    }//GEN-LAST:event_VerDatosBotonActionPerformed
-
     private void ActualizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotonActionPerformed
         ActualizarProducto();
     }//GEN-LAST:event_ActualizarBotonActionPerformed
@@ -390,13 +376,16 @@ public void ActualizarProducto(){
        Limpiar();
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
-        if(JOptionPane.showConfirmDialog(null,"SEGURO QUE DESA SALIR","SALIENDO",JOptionPane.OK_CANCEL_OPTION)==0){
-            dispose();
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        //Minimizar ventana
+        this.setState(Clientes.ICONIFIED);
+    }//GEN-LAST:event_jLabel10MouseClicked
 
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        if(JOptionPane.showConfirmDialog(null,"DESEA SALIR DE LA VENTANA CLIENTES","SALIR",JOptionPane.YES_NO_OPTION)==0){
+            dispose();
         }
-        
-    }//GEN-LAST:event_jLabel9MouseClicked
+    }//GEN-LAST:event_jLabel11MouseClicked
 public void Limpiar(){
     txtID.setText("");
     txtNombre.setText("");
@@ -467,10 +456,11 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton NuevoProductoBo;
     private javax.swing.JTable TablaProductos;
-    private javax.swing.JButton VerDatosBoton;
     private javax.swing.JComboBox<String> conLaboratorio;
     private javax.swing.JComboBox<String> conMarca;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -478,7 +468,6 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

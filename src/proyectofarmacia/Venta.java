@@ -30,8 +30,8 @@ public class Venta extends javax.swing.JFrame {
     public Venta() {
         initComponents();
         CargarClientes(ClientesCon);
-        
-        
+         MostrarVentas();
+        ActualizarBoton.setEnabled(false);
     }
 
     /**
@@ -53,17 +53,20 @@ public class Venta extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         RegistrarBoton = new javax.swing.JButton();
         ActualizarBoton = new javax.swing.JButton();
-        VerDatosBoton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentaTB = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
-        fondo.setBackground(new java.awt.Color(102, 255, 204));
+        fondo.setBackground(new java.awt.Color(110, 207, 255));
         fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(102, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(110, 207, 255));
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
@@ -74,52 +77,78 @@ public class Venta extends javax.swing.JFrame {
         FechaDate.setDateFormatString("yyy-MM-dd");
         jPanel2.add(FechaDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 157, 170, 40));
 
+        ClientesCon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ClientesConMouseClicked(evt);
+            }
+        });
         jPanel2.add(ClientesCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 234, 170, 40));
 
+        txtID.setEditable(false);
         txtID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jPanel2.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 82, 170, 40));
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Codigo venta");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 82, 100, 40));
 
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Fecha");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 157, 100, 40));
 
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cliente");
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 234, 100, 40));
 
-        RegistrarBoton.setText("Registrar");
+        RegistrarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
+        RegistrarBoton.setText("REGISTRAR FECHA VENTA");
+        RegistrarBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        RegistrarBoton.setIconTextGap(15);
         RegistrarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarBotonActionPerformed(evt);
             }
         });
-        jPanel2.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 120, 50));
+        jPanel2.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 250, 50));
 
-        ActualizarBoton.setText("Actualizar");
+        ActualizarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
+        ActualizarBoton.setText("ACTUALIZAR FECHA VENTA");
+        ActualizarBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ActualizarBoton.setIconTextGap(15);
         ActualizarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActualizarBotonActionPerformed(evt);
             }
         });
-        jPanel2.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 120, 50));
+        jPanel2.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 250, 50));
 
-        VerDatosBoton.setText("ver Fecha Compras");
-        VerDatosBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VerDatosBotonActionPerformed(evt);
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimizar.png"))); // NOI18N
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
             }
         });
-        jPanel2.add(VerDatosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(526, 87, 140, 50));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, -1, 40));
 
-        fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 310));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarVentana.png"))); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, -1, 40));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 310));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Compra", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24))); // NOI18N
 
+        VentaTB.setForeground(new java.awt.Color(0, 0, 0));
         VentaTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -159,7 +188,7 @@ public class Venta extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -174,13 +203,22 @@ public class Venta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarBotonActionPerformed
+        
+        String FechaA=((JTextField)FechaDate.getDateEditor().getUiComponent()).getText(); 
+        
+        if(FechaA.trim().isEmpty()){
+              JOptionPane.showMessageDialog(null,"LLENAR CAMPOS OBLIGATORIOS","ERROR",JOptionPane.YES_NO_OPTION);
+        }else{
+     
+        
         InsertarVentas();
+        }
     }//GEN-LAST:event_RegistrarBotonActionPerformed
 
     private void VentaTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentaTBMouseClicked
         ActualizarBoton.setEnabled(true);
         RegistrarBoton.setEnabled(false);
-        ClientesCon.setEnabled(false);
+        
         int fila=this.VentaTB.getSelectedRow();
         this.txtID.setText(this.VentaTB.getValueAt(fila, 0).toString());
         this.FechaDate.setDateFormatString(this.VentaTB.getValueAt(fila, 1).toString());
@@ -188,7 +226,7 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_VentaTBMouseClicked
 
     private void ActualizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotonActionPerformed
-        // TODO add your handling code here:
+       ActualizarCliente();
     }//GEN-LAST:event_ActualizarBotonActionPerformed
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
@@ -196,9 +234,20 @@ public class Venta extends javax.swing.JFrame {
    ActualizarBoton.setEnabled(false);
     }//GEN-LAST:event_jPanel2MouseClicked
 
-    private void VerDatosBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerDatosBotonActionPerformed
-      MostrarVentas();
-    }//GEN-LAST:event_VerDatosBotonActionPerformed
+    private void ClientesConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesConMouseClicked
+       
+    }//GEN-LAST:event_ClientesConMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        //Minimizar ventana
+        this.setState(Clientes.ICONIFIED);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        if(JOptionPane.showConfirmDialog(null,"DESEA SALIR DE LA VENTANA CLIENTES","SALIR",JOptionPane.YES_NO_OPTION)==0){
+            dispose();
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,7 +272,7 @@ public class Venta extends javax.swing.JFrame {
     public void CargarClientes(JComboBox Clientes){
         DefaultComboBoxModel ModeloClientes=new DefaultComboBoxModel();
         Clientes.setModel(ModeloClientes);
-        String consulta="select idClientes from Clientes";
+        String consulta="select idClientes from Clientes order by idClientes desc";
         try {
             st=ConectarBD.createStatement();
             rs=st.executeQuery(consulta);
@@ -253,6 +302,7 @@ public class Venta extends javax.swing.JFrame {
         
     JOptionPane.showMessageDialog(null,"Agregados Correcto" );
         Limpiar();
+         MostrarVentas();
     } catch (Exception e) {
          JOptionPane.showMessageDialog(null,"error"+e.toString() );
     }
@@ -268,11 +318,12 @@ public class Venta extends javax.swing.JFrame {
       Modelo.addColumn("Codigo Venta");
       Modelo.addColumn("Fecha venta");
       Modelo.addColumn("codigo Cliente");
+      Modelo.addColumn("Cliente");
     VentaTB.setModel(Modelo);
-    String Consulta="select v.idVentas,v.fecha,c.Nombre\n" +
+    String Consulta="select v.idVentas,v.fecha,c.idClientes,c.Nombre\n" +
 "from Ventas v, Clientes c\n" +
-"where v.idClientes=c.idClientes";
-    String Dato[]=new String[3];
+"where v.idClientes=c.idClientes order by v.idVentas desc";
+    String Dato[]=new String[4];
     
       try {
           st=ConectarBD.createStatement();
@@ -281,6 +332,7 @@ public class Venta extends javax.swing.JFrame {
               Dato[0]=rs.getString(1);
               Dato[1]=rs.getString(2);
               Dato[2]=rs.getString(3);
+              Dato[3]=rs.getString(4);
               Modelo.addRow(Dato);
           }
       } catch (Exception e) {
@@ -290,8 +342,9 @@ public class Venta extends javax.swing.JFrame {
   }
   public void ActualizarCliente(){
        String FechaA=((JTextField)FechaDate.getDateEditor().getUiComponent()).getText();
+       String CodigoClinte=(String) ClientesCon.getSelectedItem();
       try {
-          Actualizar=ConectarBD.prepareStatement("update Ventas set fecha='"+FechaA+"' where idVentas='"+txtID.getText()+"'");
+          Actualizar=ConectarBD.prepareStatement("update Ventas set fecha='"+FechaA+"',idClientes='"+CodigoClinte+"' where idVentas='"+txtID.getText()+"'");
       int Contador=Actualizar.executeUpdate();
       if(Contador>0){
           MostrarVentas();
@@ -307,11 +360,12 @@ public class Venta extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser FechaDate;
     private javax.swing.JButton RegistrarBoton;
     private javax.swing.JTable VentaTB;
-    private javax.swing.JButton VerDatosBoton;
     private javax.swing.JPanel fondo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

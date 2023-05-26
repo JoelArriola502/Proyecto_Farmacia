@@ -30,6 +30,7 @@ public class VentasPanel extends javax.swing.JPanel {
         initComponents();
         CargarVentas(CodigoVentas);
         CargarCodigoProducto(CodigoProductosCon);
+        VerDatallesdeVentas();
     }
 
     /**
@@ -53,6 +54,9 @@ public class VentasPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         MenuVerDatos = new javax.swing.JComboBox<>();
         MenuAgregar = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TotalTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentasTB = new javax.swing.JTable();
@@ -60,9 +64,12 @@ public class VentasPanel extends javax.swing.JPanel {
         Fondo.setBackground(new java.awt.Color(255, 255, 255));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(110, 207, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CodigoProductosCon.setBorder(javax.swing.BorderFactory.createTitledBorder("Codigo Producto"));
+        CodigoProductosCon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CodigoProductosCon.setName(""); // NOI18N
         CodigoProductosCon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CodigoProductosConMouseClicked(evt);
@@ -73,8 +80,10 @@ public class VentasPanel extends javax.swing.JPanel {
                 CodigoProductosConActionPerformed(evt);
             }
         });
+        jPanel1.add(CodigoProductosCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 87, 140, 50));
 
         txtCostoTotal.setBorder(javax.swing.BorderFactory.createTitledBorder("Costo "));
+        jPanel1.add(txtCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 215, 140, 57));
 
         txtCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad"));
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -82,6 +91,7 @@ public class VentasPanel extends javax.swing.JPanel {
                 txtCantidadKeyTyped(evt);
             }
         });
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 152, 140, 57));
 
         txtPrecioCompra.setBorder(javax.swing.BorderFactory.createTitledBorder("Precio "));
         txtPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +104,9 @@ public class VentasPanel extends javax.swing.JPanel {
                 txtPrecioCompraKeyTyped(evt);
             }
         });
+        jPanel1.add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 83, 140, 57));
 
+        txtID.setEditable(false);
         txtID.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Detalle Ventas"));
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,11 +118,16 @@ public class VentasPanel extends javax.swing.JPanel {
                 txtIDKeyTyped(evt);
             }
         });
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 6, 140, 57));
 
         CodigoVentas.setBorder(javax.swing.BorderFactory.createTitledBorder("Codigo Ventas"));
+        CodigoVentas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CodigoVentas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CodigoVentasMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                CodigoVentasMousePressed(evt);
             }
         });
         CodigoVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -118,22 +135,35 @@ public class VentasPanel extends javax.swing.JPanel {
                 CodigoVentasActionPerformed(evt);
             }
         });
+        jPanel1.add(CodigoVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 10, 140, 50));
 
-        jButton1.setText("Comprar");
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
+        jButton1.setText("REALIZAR VENTA");
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 190, 50));
 
-        jButton3.setText("VER COMPRAS");
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
+        jButton3.setText("VER TOTAL A PAGAR");
+        jButton3.setContentAreaFilled(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 206, 200, 50));
 
         MenuVerDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ver Datos", "VER CLIENTES", "VER PRODUCTOS", "VER FECHA VENTAS", "VER DETALLE DE LAS VENTAS" }));
+        MenuVerDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuVerDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuVerDatosMouseClicked(evt);
@@ -144,8 +174,10 @@ public class VentasPanel extends javax.swing.JPanel {
                 MenuVerDatosActionPerformed(evt);
             }
         });
+        jPanel1.add(MenuVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 172, 60));
 
         MenuAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DESEA AGREGAR", "AGREGAR CLIENTE", "AGREGAR FECHA VENTA", " ", " " }));
+        MenuAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuAgregarMouseClicked(evt);
@@ -156,64 +188,45 @@ public class VentasPanel extends javax.swing.JPanel {
                 MenuAgregarActionPerformed(evt);
             }
         });
+        jPanel1.add(MenuAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 11, 225, 60));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(CodigoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(28, 28, 28)
-                            .addComponent(CodigoProductosCon, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(110, 110, 110)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(MenuVerDatos, 0, 1, Short.MAX_VALUE))
-                .addGap(28, 28, 28)
-                .addComponent(MenuAgregar, 0, 1, Short.MAX_VALUE)
-                .addGap(69, 69, 69))
+        TotalTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(TotalTable);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CodigoVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPrecioCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CodigoProductosCon, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCostoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(MenuVerDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(MenuAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 270));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 190, -1));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 290));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
         VentasTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -239,13 +252,13 @@ public class VentasPanel extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
-        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 890, 260));
+        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 890, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -262,7 +275,10 @@ public class VentasPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CodigoProductosConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoProductosConActionPerformed
-        // TODO add your handling code here:
+   
+        
+      
+       
     }//GEN-LAST:event_CodigoProductosConActionPerformed
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
@@ -291,11 +307,14 @@ public class VentasPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         InsertarVentaDetalle();
         Actualizar();
+       
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
+        VerDatallesdeVentasCodigo();
+       VerTotalPagr();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void MenuVerDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuVerDatosMouseClicked
@@ -304,7 +323,7 @@ public class VentasPanel extends javax.swing.JPanel {
 
     private void MenuVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerDatosActionPerformed
         if(MenuVerDatos.getSelectedItem().equals("VER PRODUCTOS")){
-            MostrarDatosProductos();
+            MostrarDatosProductosid();
            
         }if(MenuVerDatos.getSelectedItem().equals("VER CLIENTES")){
             VerDatosClientes();
@@ -337,12 +356,20 @@ public class VentasPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_MenuAgregarActionPerformed
 
     private void CodigoVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoVentasMouseClicked
+      
         CargarVentas(CodigoVentas);
+       
+        
     }//GEN-LAST:event_CodigoVentasMouseClicked
 
     private void CodigoProductosConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoProductosConMouseClicked
-        CargarCodigoProducto(CodigoProductosCon);
+      MostrarDatosProductosid();
+        
     }//GEN-LAST:event_CodigoProductosConMouseClicked
+
+    private void CodigoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoVentasMousePressed
+        
+    }//GEN-LAST:event_CodigoVentasMousePressed
 public void InsertarVentaDetalle(){
     String Consulta="INSERT INTO DetalleVenta(idProductos,idVentas,precio,cantidad,costoTotal)values(?,?,?,?,?)";
     String CodigoVen=(String) CodigoVentas.getSelectedItem();
@@ -428,7 +455,7 @@ public void Actualizar(){
  public void CargarVentas(JComboBox ventas){
      DefaultComboBoxModel ModeloVentas=new DefaultComboBoxModel();
      ventas.setModel(ModeloVentas);
-     String Consulta="select idVentas from Ventas";
+     String Consulta="select idVentas from Ventas order by idVentas desc";
      try {
          st=ConectarBD.createStatement();
          rs=st.executeQuery(Consulta);
@@ -443,7 +470,7 @@ public void Actualizar(){
     public void CargarCodigoProducto(JComboBox Codigo){
     DefaultComboBoxModel CodigModel=new DefaultComboBoxModel();
     Codigo.setModel(CodigModel);
-    String consulta="select idProductos from Productos";
+    String consulta="select idProductos from Productos order by idProductos desc";
     try {
         st=ConectarBD.createStatement();
         rs=st.executeQuery(consulta);
@@ -467,7 +494,7 @@ public void Actualizar(){
         String Dato[]=new String[5];
         String Consulta="select c.idClientes, c.Nombre,c.Nit,c.Telefono,fp.TipoPago\n" +
 "from Clientes c, formaPago fp\n" +
-"where c.idFormaPago=fp.idFormaPago";
+"where c.idFormaPago=fp.idFormaPago order by idClientes desc ";
          try {
             st=ConectarBD.createStatement();
             rs=st.executeQuery(Consulta);
@@ -518,6 +545,42 @@ public void Actualizar(){
         }
         
     }
+ public void MostrarDatosProductosid(){
+     String CodigoPro=(String)CodigoProductosCon.getSelectedItem();
+        DefaultTableModel Modelo=new  DefaultTableModel();
+        Modelo.addColumn("Codigo Producto");
+        Modelo.addColumn("Nombre Producto");
+        Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Costo");
+        Modelo.addColumn("Precio");
+        Modelo.addColumn("Existencia");
+        Modelo.addColumn("Laboratorio");
+        Modelo.addColumn("Marca");
+        VentasTB.setModel(Modelo);
+        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
+"from Productos p, Marca m, Laboratorio l\n" +
+"where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca and p.idProductos='"+CodigoPro+"'";
+        String Datos[]=new String[8];
+        
+        try {
+            st=ConectarBD.createStatement();
+            rs=st.executeQuery(consulta);
+            while(rs.next()){
+                Datos[0]=rs.getString(1);
+                Datos[1]=rs.getString(2);
+                Datos[2]=rs.getString(3);
+                Datos[3]=rs.getString(4);
+                Datos[4]=rs.getString(5);
+                Datos[5]=rs.getString(6);
+                Datos[6]=rs.getString(7);
+                Datos[7]=rs.getString(8);
+                Modelo.addRow(Datos);
+            }
+        } catch (Exception e) {
+        }
+        
+    }
+
     public void VerDatallesdeVentas(){
         DefaultTableModel Modelo=new DefaultTableModel();
         Modelo.addColumn("Codigo VentaDetalle");
@@ -542,7 +605,7 @@ public void Actualizar(){
         String Consulta="Select dv.idDetalleVenta, c.idClientes,c.Nombre,c.Nit,c.Telefono,v.idVentas,v.fecha,dv.precio,dv.cantidad,dv.costoTotal,p.idProductos,p.Nombre,p.Descripcion,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago\n" +
 "from DetalleVenta dv, Ventas v,Productos p, formaPago fp, Clientes c, Laboratorio l , Marca m\n" +
 "where dv.idVentas=v.idVentas and dv.idProductos=p.idProductos and v.idClientes=c.idClientes and c.idFormaPago=fp.idFormaPago\n" +
-"and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio";
+"and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio order by idDetalleVenta desc";
         try {
             st=ConectarBD.createStatement();
             rs=st.executeQuery(Consulta);
@@ -572,18 +635,96 @@ public void Actualizar(){
         }
         
     }
+      public void VerDatallesdeVentasCodigo(){
+            String CodigoVen=(String) CodigoVentas.getSelectedItem();
+        DefaultTableModel Modelo=new DefaultTableModel();
+        Modelo.addColumn("Codigo VentaDetalle");
+        Modelo.addColumn("CD Cliente");
+        Modelo.addColumn("Nombre");
+        Modelo.addColumn("Nit");
+        Modelo.addColumn("Telefono");
+        Modelo.addColumn("Codigo Ventas");
+        Modelo.addColumn("Fecha");
+        Modelo.addColumn("Precio ");
+        Modelo.addColumn("Cantidad");
+        Modelo.addColumn("Costo");
+        Modelo.addColumn("Codigo Producto");
+        Modelo.addColumn("Nombre");
+        Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Existencia");
+        Modelo.addColumn("Marca");
+        Modelo.addColumn("Laboratorio");
+        Modelo.addColumn("Pago");
+        VentasTB.setModel(Modelo);
+        String Datos[]=new String[17];
+        String Consulta="Select dv.idDetalleVenta, c.idClientes,c.Nombre,c.Nit,c.Telefono,v.idVentas,v.fecha,dv.precio,dv.cantidad,dv.costoTotal,p.idProductos,p.Nombre,p.Descripcion,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago\n" +
+"from DetalleVenta dv, Ventas v,Productos p, formaPago fp, Clientes c, Laboratorio l , Marca m\n" +
+"where dv.idVentas=v.idVentas and dv.idProductos=p.idProductos and v.idClientes=c.idClientes and c.idFormaPago=fp.idFormaPago\n" +
+"and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio and v.idVentas='"+CodigoVen+"'";
+        try {
+            st=ConectarBD.createStatement();
+            rs=st.executeQuery(Consulta);
+            while(rs.next()){
+            Datos[0]=rs.getString(1);
+            Datos[1]=rs.getString(2);
+            Datos[2]=rs.getString(3);
+            Datos[3]=rs.getString(4);
+            Datos[4]=rs.getString(5);
+            Datos[5]=rs.getString(6);
+            Datos[6]=rs.getString(7);
+            Datos[7]=rs.getString(8);
+            Datos[8]=rs.getString(9);
+            Datos[9]=rs.getString(10);
+            Datos[10]=rs.getString(11);
+            Datos[11]=rs.getString(12);
+            Datos[12]=rs.getString(13);
+            Datos[13]=rs.getString(14);
+            Datos[14]=rs.getString(15);
+            Datos[15]=rs.getString(16);
+            Datos[16]=rs.getString(17);
+           
+                Modelo.addRow(Datos);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+        }
+        
+    }
+public void VerTotalPagr(){
+    DefaultTableModel Modelo=new DefaultTableModel();
+    String Codigo=(String)CodigoVentas.getSelectedItem();
+    Modelo.addColumn("Total a Pagar");
+    TotalTable.setModel(Modelo);
+    String Consulta="select sum(precio*cantidad)as TotalAPagar from DetalleVenta\n" +
+"where idVentas='"+Codigo+"'";
+    String Dato[]=new String[1];
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(Consulta);
+        while(rs.next()){
+            Dato[0]=rs.getString(1);
+            Modelo.addRow(Dato);
+        }
+    } catch (Exception e) {
+       
+    }
+    
+}    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CodigoProductosCon;
     private javax.swing.JComboBox<String> CodigoVentas;
     private javax.swing.JPanel Fondo;
     private javax.swing.JComboBox<String> MenuAgregar;
     private javax.swing.JComboBox<String> MenuVerDatos;
+    private javax.swing.JTable TotalTable;
     private javax.swing.JTable VentasTB;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCostoTotal;
     private javax.swing.JTextField txtID;

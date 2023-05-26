@@ -28,6 +28,7 @@ public class Programa extends javax.swing.JFrame {
          jLabel1.putClientProperty( "FlatLaf.styleClass", "h1" );
          
        //  this.setExtendedState(this.MAXIMIZED_BOTH);
+       
     }
 public void Usuario(){
     Usuario ConsultarDatos=new Usuario();
@@ -82,18 +83,31 @@ public void Ventas(){
         ProductosBoton = new javax.swing.JButton();
         ComprasBoton = new javax.swing.JButton();
         VentasBoton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         Mostrar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        setResizable(false);
 
         backgrour.setBackground(new java.awt.Color(255, 255, 255));
+        backgrour.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        opciones.setBackground(new java.awt.Color(216, 71, 245));
+        opciones.setBackground(new java.awt.Color(110, 207, 255));
         opciones.setPreferredSize(new java.awt.Dimension(290, 650));
 
+        UsuarioBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        UsuarioBoton.setForeground(new java.awt.Color(0, 0, 0));
+        UsuarioBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/user_add_12818.png"))); // NOI18N
         UsuarioBoton.setText("Usuario");
+        UsuarioBoton.setContentAreaFilled(false);
+        UsuarioBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        UsuarioBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        UsuarioBoton.setIconTextGap(15);
         UsuarioBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 UsuarioBotonMouseEntered(evt);
@@ -108,7 +122,14 @@ public void Ventas(){
             }
         });
 
+        Cerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Cerrar.setForeground(new java.awt.Color(0, 0, 0));
+        Cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salida.png"))); // NOI18N
         Cerrar.setText("CERRAR SESIÓN");
+        Cerrar.setContentAreaFilled(false);
+        Cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cerrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Cerrar.setIconTextGap(15);
         Cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CerrarMouseEntered(evt);
@@ -123,7 +144,14 @@ public void Ventas(){
             }
         });
 
+        ProductosBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ProductosBoton.setForeground(new java.awt.Color(0, 0, 0));
+        ProductosBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Producto.png"))); // NOI18N
         ProductosBoton.setText("PRODUCTOS");
+        ProductosBoton.setContentAreaFilled(false);
+        ProductosBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ProductosBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ProductosBoton.setIconTextGap(15);
         ProductosBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ProductosBotonMouseEntered(evt);
@@ -138,7 +166,14 @@ public void Ventas(){
             }
         });
 
+        ComprasBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ComprasBoton.setForeground(new java.awt.Color(0, 0, 0));
+        ComprasBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Compra1.png"))); // NOI18N
         ComprasBoton.setText("COMPRAS");
+        ComprasBoton.setContentAreaFilled(false);
+        ComprasBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ComprasBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ComprasBoton.setIconTextGap(15);
         ComprasBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ComprasBotonMouseEntered(evt);
@@ -153,7 +188,14 @@ public void Ventas(){
             }
         });
 
+        VentasBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        VentasBoton.setForeground(new java.awt.Color(0, 0, 0));
+        VentasBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Venta.png"))); // NOI18N
         VentasBoton.setText("VENTAS");
+        VentasBoton.setContentAreaFilled(false);
+        VentasBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentasBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        VentasBoton.setIconTextGap(15);
         VentasBoton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 VentasBotonMouseEntered(evt);
@@ -168,38 +210,46 @@ public void Ventas(){
             }
         });
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo_Farmacia-removebg-preview.png"))); // NOI18N
+
         javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
         opciones.setLayout(opcionesLayout);
         opcionesLayout.setHorizontalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, opcionesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
             .addGroup(opcionesLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(opcionesLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(opcionesLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         opcionesLayout.setVerticalGroup(
             opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(opcionesLayout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92)
+                .addGap(113, 113, 113)
                 .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addContainerGap())
         );
+
+        backgrour.add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 631));
 
         Mostrar.setBackground(new java.awt.Color(255, 255, 255));
         Mostrar.setPreferredSize(new java.awt.Dimension(850, 630));
@@ -208,55 +258,43 @@ public void Ventas(){
         Mostrar.setLayout(MostrarLayout);
         MostrarLayout.setHorizontalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 890, Short.MAX_VALUE)
         );
         MostrarLayout.setVerticalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(220, 94, 245));
+        backgrour.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 91, 890, 540));
+
+        jPanel1.setBackground(new java.awt.Color(110, 207, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("FARMACIA");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 21, 146, 43));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(634, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimizar.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 50, -1));
 
-        javax.swing.GroupLayout backgrourLayout = new javax.swing.GroupLayout(backgrour);
-        backgrour.setLayout(backgrourLayout);
-        backgrourLayout.setHorizontalGroup(
-            backgrourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgrourLayout.createSequentialGroup()
-                .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(backgrourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 890, Short.MAX_VALUE)))
-        );
-        backgrourLayout.setVerticalGroup(
-            backgrourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
-            .addGroup(backgrourLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(1, 1, 1)
-                .addComponent(Mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarVentana.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, -1, -1));
+
+        backgrour.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 890, 92));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -344,6 +382,17 @@ public void Ventas(){
         Ventas();
     }//GEN-LAST:event_VentasBotonActionPerformed
 
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        //Minimizar ventana
+        this.setState(Clientes.ICONIFIED);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        if(JOptionPane.showConfirmDialog(null,"DESEA SALIR DE LA VENTANA CLIENTES","SALIR",JOptionPane.YES_NO_OPTION)==0){
+            dispose();
+        }
+    }//GEN-LAST:event_jLabel11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -379,6 +428,9 @@ public void Ventas(){
     private javax.swing.JButton VentasBoton;
     private javax.swing.JPanel backgrour;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel opciones;
     // End of variables declaration//GEN-END:variables

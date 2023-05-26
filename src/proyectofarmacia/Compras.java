@@ -27,6 +27,7 @@ public class Compras extends javax.swing.JPanel {
         initComponents();
         CargarCodigoCompras(CodigoCompras);
         CargarCodigoProducto(CodigoProductosCon);
+        VerDatos();
     }
     public void InsertarCompraDEtalle(){
         String insertarDatos="insert into CompraDetalle(idCompras,idProductos,precio,cantidad,costoTotal)values(?,?,?,?,?)";
@@ -170,10 +171,11 @@ public void Actualizar(){
         Fondo.setBackground(new java.awt.Color(149, 115, 153));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(149, 115, 153));
+        jPanel2.setBackground(new java.awt.Color(110, 207, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Menu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Que datos desa agregar", "Nuevo Producto", "Agrege Datos Del Proveedor", "Agregar Fecha Compras", "Realizar compra", "Nueva Marca De producto", " " }));
+        Menu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Menu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuMouseClicked(evt);
@@ -187,6 +189,7 @@ public void Actualizar(){
         jPanel2.add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 220, 40));
 
         MenuVerDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ver Datos", "Ver Proveedor", "Ver Productos", "Ver Compras", "Ver Detalles de la Compra" }));
+        MenuVerDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuVerDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MenuVerDatosMouseClicked(evt);
@@ -200,6 +203,7 @@ public void Actualizar(){
         jPanel2.add(MenuVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 40));
 
         CodigoProductosCon.setBorder(javax.swing.BorderFactory.createTitledBorder("Codigo Producto"));
+        CodigoProductosCon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CodigoProductosCon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CodigoProductosConMouseClicked(evt);
@@ -237,6 +241,7 @@ public void Actualizar(){
         });
         jPanel2.add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 140, 40));
 
+        txtID.setEditable(false);
         txtID.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Detalle Compra"));
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,6 +256,7 @@ public void Actualizar(){
         jPanel2.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 140, 40));
 
         CodigoCompras.setBorder(javax.swing.BorderFactory.createTitledBorder("Codigo Compra"));
+        CodigoCompras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CodigoCompras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CodigoComprasMouseClicked(evt);
@@ -259,6 +265,7 @@ public void Actualizar(){
         jPanel2.add(CodigoCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 140, 40));
 
         jButton1.setText("Comprar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -267,6 +274,7 @@ public void Actualizar(){
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 0, 140, 40));
 
         jButton3.setText("VER COMPRAS");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -274,9 +282,9 @@ public void Actualizar(){
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 140, 40));
 
-        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 300));
+        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 290));
 
-        jPanel1.setBackground(new java.awt.Color(158, 156, 221));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Compras", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 24), new java.awt.Color(0, 0, 0))); // NOI18N
 
         ComprasTB.setForeground(new java.awt.Color(38, 187, 187));
@@ -311,11 +319,11 @@ public void Actualizar(){
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 299, 890, -1));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 291, 890, 240));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -325,7 +333,7 @@ public void Actualizar(){
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+            .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -357,8 +365,7 @@ public void Actualizar(){
             compra.setVisible(true);
 
         }if(Menu.getSelectedItem().equals("Realizar compra")){
-            CompraProveedor compra=new CompraProveedor();
-            compra.setVisible(true);
+           
 
         }
     }//GEN-LAST:event_MenuActionPerformed
@@ -373,7 +380,7 @@ public void Actualizar(){
         }if(MenuVerDatos.getSelectedItem().equals("Ver Productos")){
             MetodoMostrar();
         }if(MenuVerDatos.getSelectedItem().equals("Ver Compras")){
-            Compra();
+            Compras();
         }if(MenuVerDatos.getSelectedItem().equals("Ver Detalles de la Compra")){
             VerDatos();
 
@@ -408,13 +415,12 @@ public void Actualizar(){
     }//GEN-LAST:event_txtIDKeyTyped
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //InsertarProveedor();
-        //InsertarCompra();
-        //InsertarNuevoProducto();
-
+        if(txtPrecioCompra.getText().trim().isEmpty()||txtCantidad.getText().trim().isEmpty()){
+            JOptionPane.showMessageDialog(null,"LLENAR CAMPOS OBLIGATORIOS","ERROR",JOptionPane.YES_NO_OPTION);
+        }else{
         InsertarCompraDEtalle();
         Actualizar();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -491,26 +497,27 @@ public void Actualizar(){
         } catch (Exception e) {
         }
     }
-    public void Compra(){
+    
+    public void Compras(){
         DefaultTableModel Modelo=new DefaultTableModel();
-        Modelo.addColumn("Numero de Compra");
-        Modelo.addColumn("Fecha Compra");
+        Modelo.addColumn("Codigo Compras");
+        Modelo.addColumn("Fecha");
         Modelo.addColumn("Codigo Proveedor");
         ComprasTB.setModel(Modelo);
-        String Consulta="SELECT *FROM Compras";
-        String Datos[]=new String[3];
         
+        String consulta="Select *from Compras";
+        String Dato[]=new String[3];
         try {
-             st=ConectarBD.createStatement();
-            rs=st.executeQuery(Consulta);
+            st=ConectarBD.createStatement();
+            rs=st.executeQuery(consulta);
             while(rs.next()){
-                Datos[0]=rs.getString(1);
-                Datos[1]=rs.getString(2);
-                Datos[2]=rs.getString(3);
-                Modelo.addRow(Datos);
+                Dato[0]=rs.getString(1);
+                Dato[1]=rs.getString(2);
+                Dato[2]=rs.getString(3);
+                Modelo.addRow(Dato);
             }
-            
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error"+ e.toString());
         }
     }
     public void CargarDatosConbox(JComboBox marcas){

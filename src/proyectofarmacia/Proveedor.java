@@ -34,6 +34,9 @@ public class Proveedor extends javax.swing.JFrame {
         initComponents();
           jLabel1.putClientProperty( "FlatLaf.styleClass", "h2" );
           CargarTipoPago(conPago);
+           Proveedor();
+           
+           ActualizarDatos.setEnabled(false);
     }
 public void InsertarProveedor(){
     String sql="INSERT INTO Proveedor(Nombre,Nit,Telefono,idFormaPago)values(?,?,?,?)";
@@ -50,6 +53,7 @@ public void InsertarProveedor(){
         JOptionPane.showMessageDialog(null,"Agregados Correcto" );
         System.out.println("Pago id es "+TipoPago);
         Limpiar();
+         Proveedor();
     } catch (Exception e) {
          JOptionPane.showMessageDialog(null,"error"+e.toString() );
     }
@@ -65,7 +69,6 @@ public void InsertarProveedor(){
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        verDatos = new javax.swing.JButton();
         Registrar = new javax.swing.JButton();
         ActualizarDatos = new javax.swing.JButton();
         txtNit = new javax.swing.JTextField();
@@ -78,7 +81,8 @@ public void InsertarProveedor(){
         jLabel2 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Proveeedor = new javax.swing.JTable();
@@ -86,10 +90,10 @@ public void InsertarProveedor(){
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(110, 207, 255));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -98,33 +102,29 @@ public void InsertarProveedor(){
         });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        verDatos.setForeground(new java.awt.Color(0, 0, 0));
-        verDatos.setText("Ver Datos");
-        verDatos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                verDatosActionPerformed(evt);
-            }
-        });
-        jPanel2.add(verDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 150, 200, 51));
-
         Registrar.setForeground(new java.awt.Color(0, 0, 0));
-        Registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.png"))); // NOI18N
+        Registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
         Registrar.setText("Registrar Proveedor");
+        Registrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Registrar.setIconTextGap(15);
         Registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel2.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(557, 8, 200, 60));
+        jPanel2.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 220, 60));
 
         ActualizarDatos.setForeground(new java.awt.Color(0, 0, 0));
+        ActualizarDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
         ActualizarDatos.setText("Actualizar Proveedor");
+        ActualizarDatos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ActualizarDatos.setIconTextGap(15);
         ActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActualizarDatosActionPerformed(evt);
             }
         });
-        jPanel2.add(ActualizarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(558, 79, 200, 51));
+        jPanel2.add(ActualizarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 220, 60));
 
         txtNit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -172,21 +172,30 @@ public void InsertarProveedor(){
         jLabel5.setText("Telefono Proveedor");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 190, 57));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 0, 0));
-        jLabel6.setText("x");
-        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimizar.png"))); // NOI18N
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel6MouseClicked(evt);
+                jLabel10MouseClicked(evt);
             }
         });
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, -10, -1, 40));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 50, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarVentana.png"))); // NOI18N
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 260));
 
-        jPanel3.setBackground(new java.awt.Color(51, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Proveedor"));
 
+        Proveeedor.setForeground(new java.awt.Color(0, 0, 0));
         Proveeedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -243,13 +252,13 @@ public void InsertarProveedor(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-        // TODO add your handling code here:
+    String Pago=(String) conPago.getSelectedItem();
+        if(txtNombreProveedor.getText().trim().isEmpty()||txtNit.getText().trim().isEmpty()||Pago.trim().isEmpty()){
+        JOptionPane.showMessageDialog(null,"LLENAR CAMPOS OBLIGATORIOS","ERROR",JOptionPane.YES_NO_OPTION);
+        }else{
         InsertarProveedor();
+        }
     }//GEN-LAST:event_RegistrarActionPerformed
-
-    private void verDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verDatosActionPerformed
-        Proveedor();
-    }//GEN-LAST:event_verDatosActionPerformed
 
     private void ProveeedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProveeedorMouseClicked
        
@@ -288,12 +297,16 @@ public void InsertarProveedor(){
         if(validar<'0'||validar>'9')evt.consume();
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
-                if(JOptionPane.showConfirmDialog(null,"SEGURO QUE DESA SALIR","SALIENDO",JOptionPane.OK_CANCEL_OPTION)==0){
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        //Minimizar ventana
+        this.setState(Clientes.ICONIFIED);
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        if(JOptionPane.showConfirmDialog(null,"DESEA SALIR DE LA VENTANA CLIENTES","SALIR",JOptionPane.YES_NO_OPTION)==0){
             dispose();
-        
-    }
-    }//GEN-LAST:event_jLabel6MouseClicked
+        }
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     
      public void Proveedor(){
@@ -307,7 +320,7 @@ public void InsertarProveedor(){
         String Datos[]=new String[5];
         String Consulta="select p.idProveedores,p.Nombre,p.Nit,p.Telefono,fp.TipoPago\n" +
 "from Proveedor p, formaPago fp\n" +
-"where p.idFormaPago=fp.idFormaPago";
+"where p.idFormaPago=fp.idFormaPago order by p.idProveedores desc";
         
         try {
             st=ConectarBD.createStatement();
@@ -413,11 +426,12 @@ public void InsertarProveedor(){
     private javax.swing.JButton Registrar;
     private javax.swing.JComboBox<String> conPago;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -426,6 +440,5 @@ public void InsertarProveedor(){
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtNombreProveedor;
     private javax.swing.JTextField txtTelefono;
-    private javax.swing.JButton verDatos;
     // End of variables declaration//GEN-END:variables
 }
