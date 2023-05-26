@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 
 public class Venta extends javax.swing.JFrame {
@@ -32,6 +33,8 @@ public class Venta extends javax.swing.JFrame {
         CargarClientes(ClientesCon);
          MostrarVentas();
         ActualizarBoton.setEnabled(false);
+        
+        AutoCompleteDecorator.decorate(ClientesCon);
     }
 
     /**

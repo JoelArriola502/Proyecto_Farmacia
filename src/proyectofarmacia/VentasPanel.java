@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -31,6 +32,8 @@ public class VentasPanel extends javax.swing.JPanel {
         CargarVentas(CodigoVentas);
         CargarCodigoProducto(CodigoProductosCon);
         VerDatallesdeVentas();
+        AutoCompleteDecorator.decorate(CodigoProductosCon);
+        AutoCompleteDecorator.decorate(CodigoVentas);
     }
 
     /**
@@ -329,7 +332,7 @@ public class VentasPanel extends javax.swing.JPanel {
             VerDatosClientes();
            
         }if(MenuVerDatos.getSelectedItem().equals("VER FECHA VENTAS")){
-           
+           MostrarVentas();
         }if(MenuVerDatos.getSelectedItem().equals("VER DETALLE DE LAS VENTAS")){
             VerDatallesdeVentas();
 
@@ -421,16 +424,17 @@ public void Actualizar(){
         Modelo.addColumn("Codigo Producto");
         Modelo.addColumn("Nombre Producto");
         Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Fecha Caducidad");
         Modelo.addColumn("Costo");
         Modelo.addColumn("Precio");
         Modelo.addColumn("Existencia");
         Modelo.addColumn("Laboratorio");
         Modelo.addColumn("Marca");
         VentasTB.setModel(Modelo);
-        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
+        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.FechaCaducidad,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
 "from Productos p, Marca m, Laboratorio l\n" +
 "where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca and p.idProductos='"+CodigoProductosCon.getSelectedItem()+"'";
-        String Datos[]=new String[8];
+        String Datos[]=new String[9];
         
         try {
             st=ConectarBD.createStatement();
@@ -444,6 +448,7 @@ public void Actualizar(){
                 Datos[5]=rs.getString(6);
                 Datos[6]=rs.getString(7);
                 Datos[7]=rs.getString(8);
+                Datos[8]=rs.getString(9);
                 Modelo.addRow(Datos);
             }
         } catch (Exception e) {
@@ -524,7 +529,7 @@ public void Actualizar(){
         VentasTB.setModel(Modelo);
         String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
 "from Productos p, Marca m, Laboratorio l\n" +
-"where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca";
+"where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca order by p.idProductos";
         String Datos[]=new String[8];
         
         try {
@@ -551,13 +556,14 @@ public void Actualizar(){
         Modelo.addColumn("Codigo Producto");
         Modelo.addColumn("Nombre Producto");
         Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Fecha Caducidad");
         Modelo.addColumn("Costo");
         Modelo.addColumn("Precio");
         Modelo.addColumn("Existencia");
         Modelo.addColumn("Laboratorio");
         Modelo.addColumn("Marca");
         VentasTB.setModel(Modelo);
-        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
+        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.FechaCaducidad,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
 "from Productos p, Marca m, Laboratorio l\n" +
 "where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca and p.idProductos='"+CodigoPro+"'";
         String Datos[]=new String[8];
@@ -596,13 +602,14 @@ public void Actualizar(){
         Modelo.addColumn("Codigo Producto");
         Modelo.addColumn("Nombre");
         Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Fecha Caducidad");
         Modelo.addColumn("Existencia");
         Modelo.addColumn("Marca");
         Modelo.addColumn("Laboratorio");
         Modelo.addColumn("Pago");
         VentasTB.setModel(Modelo);
-        String Datos[]=new String[17];
-        String Consulta="Select dv.idDetalleVenta, c.idClientes,c.Nombre,c.Nit,c.Telefono,v.idVentas,v.fecha,dv.precio,dv.cantidad,dv.costoTotal,p.idProductos,p.Nombre,p.Descripcion,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago\n" +
+        String Datos[]=new String[18];
+        String Consulta="Select dv.idDetalleVenta, c.idClientes,c.Nombre,c.Nit,c.Telefono,v.idVentas,v.fecha,dv.precio,dv.cantidad,dv.costoTotal,p.idProductos,p.Nombre,p.Descripcion,p.FechaCaducidad,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago\n" +
 "from DetalleVenta dv, Ventas v,Productos p, formaPago fp, Clientes c, Laboratorio l , Marca m\n" +
 "where dv.idVentas=v.idVentas and dv.idProductos=p.idProductos and v.idClientes=c.idClientes and c.idFormaPago=fp.idFormaPago\n" +
 "and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio order by idDetalleVenta desc";
@@ -627,6 +634,7 @@ public void Actualizar(){
             Datos[14]=rs.getString(15);
             Datos[15]=rs.getString(16);
             Datos[16]=rs.getString(17);
+            Datos[17]=rs.getString(18);
            
                 Modelo.addRow(Datos);
             }
@@ -651,13 +659,14 @@ public void Actualizar(){
         Modelo.addColumn("Codigo Producto");
         Modelo.addColumn("Nombre");
         Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Fecha Caducidad");
         Modelo.addColumn("Existencia");
         Modelo.addColumn("Marca");
         Modelo.addColumn("Laboratorio");
         Modelo.addColumn("Pago");
         VentasTB.setModel(Modelo);
-        String Datos[]=new String[17];
-        String Consulta="Select dv.idDetalleVenta, c.idClientes,c.Nombre,c.Nit,c.Telefono,v.idVentas,v.fecha,dv.precio,dv.cantidad,dv.costoTotal,p.idProductos,p.Nombre,p.Descripcion,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago\n" +
+        String Datos[]=new String[18];
+        String Consulta="Select dv.idDetalleVenta, c.idClientes,c.Nombre,c.Nit,c.Telefono,v.idVentas,v.fecha,dv.precio,dv.cantidad,dv.costoTotal,p.idProductos,p.Nombre,p.Descripcion,p.FechaCaducidad,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago\n" +
 "from DetalleVenta dv, Ventas v,Productos p, formaPago fp, Clientes c, Laboratorio l , Marca m\n" +
 "where dv.idVentas=v.idVentas and dv.idProductos=p.idProductos and v.idClientes=c.idClientes and c.idFormaPago=fp.idFormaPago\n" +
 "and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio and v.idVentas='"+CodigoVen+"'";
@@ -682,6 +691,7 @@ public void Actualizar(){
             Datos[14]=rs.getString(15);
             Datos[15]=rs.getString(16);
             Datos[16]=rs.getString(17);
+            Datos[17]=rs.getString(18);
            
                 Modelo.addRow(Datos);
             }
@@ -709,7 +719,35 @@ public void VerTotalPagr(){
        
     }
     
-}    
+}   
+
+ public void MostrarVentas(){
+      DefaultTableModel Modelo=new DefaultTableModel();
+      Modelo.addColumn("Codigo Venta");
+      Modelo.addColumn("Fecha venta");
+      Modelo.addColumn("codigo Cliente");
+      Modelo.addColumn("Cliente");
+    VentasTB.setModel(Modelo);
+    String Consulta="select v.idVentas,v.fecha,c.idClientes,c.Nombre\n" +
+"from Ventas v, Clientes c\n" +
+"where v.idClientes=c.idClientes order by v.idVentas desc";
+    String Dato[]=new String[4];
+    
+      try {
+          st=ConectarBD.createStatement();
+          rs=st.executeQuery(Consulta);
+          while(rs.next()){
+              Dato[0]=rs.getString(1);
+              Dato[1]=rs.getString(2);
+              Dato[2]=rs.getString(3);
+              Dato[3]=rs.getString(4);
+              Modelo.addRow(Dato);
+          }
+      } catch (Exception e) {
+      }
+      
+           
+  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CodigoProductosCon;
     private javax.swing.JComboBox<String> CodigoVentas;

@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 
 /**
@@ -35,7 +36,7 @@ public class Proveedor extends javax.swing.JFrame {
           jLabel1.putClientProperty( "FlatLaf.styleClass", "h2" );
           CargarTipoPago(conPago);
            Proveedor();
-           
+           AutoCompleteDecorator.decorate(conPago);
            ActualizarDatos.setEnabled(false);
     }
 public void InsertarProveedor(){

@@ -12,8 +12,10 @@ import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class NuevoProducto extends javax.swing.JFrame {
 
@@ -29,6 +31,8 @@ public class NuevoProducto extends javax.swing.JFrame {
         CargarDatosConbox(conMarca);
         CargarDatosLaboratorios(conLaboratorio);
         VerDatosProductos();
+        AutoCompleteDecorator.decorate(conMarca);
+        AutoCompleteDecorator.decorate(conLaboratorio);
       
        
     }
@@ -37,6 +41,7 @@ public class NuevoProducto extends javax.swing.JFrame {
     Modelo.addColumn("idProductos");
     Modelo.addColumn("Nombre");
     Modelo.addColumn("Descripción");
+    Modelo.addColumn("Fecha Caducidad");
     Modelo.addColumn("costo");
     Modelo.addColumn("Precio");
     Modelo.addColumn("Existencia");
@@ -45,10 +50,10 @@ public class NuevoProducto extends javax.swing.JFrame {
    
     TablaProductos.setModel(Modelo);
     
-    String Consulta="select p.idProductos,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre as Laboratorio\n" +
+    String Consulta="select p.idProductos,p.Nombre,p.Descripcion,p.FechaCaducidad,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre as Laboratorio\n" +
 "from Productos p, Marca m, Laboratorio l \n" +
 "where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio order by p.idProductos desc";
-    String Datos[]=new String[8];
+    String Datos[]=new String[9];
     
     try {
         st=ConectarBD.createStatement();
@@ -62,12 +67,12 @@ public class NuevoProducto extends javax.swing.JFrame {
             Datos[5]=rs.getString(6);
             Datos[6]=rs.getString(7);
             Datos[7]=rs.getString(8);
+            Datos[8]=rs.getString(9);
             
           
             
             Modelo.addRow(Datos);
-            
-            
+          
         }
         
         
@@ -76,7 +81,8 @@ public class NuevoProducto extends javax.swing.JFrame {
     }
 }
     public void InsertarNuevoProducto(){
-        String Consulta="INSERT INTO Productos(Nombre,Descripcion,Costo,Precio,Existencia,idLaboratorio,idMarca)values(?,?,?,?,?,?,?)";
+        String Consulta="INSERT INTO Productos(Nombre,Descripcion,FechaCaducidad,Costo,Precio,Existencia,idLaboratorio,idMarca)values(?,?,?,?,?,?,?,?)";
+        String FechaA=((JTextField)FechaDate.getDateEditor().getUiComponent()).getText();
         int Laboratorio=1+conLaboratorio.getSelectedIndex();
         int Marca=1+conMarca.getSelectedIndex();
         int Existencia=0;
@@ -85,11 +91,12 @@ public class NuevoProducto extends javax.swing.JFrame {
             Insertar=ConectarBD.prepareStatement(Consulta);
             Insertar.setString(1, txtNombre.getText());
             Insertar.setString(2, txtDescripcion.getText());
-            Insertar.setString(3, txtCosto.getText());
-            Insertar.setString(4, txtPrecio.getText());
-            Insertar.setInt(5, Existencia);
-            Insertar.setInt(6, Laboratorio);
-             Insertar.setInt(7, Marca);
+            Insertar.setString(3, FechaA);
+            Insertar.setString(4, txtCosto.getText());
+            Insertar.setString(5, txtPrecio.getText());
+            Insertar.setInt(6, Existencia);
+            Insertar.setInt(7, Laboratorio);
+             Insertar.setInt(8, Marca);
             Insertar.executeUpdate();
             JOptionPane.showMessageDialog(null,"Datos Agregados");
             Limpiar();
@@ -110,9 +117,6 @@ public class NuevoProducto extends javax.swing.JFrame {
     private void initComponents() {
 
         Fondo = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         NuevoProductoBo = new javax.swing.JButton();
         ActualizarBoton = new javax.swing.JButton();
@@ -131,6 +135,11 @@ public class NuevoProducto extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        FechaDate = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProductos = new javax.swing.JTable();
@@ -141,21 +150,6 @@ public class NuevoProducto extends javax.swing.JFrame {
         Fondo.setBackground(new java.awt.Color(207, 155, 188));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Costo");
-        Fondo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 80, 43));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Descripcion");
-        Fondo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 90, 43));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nombre");
-        Fondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, 43));
-
         jPanel1.setBackground(new java.awt.Color(110, 207, 255));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -164,9 +158,11 @@ public class NuevoProducto extends javax.swing.JFrame {
         });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        NuevoProductoBo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        NuevoProductoBo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        NuevoProductoBo.setForeground(new java.awt.Color(0, 0, 0));
         NuevoProductoBo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
         NuevoProductoBo.setText("REGISTRAR PRODUCTO");
+        NuevoProductoBo.setContentAreaFilled(false);
         NuevoProductoBo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NuevoProductoBo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         NuevoProductoBo.setIconTextGap(15);
@@ -175,11 +171,13 @@ public class NuevoProducto extends javax.swing.JFrame {
                 NuevoProductoBoActionPerformed(evt);
             }
         });
-        jPanel1.add(NuevoProductoBo, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 260, 60));
+        jPanel1.add(NuevoProductoBo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 280, 60));
 
-        ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ActualizarBoton.setForeground(new java.awt.Color(0, 0, 0));
         ActualizarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
         ActualizarBoton.setText("ACTUALIZAR  PRODUCTO");
+        ActualizarBoton.setContentAreaFilled(false);
         ActualizarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ActualizarBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ActualizarBoton.setIconTextGap(15);
@@ -188,54 +186,60 @@ public class NuevoProducto extends javax.swing.JFrame {
                 ActualizarBotonActionPerformed(evt);
             }
         });
-        jPanel1.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, 260, 60));
+        jPanel1.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 280, 60));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("ID");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 80, 43));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 80, 43));
 
         txtID.setEnabled(false);
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 126, 43));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 126, 43));
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 126, 43));
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 126, 43));
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 126, 43));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 126, 43));
 
         txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCostoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 126, 43));
+        jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 126, 43));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Precio");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 80, 43));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 80, 43));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Existencia");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 80, 43));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 80, 43));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Marca");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 80, 43));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 80, 43));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Laboratorio");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 80, 43));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 80, 43));
 
         conLaboratorio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 190, 43));
+        jPanel1.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, 130, 43));
 
         conMarca.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(conMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 140, 43));
+        jPanel1.add(conMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 130, 43));
 
         txtExistencia.setEditable(false);
-        jPanel1.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 126, 43));
-        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 126, 43));
+        jPanel1.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 126, 43));
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 126, 43));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimizar.png"))); // NOI18N
         jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -254,6 +258,29 @@ public class NuevoProducto extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 0, -1, -1));
+
+        FechaDate.setDateFormatString("yyy-MM-dd");
+        jPanel1.add(FechaDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 130, 50));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Nombre");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 90, 43));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Descripcion");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 90, 43));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Fecha Caducidad");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 110, 43));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Costo");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 80, 43));
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 878, 320));
 
@@ -333,11 +360,12 @@ public class NuevoProducto extends javax.swing.JFrame {
         this.txtID.setText(this.TablaProductos.getValueAt(fila, 0).toString());
         this.txtNombre.setText(this.TablaProductos.getValueAt(fila, 1).toString());
         this.txtDescripcion.setText(this.TablaProductos.getValueAt(fila, 2).toString());
-        this.txtCosto.setText(this.TablaProductos.getValueAt(fila, 3).toString());
-        this.txtPrecio.setText(this.TablaProductos.getValueAt(fila, 4).toString());
-         this.txtExistencia.setText(this.TablaProductos.getValueAt(fila, 5).toString());
-         this.conMarca.setSelectedItem(this.TablaProductos.getValueAt(fila, 6).toString());
-         this.conLaboratorio.setSelectedItem(this.TablaProductos.getValueAt(fila, 7).toString());
+        this.FechaDate.setDateFormatString(this.TablaProductos.getValueAt(fila, 3).toString());
+        this.txtCosto.setText(this.TablaProductos.getValueAt(fila, 4).toString());
+        this.txtPrecio.setText(this.TablaProductos.getValueAt(fila, 5).toString());
+         this.txtExistencia.setText(this.TablaProductos.getValueAt(fila, 6).toString());
+         this.conMarca.setSelectedItem(this.TablaProductos.getValueAt(fila, 7).toString());
+         this.conLaboratorio.setSelectedItem(this.TablaProductos.getValueAt(fila, 8).toString());
           
     }//GEN-LAST:event_TablaProductosMouseClicked
 public void ActualizarProducto(){
@@ -346,10 +374,10 @@ public void ActualizarProducto(){
     int Laboratori=1+conLaboratorio.getSelectedIndex();
     
     System.out.println("El id es "+Marca+"  labor"+Laboratori);
-   
+   String FechaA=((JTextField)FechaDate.getDateEditor().getUiComponent()).getText();
     try {
         Actualizar=ConectarBD.prepareStatement("update Productos set Nombre='"+txtNombre.getText()+"',Descripcion="
-                + "'"+txtDescripcion.getText()+"',Costo='"+txtCosto.getText()+"',precio='"+txtPrecio.getText()+
+                + "'"+txtDescripcion.getText()+"',FechaCaducidad='"+FechaA+"',Costo='"+txtCosto.getText()+"',precio='"+txtPrecio.getText()+
                 "',Existencia='"+txtExistencia.getText()+"',idLaboratorio='"+Laboratori+"',idMarca='"+Marca+"'"
                         + " where idProductos='"+txtID.getText()+"'");
     int Contador=Actualizar.executeUpdate();
@@ -386,6 +414,10 @@ public void ActualizarProducto(){
             dispose();
         }
     }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 public void Limpiar(){
     txtID.setText("");
     txtNombre.setText("");
@@ -453,6 +485,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoton;
+    private com.toedter.calendar.JDateChooser FechaDate;
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton NuevoProductoBo;
     private javax.swing.JTable TablaProductos;
@@ -468,6 +501,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -38,54 +38,11 @@ public class Productos extends javax.swing.JPanel {
 
     public Productos() {
         initComponents();
-        CargarDatosConbox(conMarca);
-        CargarDatosLaboratorios(conLaboratorio);
+        
 
     }
 
-public void Mostrar(){
-    DefaultTableModel Modelo=new DefaultTableModel();
-    Modelo.addColumn("idProductos");
-    Modelo.addColumn("Nombre");
-    Modelo.addColumn("Descripción");
-    Modelo.addColumn("costo");
-    Modelo.addColumn("Precio");
-    Modelo.addColumn("Existencia");
-    Modelo.addColumn("NombreMarca");
-    Modelo.addColumn("Laboratori");
-   
-    ProductosTable.setModel(Modelo);
-    
-    String Consulta="select p.idProductos,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre as Laboratorio\n" +
-"from Productos p, Marca m, Laboratorio l \n" +
-"where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio";
-    String Datos[]=new String[8];
-    
-    try {
-        st=ConectarBd.createStatement();
-        rs=st.executeQuery(Consulta);
-        while(rs.next()){
-            Datos[0]=rs.getString(1);
-            Datos[1]=rs.getString(2);
-            Datos[2]=rs.getString(3);
-            Datos[3]=rs.getString(4);
-            Datos[4]=rs.getString(5);
-            Datos[5]=rs.getString(6);
-            Datos[6]=rs.getString(7);
-            Datos[7]=rs.getString(8);
-            
-          
-            
-            Modelo.addRow(Datos);
-            
-            
-        }
-        
-        
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null,"Error"+ e.toString());
-    }
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,23 +57,7 @@ public void Mostrar(){
         ActualizarBoton = new javax.swing.JButton();
         NuevoProductoBo = new javax.swing.JButton();
         VerPBoton = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtExistencia = new javax.swing.JTextField();
-        conMarca = new javax.swing.JComboBox<>();
-        conLaboratorio = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtCosto = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
-        txtPRECIOsum = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ProductosTable = new javax.swing.JTable();
@@ -124,7 +65,7 @@ public void Mostrar(){
         Fondo.setBackground(new java.awt.Color(207, 155, 188));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(207, 155, 188));
+        jPanel1.setBackground(new java.awt.Color(110, 207, 255));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
@@ -162,75 +103,12 @@ public void Mostrar(){
         });
         jPanel1.add(VerPBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(683, 179, 180, 36));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Marca");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 120, 123, 43));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONSULTAS ", "VER PRODUCTOS COMPRADOS ", "VER PRODUCTOS VENDIDOS ", "VER PRODUCTOS QUE VENCEN ", " " }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 50));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Existencia");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 123, 43));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 300));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Laboratorio");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 123, 43));
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Precio");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 123, 43));
-        jPanel1.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 126, 43));
-
-        conMarca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                conMarcaMouseClicked(evt);
-            }
-        });
-        jPanel1.add(conMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 130, 140, 30));
-
-        jPanel1.add(conLaboratorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 190, 30));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("ID");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 123, 43));
-
-        txtID.setEnabled(false);
-        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 126, 43));
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 126, 43));
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 126, 43));
-
-        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCostoKeyTyped(evt);
-            }
-        });
-        jPanel1.add(txtCosto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 126, 43));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Costo");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 123, 43));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Descripcion");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 123, 43));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 123, 43));
-        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 20, 126, 43));
-
-        txtPRECIOsum.setEnabled(false);
-        jPanel1.add(txtPRECIOsum, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, 90, 30));
-
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 880, 290));
-
-        jPanel2.setBackground(new java.awt.Color(207, 155, 188));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRODUCTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
         ProductosTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -283,37 +161,25 @@ public void Mostrar(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void VerPBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerPBotonActionPerformed
-        Mostrar();
+      
     }//GEN-LAST:event_VerPBotonActionPerformed
 
     private void ProductosTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosTableMouseClicked
-      ActualizarBoton.setVisible(true);
-      NuevoProductoBo.setVisible(false);
-        int fila=this.ProductosTable.getSelectedRow();
-        this.txtID.setText(this.ProductosTable.getValueAt(fila, 0).toString());
-        this.txtNombre.setText(this.ProductosTable.getValueAt(fila,1).toString());
-        this.txtDescripcion.setText(this.ProductosTable.getValueAt(fila, 2).toString());
-        this.txtCosto.setText(this.ProductosTable.getValueAt(fila, 3).toString());
-        this.txtPrecio.setText(this.ProductosTable.getValueAt(fila, 4).toString());
-        this.txtExistencia.setText(this.ProductosTable.getValueAt(fila, 5).toString());
-        this.txtPRECIOsum.setText(this.ProductosTable.getValueAt(fila, 5).toString());
-        this.conMarca.setSelectedItem(this.ProductosTable.getValueAt(fila, 6).toString());
-        this.conLaboratorio.setSelectedItem(this.ProductosTable.getValueAt(fila, 7).toString());
+     
      
     }//GEN-LAST:event_ProductosTableMouseClicked
 
     private void ActualizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotonActionPerformed
         // TODO add your handling code here:
-      Actualizar();
+    
         
         
     }//GEN-LAST:event_ActualizarBotonActionPerformed
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
-        Limpiar();
-        NuevoProductoBo.setVisible(true);
-        ActualizarBoton.setVisible(false);
+       
+        
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void NuevoProductoBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoBoActionPerformed
@@ -322,62 +188,6 @@ public void Mostrar(){
         producto.setVisible(true);
     }//GEN-LAST:event_NuevoProductoBoActionPerformed
 
-    private void conMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conMarcaMouseClicked
-        // TODO add your handling code here:
-        CargarDatosConbox(conMarca);
-    }//GEN-LAST:event_conMarcaMouseClicked
-
-    private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostoKeyTyped
-public void Actualizar(){
-    
-    int Marca=1+conMarca.getSelectedIndex();
-    int Laboratori=1+conLaboratorio.getSelectedIndex();
-    System.out.println("Marca "+Marca+"  Laboratorio "+Laboratori);
-    
-    System.out.println("El id es "+Marca+"  labor"+Laboratori);
-   
-    try {
-        Actualizar=ConectarBd.prepareStatement("update Productos set Existencia=Existencia+'"+txtExistencia.getText()+"' where idProductos='"+txtID.getText()+"'");
-    int Contador=Actualizar.executeUpdate();
-    if(Contador>0){
-        JOptionPane.showMessageDialog(null,"Datos Actualizados");
-        Mostrar();
-        
-    }else {
-          JOptionPane.showMessageDialog(null,"No selecciono la fila");
-    }
-    
-    } catch (Exception e) {
-          JOptionPane.showMessageDialog(null,"error"+e.toString());
-    }
-}
-
-public void ActualizarExistencia(){
-    
-    int Marca=conMarca.getSelectedIndex();
-    int Laboratori=conLaboratorio.getSelectedIndex();
-    int Existenciaa=Integer.parseInt(txtExistencia.getText());
-    int Existencia1=Integer.parseInt(txtPRECIOsum.getText());
-    int suma=Existencia1-Existenciaa;
-   
-   
-    try {
-        Actualizar=ConectarBd.prepareStatement("update Productos set Nombre='"+txtNombre.getText()+"',Descripcion='"+txtDescripcion.getText()+"',Costo='"+txtCosto.getText()+"',precio='"+txtPrecio.getText()+"',Existencia='"+suma+"',idLaboratorio='"+Laboratori+"',idMarca='"+Marca+"' where idProductos='"+txtID.getText()+"'");
-    int Contador=Actualizar.executeUpdate();
-    if(Contador>0){
-        JOptionPane.showMessageDialog(null,"Datos Actualizados");
-        Mostrar();
-        
-    }else {
-          JOptionPane.showMessageDialog(null,"No selecciono la fila");
-    }
-    
-    } catch (Exception e) {
-          JOptionPane.showMessageDialog(null,"error"+e.toString());
-    }
-}
 /*
 public void ActualizarTipoLaboratorio(){
   
@@ -398,17 +208,7 @@ public void ActualizarTipoLaboratorio(){
     }
 }
 */
-public void Limpiar(){
-    txtID.setText("");
-    txtNombre.setText("");
-    txtDescripcion.setText("");
-    txtCosto.setText("");
-    txtPrecio.setText("");
-    conLaboratorio.setSelectedItem("");
-    conMarca.setSelectedItem("");
-    txtExistencia.setText("");
-    
-}
+
 public void CargarDatosConbox(JComboBox marcas){
     DefaultComboBoxModel Datos=new DefaultComboBoxModel();
     
@@ -450,25 +250,9 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     private javax.swing.JButton NuevoProductoBo;
     private javax.swing.JTable ProductosTable;
     private javax.swing.JButton VerPBoton;
-    private javax.swing.JComboBox<String> conLaboratorio;
-    private javax.swing.JComboBox<String> conMarca;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField txtCosto;
-    private javax.swing.JTextField txtDescripcion;
-    private javax.swing.JTextField txtExistencia;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPRECIOsum;
-    private javax.swing.JTextField txtPrecio;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *

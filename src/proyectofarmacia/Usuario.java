@@ -13,7 +13,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -36,7 +39,13 @@ public class Usuario extends javax.swing.JPanel {
         initComponents();
         VerDatosUsuario();
         ActualizarBoto.setEnabled(false);
-       
+        
+        AutoCompleteDecorator.decorate(conCargo);
+        AutoCompleteDecorator.decorate(conEstado);
+        AutoCompleteDecorator.decorate(conNivel);
+        CargarEstadoUsuario(conEstado);
+        CargarNivelAcceso(conNivel);
+        CargarTipoUsuario(conCargo);
        /* jButton1.putClientProperty( "FlatLaf.styleClass", "h1" );
         RegistrarBoto.putClientProperty( "FlatLaf.styleClass", "h1" );
         ActualizarBoto.putClientProperty( "FlatLaf.styleClass", "h1" );
@@ -181,7 +190,6 @@ public class Usuario extends javax.swing.JPanel {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 59, 100, 38));
         jPanel1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 188, 149, 40));
 
-        conCargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Cargo", "Administrador", "Gerente", "Cajero", "Moderador" }));
         conCargo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(conCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 58, 150, 40));
 
@@ -189,7 +197,6 @@ public class Usuario extends javax.swing.JPanel {
         jLabel6.setText(" Usuario");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 189, 100, 38));
 
-        conEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Estado", "Activo", "Inactivo" }));
         conEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(conEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 126, 150, 40));
 
@@ -197,7 +204,6 @@ public class Usuario extends javax.swing.JPanel {
         jLabel7.setText("Estado");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 127, 100, 38));
 
-        conNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione Nivel de Acceso", "Nivel 1", "Nivel 2", "Nivel 3", "Nivel 4", "Nivel 5" }));
         conNivel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(conNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 188, 150, 40));
 
@@ -384,9 +390,9 @@ public void EliminarUsuario(){
     }
 }
 public void ActualizarDatos(){
-      int indice =conCargo.getSelectedIndex();
-        int estado=conEstado.getSelectedIndex();
-        int Nivel=conNivel.getSelectedIndex();
+      int indice =1+conCargo.getSelectedIndex();
+        int estado=1+conEstado.getSelectedIndex();
+        int Nivel=1+conNivel.getSelectedIndex();
     try {
         
         Actualizar=ConectarBD.prepareStatement("UPDATE Usuario set NombreUsuario='"+txtNombre.getText()+"',ApellidoUsuario='"+txtApellido.getText()+"',Usuario='"+txtUsuario.getText()+"',Contraseña='"+txtContra.getText()+"',idTipoUsuario='"+indice+"',idEstadoUsuario='"+estado+"',idAccesoUsuario='"+Nivel+"' where idUsuario='"+txtID.getText()+"'");
@@ -413,13 +419,55 @@ public void ActualizarDatos(){
         conNivel.setSelectedIndex(0);
         
     }
-  public void RegistrarUsuario(){
+ public void CargarTipoUsuario(JComboBox Tipo){
+     DefaultComboBoxModel Modelo=new DefaultComboBoxModel();
+     Tipo.setModel(Modelo);
+     String Consulta="select NombreTipoUsuario from TipoUsuario";
+     try {
+         st=ConectarBD.createStatement();
+         rs=st.executeQuery(Consulta);
+         while(rs.next()){
+             Tipo.addItem(rs.getString("NombreTipoUsuario"));
+         }
+     } catch (Exception e) {
+     }
+     
+ }
+public void CargarEstadoUsuario(JComboBox estado){
+    
+    DefaultComboBoxModel Modelo=new DefaultComboBoxModel();
+    estado.setModel(Modelo);
+    String Consulta="select NombreEstado from EstadoUsuario";
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(Consulta);
+        while(rs.next()){
+            estado.addItem(rs.getString("NombreEstado"));
+        }
+    } catch (Exception e) {
+    }
+}
+
+public void CargarNivelAcceso(JComboBox acceso){
+    DefaultComboBoxModel Modelo=new DefaultComboBoxModel();
+    acceso.setModel(Modelo);
+    String consulta="select NombreAcceso from AccesoUsuario";
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(consulta);
+        while(rs.next()){
+            acceso.addItem(rs.getString("NombreAcceso"));
+        }
+    } catch (Exception e) {
+    }
+}
+public void RegistrarUsuario(){
         String InsertarDatos="INSERT INTO Usuario(NombreUsuario,ApellidoUsuario,Usuario,Contraseña,idTipoUsuario,idEstadoUsuario,idAccesoUsuario)values(?,?,?,?,?,?,?);";
  
         String Agregar=(String) conCargo.getSelectedItem();
-        int indice =conCargo.getSelectedIndex();
-        int estado=conEstado.getSelectedIndex();
-        int Nivel=conNivel.getSelectedIndex();
+        int indice =1+conCargo.getSelectedIndex();
+        int estado=1+conEstado.getSelectedIndex();
+        int Nivel=1+conNivel.getSelectedIndex();
        
         
         

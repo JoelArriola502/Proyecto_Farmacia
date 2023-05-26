@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 public class Compras extends javax.swing.JPanel {
 
@@ -28,6 +29,8 @@ public class Compras extends javax.swing.JPanel {
         CargarCodigoCompras(CodigoCompras);
         CargarCodigoProducto(CodigoProductosCon);
         VerDatos();
+        AutoCompleteDecorator.decorate(CodigoCompras);
+        AutoCompleteDecorator.decorate(CodigoProductosCon);
     }
     public void InsertarCompraDEtalle(){
         String insertarDatos="insert into CompraDetalle(idCompras,idProductos,precio,cantidad,costoTotal)values(?,?,?,?,?)";
@@ -100,6 +103,7 @@ public void Actualizar(){
     Modelo.addColumn("CodigoProducto");
     Modelo.addColumn("Nombre");
     Modelo.addColumn("Descripcion");
+    Modelo.addColumn("Fecha Caducidad");
     Modelo.addColumn("Costo");
     Modelo.addColumn("Precio");
     Modelo.addColumn("Existencia");
@@ -108,10 +112,10 @@ public void Actualizar(){
     Modelo.addColumn("Pago");
     ComprasTB.setModel(Modelo);
     
-    String Consulta="select cd.idCompraDetalle,pr.idProveedores,pr.Nombre,pr.Nit,pr.Telefono,cd.precio,cd.cantidad,cd.costoTotal,c.idCompras,c.Fecha,p.idProductos,p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago \n" +
+    String Consulta="select cd.idCompraDetalle,pr.idProveedores,pr.Nombre,pr.Nit,pr.Telefono,cd.precio,cd.cantidad,cd.costoTotal,c.idCompras,c.Fecha,p.idProductos,p.Nombre,p.Descripcion,p.FechaCaducidad,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre,fp.TipoPago \n" +
 "from CompraDetalle cd, Compras c, Productos p, Proveedor pr, Marca m, Laboratorio l,formaPago fp\n" +
 "where cd.idCompras=c.idCompras and cd.idProductos=p.idProductos  and c.idProveedores=pr.idProveedores and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio\n" +
-"and fp.idFormaPago=pr.idFormaPago";
+"and fp.idFormaPago=pr.idFormaPago order by cd.idCompraDetalle desc";
     
     String Datos[] = new String[19];
     
@@ -440,16 +444,17 @@ public void Actualizar(){
         Modelo.addColumn("Codigo Producto");
         Modelo.addColumn("Nombre Producto");
         Modelo.addColumn("Descripcion");
+        Modelo.addColumn("Fecha Caducidad");
         Modelo.addColumn("Costo");
         Modelo.addColumn("Precio");
         Modelo.addColumn("Existencia");
         Modelo.addColumn("Laboratorio");
         Modelo.addColumn("Marca");
         ComprasTB.setModel(Modelo);
-        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
+        String consulta=" select p.idProductos, p.Nombre,p.Descripcion,p.FechaCaducidad,p.Costo,p.Precio,p.Existencia,l.Nombre,m.NombreMarca\n" +
 "from Productos p, Marca m, Laboratorio l\n" +
-"where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca";
-        String Datos[]=new String[8];
+"where p.idLaboratorio=l.idLaboratorio and p.idMarca=m.idMarca order by p.idProductos desc";
+        String Datos[]=new String[9];
         
         try {
             st=ConectarBD.createStatement();
@@ -463,6 +468,7 @@ public void Actualizar(){
                 Datos[5]=rs.getString(6);
                 Datos[6]=rs.getString(7);
                 Datos[7]=rs.getString(8);
+                Datos[8]=rs.getString(9);
                 Modelo.addRow(Datos);
             }
         } catch (Exception e) {
@@ -480,7 +486,7 @@ public void Actualizar(){
         String Datos[]=new String[5];
         String Consulta="select p.idProveedores,p.Nombre,p.Nit,p.Telefono,fp.TipoPago\n" +
 "from Proveedor p, formaPago fp\n" +
-"where p.idFormaPago=fp.idFormaPago";
+"where p.idFormaPago=fp.idFormaPago order by p.idProveedores desc";
         
         try {
             st=ConectarBD.createStatement();
@@ -502,11 +508,14 @@ public void Actualizar(){
         DefaultTableModel Modelo=new DefaultTableModel();
         Modelo.addColumn("Codigo Compras");
         Modelo.addColumn("Fecha");
-        Modelo.addColumn("Codigo Proveedor");
+        Modelo.addColumn("Codigo Proveedores");
+        Modelo.addColumn("Nombre Proveedores");
         ComprasTB.setModel(Modelo);
         
-        String consulta="Select *from Compras";
-        String Dato[]=new String[3];
+        String consulta="select c.idCompras, c.fecha, p.idProveedores, p.Nombre from Compras c, Proveedor p\n" +
+"where c.idProveedores=p.idProveedores\n" +
+"order by c.idCompras desc";
+        String Dato[]=new String[4];
         try {
             st=ConectarBD.createStatement();
             rs=st.executeQuery(consulta);
@@ -514,6 +523,7 @@ public void Actualizar(){
                 Dato[0]=rs.getString(1);
                 Dato[1]=rs.getString(2);
                 Dato[2]=rs.getString(3);
+                Dato[3]=rs.getString(4);
                 Modelo.addRow(Dato);
             }
         } catch (Exception e) {
@@ -600,7 +610,7 @@ public void CargarCodigoProducto(JComboBox Codigo){
 public void CargarDatosCodgoProveedor(JComboBox CodigoProveedor){
         DefaultComboBoxModel Codigo=new DefaultComboBoxModel();
         CodigoProveedor.setModel(Codigo);
-        String Consulta="select idProveedores from Proveedor";
+        String Consulta="select idProveedores from Proveedor order by idProveedores desc";
         try {
         st=ConectarBD.createStatement();
         rs=st.executeQuery(Consulta);

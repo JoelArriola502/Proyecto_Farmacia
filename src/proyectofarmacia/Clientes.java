@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 
 public class Clientes extends javax.swing.JFrame {
@@ -30,7 +31,7 @@ public class Clientes extends javax.swing.JFrame {
         initComponents();
         CargarDatosPago(TipoPago);
           VerDatosClientes();
-        
+        AutoCompleteDecorator.decorate(TipoPago);
     }
 
     /**
@@ -127,7 +128,6 @@ public class Clientes extends javax.swing.JFrame {
         RegistrarBoton.setFocusable(false);
         RegistrarBoton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         RegistrarBoton.setIconTextGap(5);
-        RegistrarBoton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar96.png"))); // NOI18N
         RegistrarBoton.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         RegistrarBoton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         RegistrarBoton.addActionListener(new java.awt.event.ActionListener() {

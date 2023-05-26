@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 
 public class Comprass extends javax.swing.JFrame {
@@ -30,6 +31,7 @@ public class Comprass extends javax.swing.JFrame {
         CargarDatosCodgoProveedor(CodigoProveedor);
         VerCompras();
         ActualizarBoton.setEnabled(false);
+        AutoCompleteDecorator.decorate(CodigoProveedor);
     }
 
     /**
