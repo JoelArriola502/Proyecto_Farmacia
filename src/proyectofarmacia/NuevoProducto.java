@@ -98,7 +98,7 @@ public class NuevoProducto extends javax.swing.JFrame {
             Insertar.setInt(7, Laboratorio);
              Insertar.setInt(8, Marca);
             Insertar.executeUpdate();
-            JOptionPane.showMessageDialog(null,"Datos Agregados");
+           // JOptionPane.showMessageDialog(null,"Datos Agregados");
             Limpiar();
             VerDatosProductos();
         } catch (Exception e) {
@@ -382,7 +382,7 @@ public void ActualizarProducto(){
                         + " where idProductos='"+txtID.getText()+"'");
     int Contador=Actualizar.executeUpdate();
     if(Contador>0){
-        JOptionPane.showMessageDialog(null,"Datos Actualizados");
+       // JOptionPane.showMessageDialog(null,"Datos Actualizados");
         VerDatosProductos();
         
     }else {

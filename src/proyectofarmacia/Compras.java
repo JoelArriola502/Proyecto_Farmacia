@@ -53,7 +53,7 @@ public class Compras extends javax.swing.JPanel {
             insertar.setString(4, txtCantidad.getText());
             insertar.setFloat(5, Resul);
             insertar.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Agregados Correctamente");
+            //JOptionPane.showMessageDialog(null, "Agregados Correctamente");
             System.out.println("Compras "+CodigoCompra);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Eroror"+e.toString());
@@ -75,7 +75,7 @@ public void Actualizar(){
         Actualizar=ConectarBD.prepareStatement("update Productos set Existencia=Existencia+'"+txtCantidad.getText()+"' where idProductos='"+CodigoProductos+"'");
     int Contador=Actualizar.executeUpdate();
     if(Contador>0){
-        JOptionPane.showMessageDialog(null,"Datos Actualizados");
+       // JOptionPane.showMessageDialog(null,"Datos Actualizados");
         MetodoMostrar();
         
     }else {

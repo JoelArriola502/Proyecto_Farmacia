@@ -343,8 +343,8 @@ public class Comprass extends javax.swing.JFrame {
         Insertar.setString(1, FechaA);
         Insertar.setInt(2,Codigo);
         Insertar.executeUpdate();
-    VerCompras();
-    //.showMessageDialog(null,"Agregados Correcto" );
+        VerCompras();
+    
        
     } catch (Exception e) {
          JOptionPane.showMessageDialog(null,"error"+e.toString() );

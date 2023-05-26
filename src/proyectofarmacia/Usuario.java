@@ -380,7 +380,7 @@ public void EliminarUsuario(){
         Eliminar=ConectarBD.prepareStatement("Delete from Usuario where idUsuario='"+txtID.getText()+"'");
         int Contador=Eliminar.executeUpdate();
         if(Contador>0){
-            JOptionPane.showMessageDialog(null,"USUARIO ELIMINADO CON EXITO");
+           // JOptionPane.showMessageDialog(null,"USUARIO ELIMINADO CON EXITO");
             VerDatosUsuario();
         }else{
             JOptionPane.showMessageDialog(null,"Seleccione Fila");
@@ -398,7 +398,7 @@ public void ActualizarDatos(){
         Actualizar=ConectarBD.prepareStatement("UPDATE Usuario set NombreUsuario='"+txtNombre.getText()+"',ApellidoUsuario='"+txtApellido.getText()+"',Usuario='"+txtUsuario.getText()+"',Contraseña='"+txtContra.getText()+"',idTipoUsuario='"+indice+"',idEstadoUsuario='"+estado+"',idAccesoUsuario='"+Nivel+"' where idUsuario='"+txtID.getText()+"'");
         int Contador=Actualizar.executeUpdate();
         if(Contador>0){
-            JOptionPane.showMessageDialog(null,"Datos Actualizados Correctamente" );
+           // JOptionPane.showMessageDialog(null,"Datos Actualizados Correctamente" );
             VerDatosUsuario();
         }else{
             JOptionPane.showMessageDialog(null,"No selecciono la fila " );
@@ -469,9 +469,6 @@ public void RegistrarUsuario(){
         int estado=1+conEstado.getSelectedIndex();
         int Nivel=1+conNivel.getSelectedIndex();
        
-        
-        
-        
         try {
             Insertar=ConectarBD.prepareCall(InsertarDatos);
             Insertar.setString(1, txtNombre.getText());
@@ -482,7 +479,7 @@ public void RegistrarUsuario(){
             Insertar.setInt(6, estado);
             Insertar.setInt(7, Nivel);
             Insertar.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos agregados Correctamente");
+           // JOptionPane.showMessageDialog(null, "Datos agregados Correctamente");
             VerDatosUsuario();
             Limpiar();
         } catch (Exception e) {

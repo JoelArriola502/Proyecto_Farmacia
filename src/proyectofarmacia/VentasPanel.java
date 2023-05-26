@@ -57,12 +57,12 @@ public class VentasPanel extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         MenuVerDatos = new javax.swing.JComboBox<>();
         MenuAgregar = new javax.swing.JComboBox<>();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TotalTable = new javax.swing.JTable();
+        Imprimir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentasTB = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TotalTable = new javax.swing.JTable();
 
         Fondo.setBackground(new java.awt.Color(255, 255, 255));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -151,7 +151,7 @@ public class VentasPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, 190, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 170, 190, 50));
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
@@ -193,37 +193,18 @@ public class VentasPanel extends javax.swing.JPanel {
         });
         jPanel1.add(MenuAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 11, 225, 60));
 
-        TotalTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
+        Imprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Imprimir.setForeground(new java.awt.Color(0, 0, 0));
+        Imprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IMPRIMIR.png"))); // NOI18N
+        Imprimir.setText("IMPRIMIR FACTURA");
+        Imprimir.setContentAreaFilled(false);
+        Imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(TotalTable);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, 190, -1));
+        });
+        jPanel1.add(Imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 220, 50));
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 290));
 
@@ -244,21 +225,40 @@ public class VentasPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(VentasTB);
 
+        TotalTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(TotalTable);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 890, 240));
@@ -373,6 +373,11 @@ public class VentasPanel extends javax.swing.JPanel {
     private void CodigoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoVentasMousePressed
         
     }//GEN-LAST:event_CodigoVentasMousePressed
+
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
+        Imprimir impresion=new Imprimir();
+        impresion.setVisible(true);
+    }//GEN-LAST:event_ImprimirActionPerformed
 public void InsertarVentaDetalle(){
     String Consulta="INSERT INTO DetalleVenta(idProductos,idVentas,precio,cantidad,costoTotal)values(?,?,?,?,?)";
     String CodigoVen=(String) CodigoVentas.getSelectedItem();
@@ -387,7 +392,7 @@ public void InsertarVentaDetalle(){
         insertar.setString(4, txtCantidad.getText());
         insertar.setString(5, txtCostoTotal.getText());
         insertar.executeUpdate();
-        JOptionPane.showMessageDialog(null,"Agregado correctamente" );
+       // JOptionPane.showMessageDialog(null,"Agregado correctamente" );
     } catch (Exception e) {
           JOptionPane.showMessageDialog(null,"Error"+e.toString() );
     }
@@ -408,7 +413,7 @@ public void Actualizar(){
         Actualizar=ConectarBD.prepareStatement("update Productos set Existencia=Existencia-'"+txtCantidad.getText()+"' where idProductos='"+CodigoProductos+"'");
     int Contador=Actualizar.executeUpdate();
     if(Contador>0){
-        JOptionPane.showMessageDialog(null,"Datos Actualizados");
+      //  JOptionPane.showMessageDialog(null,"Datos Actualizados");
       MostrarProductos();
         
     }else {
@@ -752,6 +757,7 @@ public void VerTotalPagr(){
     private javax.swing.JComboBox<String> CodigoProductosCon;
     private javax.swing.JComboBox<String> CodigoVentas;
     private javax.swing.JPanel Fondo;
+    private javax.swing.JButton Imprimir;
     private javax.swing.JComboBox<String> MenuAgregar;
     private javax.swing.JComboBox<String> MenuVerDatos;
     private javax.swing.JTable TotalTable;
@@ -760,7 +766,6 @@ public void VerTotalPagr(){
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtCantidad;

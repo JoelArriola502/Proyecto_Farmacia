@@ -5,6 +5,8 @@
 package proyectofarmacia;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import java.sql.Connection;
@@ -13,10 +15,13 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.RowFilter;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+
 
 
 public class Venta extends javax.swing.JFrame {
@@ -27,6 +32,9 @@ public class Venta extends javax.swing.JFrame {
    PreparedStatement insertar;
    PreparedStatement Actualizar;
    Statement st;
+ 
+   private TableRowSorter FiltroDatos;
+   String filtro;
    
     public Venta() {
         initComponents();
@@ -46,6 +54,7 @@ public class Venta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         fondo = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         FechaDate = new com.toedter.calendar.JDateChooser();
@@ -61,6 +70,8 @@ public class Venta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentaTB = new javax.swing.JTable();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -85,10 +96,19 @@ public class Venta extends javax.swing.JFrame {
                 ClientesConMouseClicked(evt);
             }
         });
+        ClientesCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClientesConActionPerformed(evt);
+            }
+        });
         jPanel2.add(ClientesCon, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 234, 170, 40));
 
-        txtID.setEditable(false);
         txtID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 82, 170, 40));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -212,8 +232,7 @@ public class Venta extends javax.swing.JFrame {
         if(FechaA.trim().isEmpty()){
               JOptionPane.showMessageDialog(null,"LLENAR CAMPOS OBLIGATORIOS","ERROR",JOptionPane.YES_NO_OPTION);
         }else{
-     
-        
+    
         InsertarVentas();
         }
     }//GEN-LAST:event_RegistrarBotonActionPerformed
@@ -251,6 +270,14 @@ public class Venta extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+       
+    }//GEN-LAST:event_txtIDKeyTyped
+
+    private void ClientesConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesConActionPerformed
+          
+    }//GEN-LAST:event_ClientesConActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,7 +330,7 @@ public class Venta extends javax.swing.JFrame {
         insertar.executeUpdate();
        
         
-    JOptionPane.showMessageDialog(null,"Agregados Correcto" );
+    //JOptionPane.showMessageDialog(null,"Agregados Correcto" );
         Limpiar();
          MostrarVentas();
     } catch (Exception e) {
@@ -357,6 +384,11 @@ public class Venta extends javax.swing.JFrame {
       } catch (Exception e) {
       }
   }
+  
+  
+
+      
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoton;
     private javax.swing.JComboBox<String> ClientesCon;
@@ -372,6 +404,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }
