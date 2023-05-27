@@ -80,6 +80,7 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
 
         txtID.setBackground(new java.awt.Color(255, 255, 255));
         txtID.setForeground(new java.awt.Color(0, 0, 0));
+        txtID.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         txtID.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtIDMouseClicked(evt);

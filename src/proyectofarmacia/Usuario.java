@@ -218,7 +218,7 @@ public class Usuario extends javax.swing.JPanel {
         RegistrarBoto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         RegistrarBoto.setForeground(new java.awt.Color(0, 0, 0));
         RegistrarBoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
-        RegistrarBoto.setText("NUEVO USUARIO");
+        RegistrarBoto.setText("REGISTRAR USUARIO");
         RegistrarBoto.setContentAreaFilled(false);
         RegistrarBoto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RegistrarBoto.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);

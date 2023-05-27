@@ -97,10 +97,11 @@ public class Comprass extends javax.swing.JFrame {
         });
         jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 72, 140, 44));
 
-        ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ActualizarBoton.setForeground(new java.awt.Color(0, 0, 0));
         ActualizarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
         ActualizarBoton.setText("ACTUALIZAR FECHA COMPRA");
+        ActualizarBoton.setContentAreaFilled(false);
         ActualizarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ActualizarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,10 +110,11 @@ public class Comprass extends javax.swing.JFrame {
         });
         jPanel1.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 160, 300, 70));
 
-        NuevaCompra.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        NuevaCompra.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         NuevaCompra.setForeground(new java.awt.Color(0, 0, 0));
         NuevaCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
         NuevaCompra.setText("REGISTRAR FECHA DE COMPRA");
+        NuevaCompra.setContentAreaFilled(false);
         NuevaCompra.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NuevaCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

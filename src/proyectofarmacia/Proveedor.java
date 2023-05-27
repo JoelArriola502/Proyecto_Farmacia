@@ -103,9 +103,11 @@ public void InsertarProveedor(){
         });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Registrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Registrar.setForeground(new java.awt.Color(0, 0, 0));
         Registrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
         Registrar.setText("Registrar Proveedor");
+        Registrar.setContentAreaFilled(false);
         Registrar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Registrar.setIconTextGap(15);
         Registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -113,11 +115,13 @@ public void InsertarProveedor(){
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel2.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 220, 60));
+        jPanel2.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 250, 60));
 
+        ActualizarDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ActualizarDatos.setForeground(new java.awt.Color(0, 0, 0));
         ActualizarDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
         ActualizarDatos.setText("Actualizar Proveedor");
+        ActualizarDatos.setContentAreaFilled(false);
         ActualizarDatos.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ActualizarDatos.setIconTextGap(15);
         ActualizarDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +129,7 @@ public void InsertarProveedor(){
                 ActualizarDatosActionPerformed(evt);
             }
         });
-        jPanel2.add(ActualizarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, 220, 60));
+        jPanel2.add(ActualizarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 250, 60));
 
         txtNit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {

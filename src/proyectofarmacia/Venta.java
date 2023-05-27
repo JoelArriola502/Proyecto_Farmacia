@@ -126,8 +126,11 @@ public class Venta extends javax.swing.JFrame {
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 234, 100, 40));
 
+        RegistrarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        RegistrarBoton.setForeground(new java.awt.Color(0, 0, 0));
         RegistrarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
         RegistrarBoton.setText("REGISTRAR FECHA VENTA");
+        RegistrarBoton.setContentAreaFilled(false);
         RegistrarBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         RegistrarBoton.setIconTextGap(15);
         RegistrarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,10 +138,13 @@ public class Venta extends javax.swing.JFrame {
                 RegistrarBotonActionPerformed(evt);
             }
         });
-        jPanel2.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 250, 50));
+        jPanel2.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 310, 50));
 
+        ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ActualizarBoton.setForeground(new java.awt.Color(0, 0, 0));
         ActualizarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
         ActualizarBoton.setText("ACTUALIZAR FECHA VENTA");
+        ActualizarBoton.setContentAreaFilled(false);
         ActualizarBoton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ActualizarBoton.setIconTextGap(15);
         ActualizarBoton.addActionListener(new java.awt.event.ActionListener() {
@@ -146,7 +152,7 @@ public class Venta extends javax.swing.JFrame {
                 ActualizarBotonActionPerformed(evt);
             }
         });
-        jPanel2.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, 250, 50));
+        jPanel2.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 310, 50));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimizar.png"))); // NOI18N
         jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

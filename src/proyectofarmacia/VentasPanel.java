@@ -58,6 +58,7 @@ public class VentasPanel extends javax.swing.JPanel {
         MenuVerDatos = new javax.swing.JComboBox<>();
         MenuAgregar = new javax.swing.JComboBox<>();
         Imprimir = new javax.swing.JButton();
+        MenuBuscar = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentasTB = new javax.swing.JTable();
@@ -155,7 +156,8 @@ public class VentasPanel extends javax.swing.JPanel {
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setText("VER TOTAL A PAGAR");
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/DINERO.png"))); // NOI18N
+        jButton3.setText("TOTAL A PAGAR");
         jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -163,9 +165,10 @@ public class VentasPanel extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(449, 206, 200, 50));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 250, 100));
 
-        MenuVerDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ver Datos", "VER CLIENTES", "VER PRODUCTOS", "VER FECHA VENTAS", "VER DETALLE DE LAS VENTAS" }));
+        MenuVerDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuVerDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONSULTAR REGISTROS", "VER CLIENTES", "VER PRODUCTOS", "VER FECHA VENTAS", "VER DETALLE DE LAS VENTAS" }));
         MenuVerDatos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuVerDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -177,9 +180,10 @@ public class VentasPanel extends javax.swing.JPanel {
                 MenuVerDatosActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 172, 60));
+        jPanel1.add(MenuVerDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 220, 60));
 
-        MenuAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DESEA AGREGAR", "AGREGAR CLIENTE", "AGREGAR FECHA VENTA", " ", " " }));
+        MenuAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuAgregar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "REALIZAR NUEVO REGISTROS", "REGISTRAR CLIENTE", "REGISTRAR FECHA  DE VENTA", " ", " " }));
         MenuAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         MenuAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -191,7 +195,7 @@ public class VentasPanel extends javax.swing.JPanel {
                 MenuAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(562, 11, 225, 60));
+        jPanel1.add(MenuAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 250, 60));
 
         Imprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Imprimir.setForeground(new java.awt.Color(0, 0, 0));
@@ -205,6 +209,21 @@ public class VentasPanel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(Imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 230, 220, 50));
+
+        MenuBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BUSCAR REGISTRO", "PRODUCTOS", "FECHA VENTAS" }));
+        MenuBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        MenuBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuBuscarMouseClicked(evt);
+            }
+        });
+        MenuBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(MenuBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 220, 60));
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 290));
 
@@ -223,6 +242,11 @@ public class VentasPanel extends javax.swing.JPanel {
 
             }
         ));
+        VentasTB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VentasTBMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(VentasTB);
 
         TotalTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -254,8 +278,8 @@ public class VentasPanel extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -326,7 +350,7 @@ public class VentasPanel extends javax.swing.JPanel {
 
     private void MenuVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerDatosActionPerformed
         if(MenuVerDatos.getSelectedItem().equals("VER PRODUCTOS")){
-            MostrarDatosProductosid();
+            MostrarDatosProductos();
            
         }if(MenuVerDatos.getSelectedItem().equals("VER CLIENTES")){
             VerDatosClientes();
@@ -348,11 +372,11 @@ public class VentasPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_MenuAgregarMouseClicked
 
     private void MenuAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAgregarActionPerformed
-        if(MenuAgregar.getSelectedItem().equals("AGREGAR CLIENTE")){
+        if(MenuAgregar.getSelectedItem().equals("REGISTRAR CLIENTE")){
             Clientes cliente=new Clientes();
             cliente.setVisible(true);
             
-        }if(MenuAgregar.getSelectedItem().equals("AGREGAR FECHA VENTA")){
+        }if(MenuAgregar.getSelectedItem().equals("REGISTRAR FECHA  DE VENTA")){
              Venta venta=new Venta();
             venta.setVisible(true);
         }
@@ -378,6 +402,29 @@ public class VentasPanel extends javax.swing.JPanel {
         Imprimir impresion=new Imprimir();
         impresion.setVisible(true);
     }//GEN-LAST:event_ImprimirActionPerformed
+
+    private void MenuBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuBuscarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuBuscarMouseClicked
+
+    private void MenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBuscarActionPerformed
+       if(MenuBuscar.getSelectedItem().equals("PRODUCTOS")){
+           MostrarDatosProductosid();
+       }if(MenuBuscar.getSelectedItem().equals("FECHA VENTAS")){
+           MostrarVentasid();
+           
+       }
+    }//GEN-LAST:event_MenuBuscarActionPerformed
+
+    private void VentasTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasTBMouseClicked
+        if(MenuBuscar.getSelectedItem().equals("PRODUCTOS")){
+            int fila=this.VentasTB.getSelectedRow();
+            this.txtPrecioCompra.setText(this.VentasTB.getValueAt(fila, 5).toString());
+            this.txtCostoTotal.setText(this.VentasTB.getValueAt(fila, 4).toString());
+        }else{
+            
+        }
+    }//GEN-LAST:event_VentasTBMouseClicked
 public void InsertarVentaDetalle(){
     String Consulta="INSERT INTO DetalleVenta(idProductos,idVentas,precio,cantidad,costoTotal)values(?,?,?,?,?)";
     String CodigoVen=(String) CodigoVentas.getSelectedItem();
@@ -413,7 +460,7 @@ public void Actualizar(){
         Actualizar=ConectarBD.prepareStatement("update Productos set Existencia=Existencia-'"+txtCantidad.getText()+"' where idProductos='"+CodigoProductos+"'");
     int Contador=Actualizar.executeUpdate();
     if(Contador>0){
-      //  JOptionPane.showMessageDialog(null,"Datos Actualizados");
+       JOptionPane.showMessageDialog(null,"SE A REALIZADO LA VENTA");
       MostrarProductos();
         
     }else {
@@ -753,12 +800,42 @@ public void VerTotalPagr(){
       
            
   }
+  public void MostrarVentasid(){
+      DefaultTableModel Modelo=new DefaultTableModel();
+      String Codigo=(String)CodigoVentas.getSelectedItem();
+      
+      Modelo.addColumn("Codigo Venta");
+      Modelo.addColumn("Fecha venta");
+      Modelo.addColumn("codigo Cliente");
+      Modelo.addColumn("Cliente");
+    VentasTB.setModel(Modelo);
+    String Consulta="select v.idVentas,v.fecha,c.idClientes,c.Nombre\n" +
+"from Ventas v, Clientes c\n" +
+"where v.idClientes=c.idClientes and v.idVentas='"+Codigo+"'";
+    String Dato[]=new String[4];
+    
+      try {
+          st=ConectarBD.createStatement();
+          rs=st.executeQuery(Consulta);
+          while(rs.next()){
+              Dato[0]=rs.getString(1);
+              Dato[1]=rs.getString(2);
+              Dato[2]=rs.getString(3);
+              Dato[3]=rs.getString(4);
+              Modelo.addRow(Dato);
+          }
+      } catch (Exception e) {
+      }
+      
+           
+  }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CodigoProductosCon;
     private javax.swing.JComboBox<String> CodigoVentas;
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton Imprimir;
     private javax.swing.JComboBox<String> MenuAgregar;
+    private javax.swing.JComboBox<String> MenuBuscar;
     private javax.swing.JComboBox<String> MenuVerDatos;
     private javax.swing.JTable TotalTable;
     private javax.swing.JTable VentasTB;
