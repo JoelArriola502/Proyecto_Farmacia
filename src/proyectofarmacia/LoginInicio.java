@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import java.sql.Statement;
+
 
 /**
  *
@@ -22,8 +24,9 @@ public class LoginInicio extends javax.swing.JFrame {
     /**
      * Creates new form LoginInicio
      */
-    Conexion Conecatar=new Conexion();
     
+    Conexion Conecatar=new Conexion();
+    Connection ConectarBD=Conecatar.getConection();
     ResultSet rs=null;
     PreparedStatement mostrar=null;
     public LoginInicio() {
@@ -33,8 +36,9 @@ public void Validacion(){
         try (Connection conecatrBD=Conecatar.getConection();){
             String Usuario=txtUsuario.getText();
             String contra=txtContra.getText();
-            String Consulta="select NombreUsuario, ApellidoUsuario\n" +
-"from Usuario where Usuario='"+Usuario+"' and Contraseña='"+contra+"'";
+            String Consulta="select u.idUsuario,u.NombreUsuario,u.ApellidoUsuario,u.Usuario,u.Contraseña, tu.NombreTipoUsuario As Cargo ,es.NombreEstado as Estado, cu.NombreAcceso as NivelAcceso\n" +
+"from Usuario u, TipoUsuario tu, EstadoUsuario es, AccesoUsuario cu\n" +
+"where u.idAccesoUsuario=cu.idAccesoUsuario and u.idEstadoUsuario=es.idEstadoUsuario and u.idTipoUsuario=tu.idTipoUsuario and  u.Usuario='"+Usuario+"' and u.Contraseña='"+contra+"'";
             mostrar=conecatrBD.prepareStatement(Consulta);
             rs=mostrar.executeQuery();
             if(rs.next()){
@@ -42,6 +46,9 @@ public void Validacion(){
                 Programa acceder=new Programa();
                 JOptionPane.showMessageDialog(null,"Bienvenido "+Usuario);
                 acceder.setVisible(true);
+                
+             
+                
             }else{
                 JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto");
             }
@@ -230,14 +237,64 @@ public void Validacion(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public void ValidacionBloqueo(){
+        try (Connection conecatrBD=Conecatar.getConection();){
+            String Usuario=txtUsuario.getText();
+            String contra=txtContra.getText();
+            int Admin=1;
+            String Consulta="select u.idUsuario,u.NombreUsuario,u.ApellidoUsuario,u.Usuario,u.Contraseña, tu.NombreTipoUsuario As Cargo ,es.NombreEstado as Estado, cu.NombreAcceso as NivelAcceso\n" +
+"from Usuario u, TipoUsuario tu, EstadoUsuario es, AccesoUsuario cu\n" +
+"where u.idAccesoUsuario=cu.idAccesoUsuario and u.idEstadoUsuario=es.idEstadoUsuario and u.idTipoUsuario=tu.idTipoUsuario and  u.Usuario='"+Usuario+"' and u.Contraseña='"+contra+"' ";
+            mostrar=conecatrBD.prepareStatement(Consulta);
+            rs=mostrar.executeQuery();
+            if(rs.next()){
+                setVisible(false);
+                Programa acceder=new Programa();
+                JOptionPane.showMessageDialog(null,"Bienvenido "+Usuario);
+                acceder.setVisible(true);
+                
+               acceder.Cajero();
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Erro"+e.toString());
+        }
+        
+    }
+   
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void botonInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInicioActionPerformed
-        // TODO add your handling code here:
-        Validacion();
+      
+        
+        String admin= ValidadUsuarioAdministrador(txtUsuario.getText(), txtContra.getText());
+        String Cajero=ValidadUsuarioCajero(txtUsuario.getText(), txtContra.getText());
+        if(txtUsuario.getText().trim().isEmpty()||txtContra.getText().trim().isEmpty()){
+           JOptionPane.showMessageDialog(null, "LLENE LOS CAMPOS");
+       }else {
+   
+       if(admin.equals("USUARIO VALIDADO")){
+            Programa acceder=new Programa();
+                String DatosUsuario=BuscarNombreUsuario(txtUsuario.getText());
+                
+                JOptionPane.showMessageDialog(null,"Bienvenido "+DatosUsuario);
+                acceder.setVisible(true);
+                dispose();
+       } else if(Cajero.equals("USUARIO VALIDADO")){
+            Programa acceder=new Programa();
+                String DatosUsuario=BuscarNombreUsuario(txtUsuario.getText());
+                JOptionPane.showMessageDialog(null,"Bienvenido "+DatosUsuario);
+               acceder.Cajero();
+                acceder.setVisible(true);
+              dispose();
+       }else{
+           JOptionPane.showMessageDialog(null, "CONTRASEÑA O USUARIO INCORRECTO");
+       }
+       }
     }//GEN-LAST:event_botonInicioActionPerformed
 
     private void botonInicioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonInicioMouseEntered
@@ -250,6 +307,77 @@ public void Validacion(){
         botonInicio.setBackground(new Color(1, 128, 115));
     }//GEN-LAST:event_botonInicioMouseExited
 
+    
+    
+    //Metodo Validacion Usuario
+    public String ValidadUsuarioAdministrador(String Usuario, String Contra){
+        Connection ConectarBD=Conecatar.getConection();
+        String Validar=null;
+       String admin="Administrador";
+        String Consulta="select u.idUsuario,u.NombreUsuario,u.ApellidoUsuario,u.Usuario,u.Contraseña, tu.NombreTipoUsuario As Cargo ,es.NombreEstado as Estado, cu.NombreAcceso as NivelAcceso\n" +
+"from Usuario u, TipoUsuario tu, EstadoUsuario es, AccesoUsuario cu\n" +
+"where u.idAccesoUsuario=cu.idAccesoUsuario and u.idEstadoUsuario=es.idEstadoUsuario and u.idTipoUsuario=tu.idTipoUsuario and  u.Usuario='"+Usuario+"' and u.Contraseña='"+Contra+"' and tu.NombreTipoUsuario='"+admin+"'";
+        
+        try {
+            mostrar=ConectarBD.prepareStatement(Consulta);
+            rs=mostrar.executeQuery();
+            if(rs.next()){
+               
+         Validar="USUARIO VALIDADO";
+            } else{
+                Validar="USUARIO NO VALIDADO";
+            }
+        } catch (Exception e) {
+        }
+       
+       return Validar;
+    }
+     public String ValidadUsuarioCajero(String Usuario, String Contra){
+         String Valida=null;
+        Connection ConectarBD=Conecatar.getConection();
+       String admin="Cajero";
+        String Consulta="select u.idUsuario,u.NombreUsuario,u.ApellidoUsuario,u.Usuario,u.Contraseña, tu.NombreTipoUsuario As Cargo ,es.NombreEstado as Estado, cu.NombreAcceso as NivelAcceso\n" +
+"from Usuario u, TipoUsuario tu, EstadoUsuario es, AccesoUsuario cu\n" +
+"where u.idAccesoUsuario=cu.idAccesoUsuario and u.idEstadoUsuario=es.idEstadoUsuario and u.idTipoUsuario=tu.idTipoUsuario and  u.Usuario='"+Usuario+"' and u.Contraseña='"+Contra+"' and tu.NombreTipoUsuario='"+admin+"'";
+        
+        try {
+            mostrar=ConectarBD.prepareStatement(Consulta);
+            rs=mostrar.executeQuery();
+            if(rs.next()){
+               
+           Valida="USUARIO VALIDADO";
+            } else{
+               Valida="USUARIO NO VALIDADO";
+            }
+        } catch (Exception e) {
+        }
+       
+       return Valida; 
+    }
+    public String BuscarNombreUsuario(String Usuario){
+        String MostrarDatos=null;
+        String Consulta="Select NombreUsuario, ApellidoUsuario from Usuario where Usuario='"+Usuario+"'";
+        
+            try {
+                mostrar=ConectarBD.prepareStatement(Consulta);
+                rs=mostrar.executeQuery();
+                if(rs.next()){
+                    String Nombre=rs.getString("NombreUsuario");
+                    String Apellido=rs.getString("ApellidoUsuario");
+                    
+                    MostrarDatos=" "+(Nombre)+" "+(Apellido)+"";
+                }
+                
+            } catch (Exception e) {
+            }
+            
+            return MostrarDatos;
+    }
+    
+    
+    
+    
+    
     private void headerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_headerMousePressed
         // TODO add your handling code here:
         xMouse = evt.getX();

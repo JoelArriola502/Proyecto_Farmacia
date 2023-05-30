@@ -10,6 +10,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighte
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -29,7 +30,8 @@ public class Programa extends javax.swing.JFrame {
          jLabel1.putClientProperty( "FlatLaf.styleClass", "h1" );
          
        //  this.setExtendedState(this.MAXIMIZED_BOTH);
-       
+         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 public void Usuario(){
     Usuario ConsultarDatos=new Usuario();
@@ -68,6 +70,10 @@ public void Ventas(){
     Mostrar.revalidate();
     Mostrar.repaint();
 }
+public void Cajero(){
+    
+    UsuarioBoton.setVisible(false);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,10 +92,15 @@ public void Ventas(){
         VentasBoton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Mostrar = new javax.swing.JPanel();
+        tbn_escritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -255,15 +266,28 @@ public void Ventas(){
         Mostrar.setBackground(new java.awt.Color(255, 255, 255));
         Mostrar.setPreferredSize(new java.awt.Dimension(850, 630));
 
+        tbn_escritorio.setBackground(new java.awt.Color(110, 207, 255));
+
+        javax.swing.GroupLayout tbn_escritorioLayout = new javax.swing.GroupLayout(tbn_escritorio);
+        tbn_escritorio.setLayout(tbn_escritorioLayout);
+        tbn_escritorioLayout.setHorizontalGroup(
+            tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 890, Short.MAX_VALUE)
+        );
+        tbn_escritorioLayout.setVerticalGroup(
+            tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 540, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar);
         Mostrar.setLayout(MostrarLayout);
         MostrarLayout.setHorizontalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+            .addComponent(tbn_escritorio)
         );
         MostrarLayout.setVerticalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addComponent(tbn_escritorio)
         );
 
         backgrour.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 91, 890, 540));
@@ -297,6 +321,21 @@ public void Ventas(){
 
         backgrour.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 890, 92));
 
+        jMenu1.setBackground(new java.awt.Color(110, 207, 255));
+        jMenu1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu1.setText("CONSULTAS");
+
+        jMenu3.setText("jMenu3");
+        jMenu1.add(jMenu3);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -313,7 +352,7 @@ public void Ventas(){
 
     private void UsuarioBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuarioBotonActionPerformed
 
-        // TODO add your handling code here:
+       
         Usuario();
     }//GEN-LAST:event_UsuarioBotonActionPerformed
 
@@ -348,7 +387,17 @@ public void Ventas(){
     private void ProductosBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBotonMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductosBotonMouseEntered
-
+ public void CentrarVentana(JInternalFrame internalFrame) {
+        int x = (tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
+        int y = (tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
+        if (internalFrame.isShowing()) {
+            internalFrame.setLocation(x, y);
+        } else {
+            tbn_escritorio.add(internalFrame);
+            internalFrame.setLocation(x, y);
+            internalFrame.show();
+        }
+ }
     private void ProductosBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBotonMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductosBotonMouseExited
@@ -432,7 +481,12 @@ public void Ventas(){
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel opciones;
+    public static javax.swing.JDesktopPane tbn_escritorio;
     // End of variables declaration//GEN-END:variables
 }

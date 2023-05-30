@@ -26,7 +26,7 @@ public class VentasPanel extends javax.swing.JPanel {
    PreparedStatement Actualizar;
    Statement st;
    
-
+  
     public VentasPanel() {
         initComponents();
         CargarVentas(CodigoVentas);
@@ -59,6 +59,8 @@ public class VentasPanel extends javax.swing.JPanel {
         MenuAgregar = new javax.swing.JComboBox<>();
         Imprimir = new javax.swing.JButton();
         MenuBuscar = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        txtExistencia = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentasTB = new javax.swing.JTable();
@@ -90,12 +92,17 @@ public class VentasPanel extends javax.swing.JPanel {
         jPanel1.add(txtCostoTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 215, 140, 57));
 
         txtCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad"));
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyTyped(evt);
             }
         });
-        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 152, 140, 57));
+        jPanel1.add(txtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 140, 57));
 
         txtPrecioCompra.setBorder(javax.swing.BorderFactory.createTitledBorder("Precio "));
         txtPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -225,6 +232,22 @@ public class VentasPanel extends javax.swing.JPanel {
         });
         jPanel1.add(MenuBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 220, 60));
 
+        jButton2.setText("BUSCAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
+
+        txtExistencia.setBorder(javax.swing.BorderFactory.createTitledBorder("Existencia"));
+        txtExistencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtExistenciaKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 140, 57));
+
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 290));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -310,7 +333,7 @@ public class VentasPanel extends javax.swing.JPanel {
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
         char valida=evt.getKeyChar();
-        if(valida<'0'||valida>'9')evt.consume();
+        if(valida<'1'||valida>'9')evt.consume();
     }//GEN-LAST:event_txtCantidadKeyTyped
 
     private void txtPrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioCompraActionPerformed
@@ -420,16 +443,35 @@ public class VentasPanel extends javax.swing.JPanel {
         if(MenuBuscar.getSelectedItem().equals("PRODUCTOS")){
             int fila=this.VentasTB.getSelectedRow();
             this.txtPrecioCompra.setText(this.VentasTB.getValueAt(fila, 5).toString());
+            this.txtExistencia.setText(this.VentasTB.getValueAt(fila,6).toString());
             this.txtCostoTotal.setText(this.VentasTB.getValueAt(fila, 4).toString());
         }else{
             
         }
     }//GEN-LAST:event_VentasTBMouseClicked
+
+
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String accion="Buscar";
+        NuevoProducto producto=new NuevoProducto();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtExistenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExistenciaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExistenciaKeyTyped
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
 public void InsertarVentaDetalle(){
     String Consulta="INSERT INTO DetalleVenta(idProductos,idVentas,precio,cantidad,costoTotal)values(?,?,?,?,?)";
     String CodigoVen=(String) CodigoVentas.getSelectedItem();
     String CodigoProd=(String) CodigoProductosCon.getSelectedItem();
-   
+  
+    
+        
     
     try {
         insertar=ConectarBD.prepareStatement(Consulta);
@@ -442,13 +484,15 @@ public void InsertarVentaDetalle(){
        // JOptionPane.showMessageDialog(null,"Agregado correctamente" );
     } catch (Exception e) {
           JOptionPane.showMessageDialog(null,"Error"+e.toString() );
-    }
     
+    }
 }
 public void Actualizar(){
     
    
-    
+     int Cantidad=Integer.parseInt(txtCantidad.getText().toString());
+   int Existencia=Integer.parseInt(txtExistencia.getText());
+   if(Existencia>=Cantidad){
     
     String CodigoP=(String) CodigoProductosCon.getSelectedItem();
     
@@ -470,6 +514,9 @@ public void Actualizar(){
     } catch (Exception e) {
           JOptionPane.showMessageDialog(null,"error"+e.toString());
     }
+   } else{
+       JOptionPane.showMessageDialog(null, "Lo sentimos la existencia es de "+txtExistencia.getText());
+   }
 }
  public void MostrarProductos(){
         DefaultTableModel Modelo=new  DefaultTableModel();
@@ -840,6 +887,7 @@ public void VerTotalPagr(){
     private javax.swing.JTable TotalTable;
     private javax.swing.JTable VentasTB;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -847,6 +895,7 @@ public void VerTotalPagr(){
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCostoTotal;
+    private javax.swing.JTextField txtExistencia;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPrecioCompra;
     // End of variables declaration//GEN-END:variables

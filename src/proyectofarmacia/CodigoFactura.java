@@ -200,9 +200,10 @@ public void DatosFactura(){
     Modelo.addColumn("Total ");
     TablaFactura.setModel(Modelo);
     String Consulta="select p.idProductos,p.Nombre,dv.precio,dv.cantidad, sum(dv.precio*dv.cantidad)as Total\n" +
-"from  DetalleVenta dv, Ventas v,Clientes c , Productos p\n" +
-"where dv.idVentas=v.idVentas and v.idClientes=c.idClientes and dv.idProductos=p.idProductos and v.idVentas='"+txtID.getText()+"'\n" +
-"group by c.Nombre,p.idProductos, p.Nombre,dv.precio,dv.cantidad ";
+"from DetalleVenta dv, Ventas v,Productos p, formaPago fp, Clientes c, Laboratorio l , Marca m\n" +
+"where dv.idVentas=v.idVentas and dv.idProductos=p.idProductos and v.idClientes=c.idClientes and c.idFormaPago=fp.idFormaPago\n" +
+"and p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio and v.idVentas='"+txtID.getText()+"'\n" +
+"group by p.idProductos,p.Nombre,dv.precio,dv.cantidad ";
     String Dato[]=new String[5];
     try {
         st=ConectarBD.createStatement();
