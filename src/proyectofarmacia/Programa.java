@@ -29,7 +29,7 @@ public class Programa extends javax.swing.JFrame {
        // UsuarioBoton.putClientProperty( "FlatLaf.styleClass", "h1" );
          jLabel1.putClientProperty( "FlatLaf.styleClass", "h1" );
          
-       //  this.setExtendedState(this.MAXIMIZED_BOTH);
+      // this.setExtendedState(this.MAXIMIZED_BOTH);
          setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
@@ -92,15 +92,11 @@ public void Cajero(){
         VentasBoton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Mostrar = new javax.swing.JPanel();
-        tbn_escritorio = new javax.swing.JDesktopPane();
+        Escritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -111,6 +107,7 @@ public void Cajero(){
 
         opciones.setBackground(new java.awt.Color(110, 207, 255));
         opciones.setPreferredSize(new java.awt.Dimension(290, 650));
+        opciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         UsuarioBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         UsuarioBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -133,6 +130,7 @@ public void Cajero(){
                 UsuarioBotonActionPerformed(evt);
             }
         });
+        opciones.add(UsuarioBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 150, 213, 55));
 
         Cerrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Cerrar.setForeground(new java.awt.Color(0, 0, 0));
@@ -155,6 +153,7 @@ public void Cajero(){
                 CerrarActionPerformed(evt);
             }
         });
+        opciones.add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 739, 213, 55));
 
         ProductosBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ProductosBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -177,6 +176,7 @@ public void Cajero(){
                 ProductosBotonActionPerformed(evt);
             }
         });
+        opciones.add(ProductosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 223, 213, 55));
 
         ComprasBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ComprasBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -199,6 +199,7 @@ public void Cajero(){
                 ComprasBotonActionPerformed(evt);
             }
         });
+        opciones.add(ComprasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 571, 213, 55));
 
         VentasBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         VentasBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -221,76 +222,41 @@ public void Cajero(){
                 VentasBotonActionPerformed(evt);
             }
         });
+        opciones.add(VentasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 486, 213, 55));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo_Farmacia-removebg-preview.png"))); // NOI18N
+        opciones.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 25, 221, 107));
 
-        javax.swing.GroupLayout opcionesLayout = new javax.swing.GroupLayout(opciones);
-        opciones.setLayout(opcionesLayout);
-        opcionesLayout.setHorizontalGroup(
-            opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesLayout.createSequentialGroup()
-                .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(opcionesLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(opcionesLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-        opcionesLayout.setVerticalGroup(
-            opcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(opcionesLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(UsuarioBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ProductosBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(VentasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(ComprasBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113)
-                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        backgrour.add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 631));
+        backgrour.add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 810));
 
         Mostrar.setBackground(new java.awt.Color(255, 255, 255));
         Mostrar.setPreferredSize(new java.awt.Dimension(850, 630));
 
-        tbn_escritorio.setBackground(new java.awt.Color(110, 207, 255));
+        Escritorio.setBackground(new java.awt.Color(110, 207, 255));
 
-        javax.swing.GroupLayout tbn_escritorioLayout = new javax.swing.GroupLayout(tbn_escritorio);
-        tbn_escritorio.setLayout(tbn_escritorioLayout);
-        tbn_escritorioLayout.setHorizontalGroup(
-            tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
+        Escritorio.setLayout(EscritorioLayout);
+        EscritorioLayout.setHorizontalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1240, Short.MAX_VALUE)
         );
-        tbn_escritorioLayout.setVerticalGroup(
-            tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+        EscritorioLayout.setVerticalGroup(
+            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar);
         Mostrar.setLayout(MostrarLayout);
         MostrarLayout.setHorizontalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbn_escritorio)
+            .addComponent(Escritorio)
         );
         MostrarLayout.setVerticalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tbn_escritorio)
+            .addComponent(Escritorio)
         );
 
-        backgrour.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 91, 890, 540));
+        backgrour.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 91, 1240, 720));
 
         jPanel1.setBackground(new java.awt.Color(110, 207, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -308,7 +274,7 @@ public void Cajero(){
                 jLabel10MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 50, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 0, 50, -1));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarVentana.png"))); // NOI18N
         jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -317,30 +283,17 @@ public void Cajero(){
                 jLabel11MouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, -1, -1));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, -1, -1));
 
-        backgrour.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 890, 92));
-
-        jMenu1.setBackground(new java.awt.Color(110, 207, 255));
-        jMenu1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jMenu1.setForeground(new java.awt.Color(0, 0, 0));
-        jMenu1.setText("CONSULTAS");
-
-        jMenu3.setText("jMenu3");
-        jMenu1.add(jMenu3);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
+        backgrour.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 1240, 92));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgrour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(backgrour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,16 +341,17 @@ public void Cajero(){
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductosBotonMouseEntered
  public void CentrarVentana(JInternalFrame internalFrame) {
-        int x = (tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
-        int y = (tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
+        int x = (Escritorio.getWidth() / 3) - internalFrame.getWidth() / 3;
+        int y = (Escritorio.getHeight() / 3) - internalFrame.getHeight() / 3;
         if (internalFrame.isShowing()) {
             internalFrame.setLocation(x, y);
         } else {
-            tbn_escritorio.add(internalFrame);
+            Escritorio.add(internalFrame);
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }
  }
+ 
     private void ProductosBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBotonMouseExited
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductosBotonMouseExited
@@ -429,7 +383,17 @@ public void Cajero(){
     }//GEN-LAST:event_VentasBotonMouseExited
 
     private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
-        Ventas();
+       RealizarVentas ventas=new RealizarVentas();
+       
+        CentrarVentana(ventas);
+       ventas.toFront();
+        ventas.setVisible(true);
+        //Ventas();
+        
+        
+         
+      
+       
     }//GEN-LAST:event_VentasBotonActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -472,6 +436,7 @@ public void Cajero(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cerrar;
     private javax.swing.JButton ComprasBoton;
+    public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JPanel Mostrar;
     private javax.swing.JButton ProductosBoton;
     private javax.swing.JButton UsuarioBoton;
@@ -481,12 +446,7 @@ public void Cajero(){
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel opciones;
-    public static javax.swing.JDesktopPane tbn_escritorio;
     // End of variables declaration//GEN-END:variables
 }

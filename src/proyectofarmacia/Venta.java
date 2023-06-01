@@ -5,6 +5,7 @@
 package proyectofarmacia;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -13,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.RowFilter;
@@ -40,11 +43,30 @@ public class Venta extends javax.swing.JFrame {
         initComponents();
         CargarClientes(ClientesCon);
          MostrarVentas();
-        ActualizarBoton.setEnabled(false);
+        ActualizarBoton.setEnabled(true);
         
         AutoCompleteDecorator.decorate(ClientesCon);
+        txtFecha.setDisabledTextColor(Color.blue);
+        txtFecha.setText(Fecha());
+        txtFecha.setVisible(true);
+        
+        
+        txtFecha.setEnabled(false);
+        txtFecha.setDisabledTextColor(Color.blue);
+        txtFecha.setText(FechaActual());
     }
+  public static String Fecha() {
+        Date fecha = new Date();
+        SimpleDateFormat formatofecha = new SimpleDateFormat("yyy-MM-dd");
+        return formatofecha.format(fecha);
 
+    }
+ public static String FechaActual() {
+        Date fecha = new Date();
+        SimpleDateFormat formatofecha = new SimpleDateFormat("dd-MM-yyy");
+        return formatofecha.format(fecha);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,6 +89,7 @@ public class Venta extends javax.swing.JFrame {
         ActualizarBoton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentaTB = new javax.swing.JTable();
@@ -171,6 +194,7 @@ public class Venta extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, -1, 40));
+        jPanel2.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 80, -1, -1));
 
         fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 310));
 
@@ -411,6 +435,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

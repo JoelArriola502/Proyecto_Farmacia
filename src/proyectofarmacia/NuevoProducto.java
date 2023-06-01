@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -28,14 +29,14 @@ public class NuevoProducto extends javax.swing.JFrame {
    
     public NuevoProducto() {
         initComponents();
-        CargarDatosConbox(conMarca);
-        CargarDatosLaboratorios(conLaboratorio);
+        
         VerDatosProductos();
         AutoCompleteDecorator.decorate(conMarca);
         AutoCompleteDecorator.decorate(conLaboratorio);
       
        
     }
+    
     public void VerDatosProductos(){
     DefaultTableModel Modelo=new DefaultTableModel();
     Modelo.addColumn("idProductos");
@@ -356,6 +357,12 @@ public class NuevoProducto extends javax.swing.JFrame {
         
         ActualizarBoton.setEnabled(true);
         NuevoProductoBo.setEnabled(false);
+        
+        Prueba pro=new Prueba();
+        int fila=this.TablaProductos.getSelectedRow();
+       
+        
+        /*
         int fila=this.TablaProductos.getSelectedRow();
         this.txtID.setText(this.TablaProductos.getValueAt(fila, 0).toString());
         this.txtNombre.setText(this.TablaProductos.getValueAt(fila, 1).toString());
@@ -366,7 +373,7 @@ public class NuevoProducto extends javax.swing.JFrame {
          this.txtExistencia.setText(this.TablaProductos.getValueAt(fila, 6).toString());
          this.conMarca.setSelectedItem(this.TablaProductos.getValueAt(fila, 7).toString());
          this.conLaboratorio.setSelectedItem(this.TablaProductos.getValueAt(fila, 8).toString());
-          
+          */
     }//GEN-LAST:event_TablaProductosMouseClicked
 public void ActualizarProducto(){
     

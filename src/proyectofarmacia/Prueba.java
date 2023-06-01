@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package proyectofarmacia;
 
@@ -8,11 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
@@ -22,31 +19,27 @@ import static proyectofarmacia.Programa.Escritorio;
  *
  * @author Joel Arriola
  */
-public class VentasPanel extends javax.swing.JPanel {
-   Conexion conectar=new Conexion();
+public class Prueba extends javax.swing.JFrame {
+
+      Conexion conectar=new Conexion();
    Connection ConectarBD=conectar.getConection();
    ResultSet rs;
    PreparedStatement insertar;
    PreparedStatement Actualizar;
    Statement st;
-   DefaultTableModel Modelo=new DefaultTableModel();
-  
-    public VentasPanel() {
+    public Prueba() {
         initComponents();
-       
-        CargarCodigoProducto(CodigoProductosCon);
+          initComponents();
         CargarVentas(CodigoVentas);
-        Modelo.addColumn("CodigoProducto");
-        Modelo.addColumn("CodigoVentas");
-        Modelo.addColumn("Precio");
-        Modelo.addColumn("Cantidad");
-        Modelo.addColumn("Costo");
-        
-        this.VentasTB.setModel(Modelo);
-        txtFecha.setText(Fecha());
-        txtFecha.setEnabled(false);
+        CargarCodigoProducto(CodigoProductosCon);
+        VerDatallesdeVentas();
+        AutoCompleteDecorator.decorate(CodigoProductosCon);
+        AutoCompleteDecorator.decorate(CodigoVentas);
     }
-
+public void cargar(){
+    VerVentas ventas=new VerVentas();
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +49,7 @@ public class VentasPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Fondo = new javax.swing.JPanel();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         CodigoProductosCon = new javax.swing.JComboBox<>();
         txtCostoTotal = new javax.swing.JTextField();
@@ -73,15 +66,17 @@ public class VentasPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         txtExistencia = new javax.swing.JTextField();
         txtFecha = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         VentasTB = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         TotalTable = new javax.swing.JTable();
 
-        Fondo.setBackground(new java.awt.Color(255, 255, 255));
-        Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(110, 207, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -130,7 +125,8 @@ public class VentasPanel extends javax.swing.JPanel {
         });
         jPanel1.add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 83, 140, 57));
 
-        txtID.setBorder(javax.swing.BorderFactory.createTitledBorder("IDCLIENTE"));
+        txtID.setEditable(false);
+        txtID.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Detalle Ventas"));
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
@@ -184,7 +180,7 @@ public class VentasPanel extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 250, 60));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 250, 100));
 
         MenuVerDatos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         MenuVerDatos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONSULTAR REGISTROS", "VER CLIENTES", "VER PRODUCTOS", "VER FECHA VENTAS", "VER DETALLE DE LAS VENTAS" }));
@@ -244,13 +240,13 @@ public class VentasPanel extends javax.swing.JPanel {
         });
         jPanel1.add(MenuBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 220, 60));
 
-        jButton2.setText("VENTA");
+        jButton2.setText("BUSCAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 170, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
 
         txtExistencia.setBorder(javax.swing.BorderFactory.createTitledBorder("Existencia"));
         txtExistencia.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -261,15 +257,7 @@ public class VentasPanel extends javax.swing.JPanel {
         jPanel1.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 100, 140, 57));
         jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 130, 40));
 
-        jButton4.setText("AGREGAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
-
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 290));
+        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 290));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -329,28 +317,25 @@ public class VentasPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 890, 240));
+        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 890, 240));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CodigoProductosConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoProductosConMouseClicked
+        MostrarDatosProductosid();
+
+    }//GEN-LAST:event_CodigoProductosConMouseClicked
+
     private void CodigoProductosConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoProductosConActionPerformed
-   
-        
-      
-       
+CargarCodigoProducto(CodigoProductosCon);
     }//GEN-LAST:event_CodigoProductosConActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
         char valida=evt.getKeyChar();
@@ -375,104 +360,35 @@ public class VentasPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDKeyTyped
 
+    private void CodigoVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoVentasMouseClicked
+
+        CargarVentas(CodigoVentas);
+
+    }//GEN-LAST:event_CodigoVentasMouseClicked
+
+    private void CodigoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoVentasMousePressed
+
+    }//GEN-LAST:event_CodigoVentasMousePressed
+
+    private void CodigoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoVentasActionPerformed
+  CargarVentas(CodigoVentas);        // TODO add your handling code here:
+    }//GEN-LAST:event_CodigoVentasActionPerformed
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         InsertarVentaDetalle();
         Actualizar();
-       
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
         VerDatallesdeVentasCodigo();
-       VerTotalPagr();
+        VerTotalPagr();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void CodigoProductosConMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoProductosConMouseClicked
-      MostrarDatosProductosid();
-        
-    }//GEN-LAST:event_CodigoProductosConMouseClicked
+    private void MenuVerDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuVerDatosMouseClicked
 
-    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
-        Imprimir impresion=new Imprimir();
-        impresion.setVisible(true);
-    }//GEN-LAST:event_ImprimirActionPerformed
-
-
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      
-       // NuevoProducto producto=new NuevoProducto();
-       
-         //producto.toFront()
-        //producto.setVisible(true);
-       // VerVentas ventas=new VerVentas();
-        //Escritorio.add(ventas);
-      //  ventas.toFront();
-        //ventas.setVisible(true);
-       InsertarVentas();
-       RealizarVentasss();  
-       
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
- 
-    public void CentrarVentana(JInternalFrame internalFrame) {
-        int x = (Escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
-        int y = (Escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
-        if (internalFrame.isShowing()) {
-            internalFrame.setLocation(x, y);
-        } else {
-            Escritorio.add(internalFrame);
-            internalFrame.setLocation(x, y);
-            internalFrame.show();
-        }
- }
-    public static String Fecha() {
-        Date fecha = new Date();
-        SimpleDateFormat formatofecha = new SimpleDateFormat("yyy-MM-dd");
-        return formatofecha.format(fecha);
-
-    }
-
-
-    private void txtExistenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExistenciaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtExistenciaKeyTyped
-
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        llamar();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void CodigoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CodigoVentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CodigoVentasActionPerformed
-
-    private void CodigoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoVentasMousePressed
-
-    }//GEN-LAST:event_CodigoVentasMousePressed
-
-    private void CodigoVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CodigoVentasMouseClicked
-
-        
-
-    }//GEN-LAST:event_CodigoVentasMouseClicked
-
-    private void MenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBuscarActionPerformed
-        if(MenuBuscar.getSelectedItem().equals("PRODUCTOS")){
-            MostrarDatosProductosid();
-        }if(MenuBuscar.getSelectedItem().equals("FECHA VENTAS")){
-            MostrarVentasid();
-
-        }
-    }//GEN-LAST:event_MenuBuscarActionPerformed
-
-    private void MenuBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuBuscarMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MenuBuscarMouseClicked
+    }//GEN-LAST:event_MenuVerDatosMouseClicked
 
     private void MenuVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVerDatosActionPerformed
         if(MenuVerDatos.getSelectedItem().equals("VER PRODUCTOS")){
@@ -489,9 +405,9 @@ public class VentasPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_MenuVerDatosActionPerformed
 
-    private void MenuVerDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuVerDatosMouseClicked
-
-    }//GEN-LAST:event_MenuVerDatosMouseClicked
+    private void MenuAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAgregarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuAgregarMouseClicked
 
     private void MenuAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAgregarActionPerformed
         if(MenuAgregar.getSelectedItem().equals("REGISTRAR CLIENTE")){
@@ -504,9 +420,35 @@ public class VentasPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_MenuAgregarActionPerformed
 
-    private void MenuAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuAgregarMouseClicked
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
+        Imprimir impresion=new Imprimir();
+        impresion.setVisible(true);
+    }//GEN-LAST:event_ImprimirActionPerformed
+
+    private void MenuBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuBuscarMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_MenuAgregarMouseClicked
+    }//GEN-LAST:event_MenuBuscarMouseClicked
+
+    private void MenuBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuBuscarActionPerformed
+        if(MenuBuscar.getSelectedItem().equals("PRODUCTOS")){
+            MostrarDatosProductosid();
+        }if(MenuBuscar.getSelectedItem().equals("FECHA VENTAS")){
+            MostrarVentasid();
+
+        }
+    }//GEN-LAST:event_MenuBuscarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String accion="Buscar";
+        NuevoProducto producto=new NuevoProducto();
+        Escritorio.add(producto);
+        producto.show();
+      
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtExistenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExistenciaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExistenciaKeyTyped
 
     private void VentasTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VentasTBMouseClicked
         if(MenuBuscar.getSelectedItem().equals("PRODUCTOS")){
@@ -518,6 +460,46 @@ public class VentasPanel extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_VentasTBMouseClicked
+public void JalarDatos(){
+       int fila=this.VentasTB.getSelectedRow();
+            this.txtPrecioCompra.setText(this.VentasTB.getValueAt(fila, 5).toString());
+            this.txtExistencia.setText(this.VentasTB.getValueAt(fila,6).toString());
+            this.txtCostoTotal.setText(this.VentasTB.getValueAt(fila, 4).toString());
+}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Prueba.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Prueba().setVisible(true);
+            }
+        });
+    }
 public void InsertarVentaDetalle(){
     String Consulta="INSERT INTO DetalleVenta(idProductos,idVentas,precio,cantidad,costoTotal)values(?,?,?,?,?)";
     String CodigoVen=(String) CodigoVentas.getSelectedItem();
@@ -933,90 +915,9 @@ public void VerTotalPagr(){
            
   }
 
-public void AgregarDatos(int a,int id, String pro, String des, float costo, float precio){
-    
-}
-
-  public String idVenta(){
-       String id=null;
-       
-       try {
-           String consulta="select MAX(idVentas)as Ventas from Ventas";
-           Actualizar=ConectarBD.prepareStatement(consulta);
-           rs=Actualizar.executeQuery();
-           if(rs.next()){
-               String idCodigo=rs.getString("Ventas");
-               id=(idCodigo);
-               
-            
-           
-           }
-       } catch (Exception e) {
-           System.out.println("Error "+e.toString());
-       }
-      return id;
-      
-   }
-  
-  public void RealizarVentasss(){
-      try {
-          for(int i=0;i<VentasTB.getRowCount();i++){
-              insertar=ConectarBD.prepareStatement("INSERT INTO DetalleVenta(idProductos,idVentas,precio,cantidad,costoTotal)values(?,?,?,?,?)");
-              insertar.setString(1, VentasTB.getValueAt(i, 0).toString());
-              insertar.setString(2, VentasTB.getValueAt(i, 1).toString());
-              insertar.setString(3, VentasTB.getValueAt(i, 2).toString());
-              insertar.setString(4, VentasTB.getValueAt(i, 3).toString());
-              insertar.setString(5, VentasTB.getValueAt(i, 4).toString());
-              insertar.executeUpdate();
-              JOptionPane.showMessageDialog(null, "COMPRA REALIZADA CON EXITO");
-          }
-      } catch (Exception e) {
-          JOptionPane.showMessageDialog(null, "Error"+e.toString());
-      }
-  }
-   public void InsertarVentas(){
-   
-     String sql="INSERT INTO Ventas(Fecha,idClientes)values(?,?)";
-     
-    try {
-        insertar=ConectarBD.prepareStatement(sql);
-        insertar.setString(1, txtFecha.getText());
-        insertar.setString(2,txtID.getText());
-        insertar.executeUpdate();
-       
-        
-    JOptionPane.showMessageDialog(null,"Agregados Correcto ventas" );
-        
-        
-    } catch (Exception e) {
-         JOptionPane.showMessageDialog(null,"error"+e.toString() );
-    }
-}
-public void llamar(){
-    String idVenta=idVenta();
-    int codiV=Integer.parseInt(idVenta);
-    int resul=1+codiV;
-    String idVentaC=Integer.toString(resul);
-    String cargar[]= new String[5];
-    String dato=(String)CodigoVentas.getSelectedItem();
-    String prod=(String)CodigoProductosCon.getSelectedItem();
-    
-    cargar[0]=prod;
-    cargar[1]=idVentaC;
-    cargar[2]=txtPrecioCompra.getText();
-    cargar[3]=txtCantidad.getText();
-    cargar[4]=txtCostoTotal.getText();
-    Modelo.addRow(cargar);
-    
-    
-    
-    
-    
-}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CodigoProductosCon;
     private javax.swing.JComboBox<String> CodigoVentas;
-    private javax.swing.JPanel Fondo;
     private javax.swing.JButton Imprimir;
     private javax.swing.JComboBox<String> MenuAgregar;
     private javax.swing.JComboBox<String> MenuBuscar;
@@ -1026,7 +927,7 @@ public void llamar(){
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

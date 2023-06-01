@@ -7,12 +7,15 @@ package proyectofarmacia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
  * @author Joel Arriola
  */
 public class Conexion {
+    ResultSet rs;
+    PreparedStatement Actualizar;
      public Connection getConection(){
     {
      Connection Conectar=null;
@@ -31,5 +34,24 @@ public class Conexion {
     } 
      
  }
-    
+    public String CodigoVenta(){
+       String id=null;
+       
+       try {
+           String consulta="select MAX(idVentas)as Ventas from Ventas";
+           Actualizar=getConection().prepareStatement(consulta);
+           rs=Actualizar.executeQuery();
+           if(rs.next()){
+               String idCodigo=rs.getString("Ventas");
+               id=(idCodigo);
+               
+            
+           
+           }
+       } catch (Exception e) {
+           System.out.println("Error "+e.toString());
+       }
+      return id;
+      
+   }
 }
