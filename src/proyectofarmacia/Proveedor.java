@@ -82,14 +82,11 @@ public void InsertarProveedor(){
         jLabel2 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Proveeedor = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Proveeedor = new rojerusan.RSTableMetro();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -164,6 +161,11 @@ public void InsertarProveedor(){
                 txtNombreProveedorActionPerformed(evt);
             }
         });
+        txtNombreProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreProveedorKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 140, 50));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -177,30 +179,11 @@ public void InsertarProveedor(){
         jLabel5.setText("Telefono Proveedor");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 190, 57));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Minimizar.png"))); // NOI18N
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 50, -1));
-
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CerrarVentana.png"))); // NOI18N
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
-            }
-        });
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 0, -1, -1));
-
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 260));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Proveedor"));
 
-        Proveeedor.setForeground(new java.awt.Color(0, 0, 0));
         Proveeedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -217,23 +200,22 @@ public void InsertarProveedor(){
                 ProveeedorMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(Proveeedor);
+        jScrollPane2.setViewportView(Proveeedor);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 810, 240));
@@ -264,19 +246,7 @@ public void InsertarProveedor(){
         InsertarProveedor();
         }
     }//GEN-LAST:event_RegistrarActionPerformed
-
-    private void ProveeedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProveeedorMouseClicked
-       
-        ActualizarDatos.setEnabled(true);
-        Registrar.setEnabled(false);
-        int fila=this.Proveeedor.getSelectedRow();
-       this.txtID.setText(this.Proveeedor.getValueAt(fila,0).toString());
-       this.txtNombreProveedor.setText(this.Proveeedor.getValueAt(fila,1).toString());
-       this.txtNit.setText(this.Proveeedor.getValueAt(fila,2).toString());
-       this.txtTelefono.setText(this.Proveeedor.getValueAt(fila,3).toString());
-       this.conPago.setSelectedItem(this.Proveeedor.getValueAt(fila, 4).toString());
-    }//GEN-LAST:event_ProveeedorMouseClicked
-
+  
     private void txtNombreProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProveedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreProveedorActionPerformed
@@ -294,7 +264,7 @@ public void InsertarProveedor(){
     private void txtNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNitKeyTyped
         // TODO add your handling code here:
         char Validar=evt.getKeyChar();
-        if(Validar<'0'||Validar>'9')evt.consume();
+        if((Validar<'0'||Validar>'9')&&(Validar<'-'||Validar>'-'))evt.consume();
     }//GEN-LAST:event_txtNitKeyTyped
 
     private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
@@ -302,16 +272,21 @@ public void InsertarProveedor(){
         if(validar<'0'||validar>'9')evt.consume();
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        //Minimizar ventana
-        this.setState(Clientes.ICONIFIED);
-    }//GEN-LAST:event_jLabel10MouseClicked
+    private void ProveeedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProveeedorMouseClicked
+       ActualizarDatos.setEnabled(true);
+       Registrar.setEnabled(false);
+       int fila=this.Proveeedor.getSelectedRow();
+       this.txtID.setText(this.Proveeedor.getValueAt(fila,0).toString());
+       this.txtNombreProveedor.setText(this.Proveeedor.getValueAt(fila,1).toString());
+       this.txtNit.setText(this.Proveeedor.getValueAt(fila,2).toString());
+       this.txtTelefono.setText(this.Proveeedor.getValueAt(fila,3).toString());
+       this.conPago.setSelectedItem(this.Proveeedor.getValueAt(fila, 4).toString());
+    }//GEN-LAST:event_ProveeedorMouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        if(JOptionPane.showConfirmDialog(null,"DESEA SALIR DE LA VENTANA CLIENTES","SALIR",JOptionPane.YES_NO_OPTION)==0){
-            dispose();
-        }
-    }//GEN-LAST:event_jLabel11MouseClicked
+    private void txtNombreProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorKeyTyped
+        char v=evt.getKeyChar();
+        if((v<'a'||v>'z')&&(v<'A'||v>'Z')&&(v<' '||v>' '))evt.consume();
+    }//GEN-LAST:event_txtNombreProveedorKeyTyped
 
     
      public void Proveedor(){
@@ -427,12 +402,10 @@ public void InsertarProveedor(){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarDatos;
-    private javax.swing.JTable Proveeedor;
+    private rojerusan.RSTableMetro Proveeedor;
     private javax.swing.JButton Registrar;
     private javax.swing.JComboBox<String> conPago;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -440,7 +413,7 @@ public void InsertarProveedor(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtNombreProveedor;

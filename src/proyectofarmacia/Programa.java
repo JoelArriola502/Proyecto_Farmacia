@@ -10,6 +10,7 @@ import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighte
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -52,8 +53,8 @@ public void Productos(){
     Mostrar.repaint();
 }
 public void Compras(){
-    Compras compras=new Compras();
-    compras.setSize(890,530);
+    CompraProductos compras=new CompraProductos();
+    compras.setSize(1201,808);
     compras.setLocation(0,0);
     Mostrar.removeAll();
     Mostrar.add(compras,BorderLayout.CENTER);
@@ -62,8 +63,8 @@ public void Compras(){
 }
 
 public void Ventas(){
-    VentasPanel ventas=new VentasPanel();
-    ventas.setSize(890,530);
+    Ventas ventas=new Ventas();
+    ventas.setSize(1201,808);
     ventas.setLocation(0,0);
     Mostrar.removeAll();
     Mostrar.add(ventas,BorderLayout.CENTER);
@@ -340,15 +341,15 @@ public void Cajero(){
     private void ProductosBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBotonMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductosBotonMouseEntered
- public void CentrarVentana(JInternalFrame internalFrame) {
-        int x = (Escritorio.getWidth() / 3) - internalFrame.getWidth() / 3;
-        int y = (Escritorio.getHeight() / 3) - internalFrame.getHeight() / 3;
-        if (internalFrame.isShowing()) {
-            internalFrame.setLocation(x, y);
+ public void CentrarVentana(JFrame frame) {
+        int x = (Mostrar.getWidth() / 3) - frame.getWidth() / 3;
+        int y = (Mostrar.getHeight() / 3) - frame.getHeight() / 3;
+        if (frame.isShowing()) {
+            frame.setLocation(x, y);
         } else {
-            Escritorio.add(internalFrame);
-            internalFrame.setLocation(x, y);
-            internalFrame.show();
+            Mostrar.add(frame);
+            frame.setLocation(x, y);
+            frame.show();
         }
  }
  
@@ -383,7 +384,9 @@ public void Cajero(){
     }//GEN-LAST:event_VentasBotonMouseExited
 
     private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
-       RealizarVentas ventas=new RealizarVentas();
+     
+        Ventas();
+        /*RealizarVentas ventas=new RealizarVentas();
        
         CentrarVentana(ventas);
        ventas.toFront();
@@ -391,8 +394,8 @@ public void Cajero(){
         //Ventas();
         
         
-         
-      
+         */
+     
        
     }//GEN-LAST:event_VentasBotonActionPerformed
 

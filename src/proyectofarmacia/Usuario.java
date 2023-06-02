@@ -125,8 +125,8 @@ public class Usuario extends javax.swing.JPanel {
         txtContra = new javax.swing.JPasswordField();
         ActualizarBoto = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        DatosUsuarios = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        DatosUsuarios = new rojerusan.RSTableMetro();
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
         jMenuItem1.setLabel("ELIMINAR USUARIO");
@@ -254,7 +254,7 @@ public class Usuario extends javax.swing.JPanel {
         });
         jPanel1.add(ActualizarBoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, -1, 63));
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 240));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 240));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DE LOS USUARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -270,13 +270,12 @@ public class Usuario extends javax.swing.JPanel {
 
             }
         ));
-        DatosUsuarios.setComponentPopupMenu(ELIMINAR);
         DatosUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DatosUsuariosMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(DatosUsuarios);
+        jScrollPane2.setViewportView(DatosUsuarios);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -284,18 +283,18 @@ public class Usuario extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 890, 290));
+        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 1200, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -321,22 +320,7 @@ public class Usuario extends javax.swing.JPanel {
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
-
-    private void DatosUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DatosUsuariosMouseClicked
-        // TODO add your handling code here:
-        ActualizarBoto.setEnabled(true);
-        RegistrarBoto.setEnabled(false);
-        int filas=this.DatosUsuarios.getSelectedRow();
-        this.txtID.setText(this.DatosUsuarios.getValueAt(filas, 0).toString());
-        this.txtNombre.setText(this.DatosUsuarios.getValueAt(filas, 1).toString());
-        this.txtApellido.setText(this.DatosUsuarios.getValueAt(filas, 2).toString());
-        this.txtUsuario.setText(this.DatosUsuarios.getValueAt(filas, 3).toString());
-        this.txtContra.setText(this.DatosUsuarios.getValueAt(filas, 4).toString());
-        this.conCargo.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 5).toString());
-        this.conEstado.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 6).toString());
-        this.conNivel.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 7).toString());
-    }//GEN-LAST:event_DatosUsuariosMouseClicked
-
+   
     private void ActualizarBotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotoActionPerformed
         // TODO add your handling code here:
         ActualizarDatos();
@@ -375,6 +359,20 @@ public class Usuario extends javax.swing.JPanel {
       char valida=evt.getKeyChar();
       if((valida<'a'||valida>'z')&&(valida<'A'||valida>'Z'))evt.consume();
     }//GEN-LAST:event_txtApellidoKeyTyped
+
+    private void DatosUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DatosUsuariosMouseClicked
+        ActualizarBoto.setEnabled(true);
+        RegistrarBoto.setEnabled(false);
+        int filas=this.DatosUsuarios.getSelectedRow();
+        this.txtID.setText(this.DatosUsuarios.getValueAt(filas, 0).toString());
+        this.txtNombre.setText(this.DatosUsuarios.getValueAt(filas, 1).toString());
+        this.txtApellido.setText(this.DatosUsuarios.getValueAt(filas, 2).toString());
+        this.txtUsuario.setText(this.DatosUsuarios.getValueAt(filas, 3).toString());
+        this.txtContra.setText(this.DatosUsuarios.getValueAt(filas, 4).toString());
+        this.conCargo.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 5).toString());
+        this.conEstado.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 6).toString());
+        this.conNivel.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 7).toString());
+    }//GEN-LAST:event_DatosUsuariosMouseClicked
 public void EliminarUsuario(){
     try {
         Eliminar=ConectarBD.prepareStatement("Delete from Usuario where idUsuario='"+txtID.getText()+"'");
@@ -488,7 +486,7 @@ public void RegistrarUsuario(){
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoto;
-    private javax.swing.JTable DatosUsuarios;
+    private rojerusan.RSTableMetro DatosUsuarios;
     private javax.swing.JPopupMenu ELIMINAR;
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton RegistrarBoto;
@@ -506,7 +504,7 @@ public void RegistrarUsuario(){
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtID;
