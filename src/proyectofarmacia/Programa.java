@@ -74,6 +74,7 @@ public void Ventas(){
 public void Cajero(){
     
     UsuarioBoton.setVisible(false);
+    RegistrosMenu.setVisible(false);
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -94,11 +95,15 @@ public void Cajero(){
         jLabel2 = new javax.swing.JLabel();
         ProductosBoton1 = new javax.swing.JButton();
         Mostrar = new javax.swing.JPanel();
-        Escritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        RegistrosMenu = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -254,34 +259,21 @@ public void Cajero(){
 
         backgrour.add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 810));
 
-        Mostrar.setBackground(new java.awt.Color(255, 255, 255));
+        Mostrar.setBackground(new java.awt.Color(110, 207, 255));
         Mostrar.setPreferredSize(new java.awt.Dimension(850, 630));
-
-        Escritorio.setBackground(new java.awt.Color(110, 207, 255));
-
-        javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
-        Escritorio.setLayout(EscritorioLayout);
-        EscritorioLayout.setHorizontalGroup(
-            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1240, Short.MAX_VALUE)
-        );
-        EscritorioLayout.setVerticalGroup(
-            EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar);
         Mostrar.setLayout(MostrarLayout);
         MostrarLayout.setHorizontalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addGap(0, 1240, Short.MAX_VALUE)
         );
         MostrarLayout.setVerticalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(0, 750, Short.MAX_VALUE)
         );
 
-        backgrour.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 91, 1240, 720));
+        backgrour.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 61, 1240, 750));
 
         jPanel1.setBackground(new java.awt.Color(110, 207, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -310,7 +302,31 @@ public void Cajero(){
         });
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 0, -1, -1));
 
-        backgrour.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 1240, 92));
+        backgrour.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 1240, 70));
+
+        jMenuBar1.setBackground(new java.awt.Color(110, 207, 255));
+        jMenuBar1.setForeground(new java.awt.Color(0, 0, 0));
+
+        RegistrosMenu.setText("REGISTROS");
+
+        jMenuItem2.setText("CLIENTE");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        RegistrosMenu.add(jMenuItem2);
+
+        jMenuBar1.add(RegistrosMenu);
+
+        jMenu2.setText("REPORTES");
+
+        jMenuItem1.setText("CLIENTE");
+        jMenu2.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -363,17 +379,7 @@ public void Cajero(){
     private void ProductosBotonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBotonMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductosBotonMouseEntered
- public void CentrarVentana(JFrame frame) {
-        int x = (Mostrar.getWidth() / 3) - frame.getWidth() / 3;
-        int y = (Mostrar.getHeight() / 3) - frame.getHeight() / 3;
-        if (frame.isShowing()) {
-            frame.setLocation(x, y);
-        } else {
-            Mostrar.add(frame);
-            frame.setLocation(x, y);
-            frame.show();
-        }
- }
+
  
     private void ProductosBotonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBotonMouseExited
         // TODO add your handling code here:
@@ -407,18 +413,7 @@ public void Cajero(){
 
     private void VentasBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasBotonActionPerformed
      
-        Ventas();
-        /*RealizarVentas ventas=new RealizarVentas();
-       
-        CentrarVentana(ventas);
-       ventas.toFront();
-        ventas.setVisible(true);
-        //Ventas();
-        
-        
-         */
-     
-       
+        Ventas();    
     }//GEN-LAST:event_VentasBotonActionPerformed
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
@@ -443,6 +438,11 @@ public void Cajero(){
     private void ProductosBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosBoton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ProductosBoton1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Clientes cliente=new Clientes();
+        cliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -473,10 +473,10 @@ public void Cajero(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cerrar;
     private javax.swing.JButton ComprasBoton;
-    public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JPanel Mostrar;
     private javax.swing.JButton ProductosBoton;
     private javax.swing.JButton ProductosBoton1;
+    private javax.swing.JMenu RegistrosMenu;
     private javax.swing.JButton UsuarioBoton;
     private javax.swing.JButton VentasBoton;
     private javax.swing.JPanel backgrour;
@@ -484,6 +484,10 @@ public void Cajero(){
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel opciones;
     // End of variables declaration//GEN-END:variables

@@ -46,6 +46,7 @@ public class Marca extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         NuevaMarca = new javax.swing.JButton();
         ActualizarBoton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,6 +118,18 @@ public class Marca extends javax.swing.JFrame {
         });
         jPanel1.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 180, 100));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salida.png"))); // NOI18N
+        jLabel3.setText("REGRESAR");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,6 +149,7 @@ public class Marca extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"LLENAR CAMPOS OBLIGATORIOS","ERROR",JOptionPane.YES_NO_OPTION);
         }else{
             InsertarMarca();
+            
         }
     }//GEN-LAST:event_NuevaMarcaActionPerformed
 
@@ -148,6 +162,10 @@ public class Marca extends javax.swing.JFrame {
         this.txtID.setText(this.MarcaTB.getValueAt(fila, 0).toString());
         this.txtMarca.setText(this.MarcaTB.getValueAt(fila,1).toString());
     }//GEN-LAST:event_MarcaTBMouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -242,6 +260,7 @@ public void Limpiar(){
     private javax.swing.JButton NuevaMarca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtID;

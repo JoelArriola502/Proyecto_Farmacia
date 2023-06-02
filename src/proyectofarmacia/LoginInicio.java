@@ -305,6 +305,7 @@ public class LoginInicio extends javax.swing.JFrame {
        
        return Valida; 
     }
+     //METODO PARA BSUACR EL NOMBRE DEL USUARIO 
     public String BuscarNombreUsuario(String Usuario){
         String MostrarDatos=null;
         String Consulta="Select NombreUsuario, ApellidoUsuario from Usuario where Usuario='"+Usuario+"'";
@@ -368,7 +369,7 @@ public class LoginInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraMousePressed
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
-        if(JOptionPane.showConfirmDialog(null,"DESEA SALIR DE LA VENTANA CLIENTES","SALIR",JOptionPane.YES_NO_OPTION)==0){
+        if(JOptionPane.showConfirmDialog(null,"DESEA SALIR ","SALIR",JOptionPane.YES_NO_OPTION)==0){
             dispose();
         }
     }//GEN-LAST:event_jLabel11MouseClicked

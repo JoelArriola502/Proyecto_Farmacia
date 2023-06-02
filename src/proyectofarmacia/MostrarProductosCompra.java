@@ -99,7 +99,7 @@ public class MostrarProductosCompra extends javax.swing.JFrame {
         });
 
         Agregarboton.setForeground(new java.awt.Color(0, 0, 0));
-        Agregarboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar.png"))); // NOI18N
+        Agregarboton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Agregar.png"))); // NOI18N
         Agregarboton.setText("AGREGAR PRODUCTOS");
         Agregarboton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Agregarboton.addActionListener(new java.awt.event.ActionListener() {
@@ -174,10 +174,10 @@ public class MostrarProductosCompra extends javax.swing.JFrame {
 
         int fila=this.TablaProductos.getSelectedRow();
         CompraProductos.txtNombreProducto.setText(this.TablaProductos.getValueAt(fila,1 ).toString());
-        CompraProductos.txtPrecioCompra.setText(this.TablaProductos.getValueAt(fila, 5).toString());
+        CompraProductos.txtPrecioCompra.setText(this.TablaProductos.getValueAt(fila, 4).toString());
         CompraProductos.CodigoProductosCon.setText(this.TablaProductos.getValueAt(fila, 0).toString());
         CompraProductos.txtExistencia.setText(this.TablaProductos.getValueAt(fila, 6).toString());
-         CompraProductos.txtCostoTotal.setText(this.TablaProductos.getValueAt(fila, 4).toString());
+       //  CompraProductos.txtCostoTotal.setText(this.TablaProductos.getValueAt(fila, 4).toString());
 
     }//GEN-LAST:event_TablaProductosMouseClicked
 

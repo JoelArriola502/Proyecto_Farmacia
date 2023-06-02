@@ -201,6 +201,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaProductos = new rojerusan.RSTableMetro();
@@ -231,7 +232,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
                 NuevoProductoBoActionPerformed(evt);
             }
         });
-        jPanel2.add(NuevoProductoBo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 280, 60));
+        jPanel2.add(NuevoProductoBo, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 260, 60));
 
         ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ActualizarBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -246,7 +247,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
                 ActualizarBotonActionPerformed(evt);
             }
         });
-        jPanel2.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 280, 60));
+        jPanel2.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 280, 60));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -312,6 +313,14 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 conMarcaMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                conMarcaMouseEntered(evt);
+            }
+        });
+        conMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conMarcaActionPerformed(evt);
+            }
         });
         conMarca.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -355,6 +364,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Agregar.png"))); // NOI18N
         jButton1.setText("AGREGAR MARCA");
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -362,7 +372,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 150, 70));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 220, 70));
 
         txtBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR PRODUCTO"));
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -376,6 +386,18 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
             }
         });
         jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 190, 60));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salida.png"))); // NOI18N
+        jLabel10.setText("REGRESAR");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 250, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 320));
 
@@ -535,6 +557,18 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyReleased
 
+    private void conMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conMarcaActionPerformed
+        CargarDatosConbox(conMarca);
+    }//GEN-LAST:event_conMarcaActionPerformed
+
+    private void conMarcaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conMarcaMouseEntered
+        CargarDatosConbox(conMarca);
+    }//GEN-LAST:event_conMarcaMouseEntered
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel10MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -622,9 +656,10 @@ public void BuscarProductos(String Buscar){
     private javax.swing.JButton NuevoProductoBo;
     private rojerusan.RSTableMetro TablaProductos;
     private javax.swing.JComboBox<String> conLaboratorio;
-    private javax.swing.JComboBox<String> conMarca;
+    public static javax.swing.JComboBox<String> conMarca;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

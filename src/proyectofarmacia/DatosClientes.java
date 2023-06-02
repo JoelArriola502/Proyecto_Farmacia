@@ -115,7 +115,7 @@ public class DatosClientes extends javax.swing.JFrame {
         jPanel1.add(Agregarboton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 200, 60));
 
         Agregarboton1.setForeground(new java.awt.Color(0, 0, 0));
-        Agregarboton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar.png"))); // NOI18N
+        Agregarboton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Agregar.png"))); // NOI18N
         Agregarboton1.setText("AGREGAR CLIENTE");
         Agregarboton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Agregarboton1.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +123,7 @@ public class DatosClientes extends javax.swing.JFrame {
                 Agregarboton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Agregarboton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 150, 60));
+        jPanel1.add(Agregarboton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 200, 60));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));

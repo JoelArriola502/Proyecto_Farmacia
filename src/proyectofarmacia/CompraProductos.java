@@ -29,6 +29,8 @@ public class CompraProductos extends javax.swing.JPanel {
        
         Modelo.addColumn("CodigoCompra");
         Modelo.addColumn("CodigoProducto");
+        Modelo.addColumn("Nombre Proveedor");
+        Modelo.addColumn("Nombre Producto");
         Modelo.addColumn("Precio");
         Modelo.addColumn("Cantidad");
         Modelo.addColumn("CostoTotal");
@@ -104,10 +106,10 @@ public void Desbloquear(){
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        TotalTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         ComprasTB = new rojerusan.RSTableMetro();
+        jPanel2 = new javax.swing.JPanel();
+        txtTotalPagar = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(110, 207, 255));
 
@@ -236,6 +238,9 @@ public void Desbloquear(){
             }
         });
         txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCantidadKeyTyped(evt);
             }
@@ -276,7 +281,7 @@ public void Desbloquear(){
                 .addGap(32, 32, 32))
         );
 
-        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 530, 90));
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 530, 90));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -299,19 +304,20 @@ public void Desbloquear(){
         jLabel10.setText("NUMERO  COMPRA");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 170, 190, 48));
 
-        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 300, 320));
+        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 300, 330));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Agregar.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Agregar.png"))); // NOI18N
         jButton1.setText("AGREGAR");
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton1.setIconTextGap(15);
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Agregar30.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -336,12 +342,13 @@ public void Desbloquear(){
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Elimina48.png"))); // NOI18N
         jButton3.setText("ELIMINAR");
         jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.setIconTextGap(15);
+        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Elimina32.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -349,27 +356,29 @@ public void Desbloquear(){
         });
         jPanel8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 180, 60));
 
-        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 620, 90));
+        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 620, 90));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/IMPRIMIR.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Imprimir (2).png"))); // NOI18N
         jButton4.setText("IMPRIMIR");
         jButton4.setContentAreaFilled(false);
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton4.setIconTextGap(15);
+        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Imprimir32.png"))); // NOI18N
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nueva.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/NuevaVC.png"))); // NOI18N
         jButton5.setText("NUEVA COMPRA");
         jButton5.setContentAreaFilled(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton5.setIconTextGap(15);
+        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Nueva32.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -378,12 +387,13 @@ public void Desbloquear(){
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardar_1.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Guardar48.png"))); // NOI18N
         jButton6.setText("REALIZAR COMPRA");
         jButton6.setContentAreaFilled(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton6.setIconTextGap(15);
+        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/guardar32.png"))); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -394,44 +404,35 @@ public void Desbloquear(){
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 280, 320));
+        jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 280, 330));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
         jPanel10.setForeground(new java.awt.Color(0, 0, 0));
-
-        TotalTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane2.setViewportView(TotalTable);
 
         ComprasTB.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -446,26 +447,50 @@ public void Desbloquear(){
         ));
         jScrollPane3.setViewportView(ComprasTB);
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Total a pagar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+
+        txtTotalPagar.setBackground(new java.awt.Color(204, 204, 204));
+        txtTotalPagar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txtTotalPagar.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalPagarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtTotalPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(997, 997, 997)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1181, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 29, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -473,22 +498,23 @@ public void Desbloquear(){
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1240, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 20, Short.MAX_VALUE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(25, 25, 25)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGap(0, 734, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(10, 10, 10)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -496,11 +522,13 @@ public void Desbloquear(){
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -548,7 +576,7 @@ public void Desbloquear(){
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        if(txtCantidad.getText().trim().isEmpty()||txtExistencia.getText().trim().isEmpty()||txtPrecioCompra.getText().trim().isEmpty()||CodigoProductosCon.getText().trim().isEmpty()){
+        if(txtCantidad.getText().trim().isEmpty()||txtExistencia.getText().trim().isEmpty()||txtPrecioCompra.getText().trim().isEmpty()||CodigoProductosCon.getText().trim().isEmpty()||txtNombreProducto.getText().trim().isEmpty()||txtNombreProveedor.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "POR FAVOR LLENE LOS CAMPOS");
 
         }else {
@@ -556,6 +584,9 @@ public void Desbloquear(){
             int existenciap=Integer.parseInt(txtExistencia.getText());
             if(CantidadV>0){
                   llamar();
+                  CalcularTotal_Ventas();
+                  txtCantidad.setText("");
+                  txtCostoTotal.setText("");
                 
             } else {
                 JOptionPane.showMessageDialog(null, "La Cantidad No puede ser 0");
@@ -564,10 +595,15 @@ public void Desbloquear(){
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-        InsertarCompra();
+if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA COMPRA" ,"",JOptionPane.YES_NO_OPTION)==0){
+        if(txtNombreProveedor.getText().trim().isEmpty()||txtCodigoProveedor.getText().trim().isEmpty()||txtNombreProducto.getText().trim().isEmpty()||txtPrecioCompra.getText().trim().isEmpty()){
+        JOptionPane.showMessageDialog(null, "POR FAVOR LLENE LOS CAMPOS");
+} else {
+    InsertarCompra();
         RealizarCompra();
         ActualizarExistencia();
+}
+}
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -576,6 +612,7 @@ public void Desbloquear(){
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        EliminarAgregados();
+       Limpiar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -585,28 +622,37 @@ public void Desbloquear(){
        Limpiar();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void txtTotalPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalPagarActionPerformed
+
+    private void txtCantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyReleased
+        if(txtCantidad.getText().trim().isEmpty()||txtPrecioCompra.getText().trim().isEmpty()){
+        
+    } else{
+        CostoTotal();
+    }
+    }//GEN-LAST:event_txtCantidadKeyReleased
+
     public void llamar(){
     String idVenta=idCompras();
     int codiV=Integer.parseInt(idVenta);
     int resul=1+codiV;
     String idVentaC=Integer.toString(resul);
-    String cargar[]= new String[5];
+    String cargar[]= new String[7];
   
     float precio=Float.parseFloat(txtPrecioCompra.getText());
     int Cantidad=Integer.parseInt(txtCantidad.getText());
     float costo=precio*Cantidad;
     String CostoTotal=Float.toString(costo);
-    
     cargar[0]=txtNumeroCompra.getText();
     cargar[1]=CodigoProductosCon.getText();
-    cargar[2]=txtPrecioCompra.getText();
-    cargar[3]=txtCantidad.getText();
-    cargar[4]=CostoTotal;
-    Modelo.addRow(cargar);
-    
-    
-    
-    
+    cargar[2]=txtNombreProveedor.getText();
+    cargar[3]=txtNombreProducto.getText();
+    cargar[4]=txtPrecioCompra.getText();
+    cargar[5]=txtCantidad.getText();
+    cargar[6]=CostoTotal;
+    Modelo.addRow(cargar); 
     
 }
     
@@ -637,9 +683,9 @@ public void RealizarCompra(){
               insertar=ConectarBD.prepareStatement("insert into CompraDetalle(idCompras,idProductos,precio,cantidad,costoTotal)values(?,?,?,?,?)");
               insertar.setString(1, ComprasTB.getValueAt(i, 0).toString());
               insertar.setString(2, ComprasTB.getValueAt(i, 1).toString());
-              insertar.setString(3, ComprasTB.getValueAt(i, 2).toString());
-              insertar.setString(4, ComprasTB.getValueAt(i, 3).toString());
-              insertar.setString(5, ComprasTB.getValueAt(i, 4).toString());
+              insertar.setString(3, ComprasTB.getValueAt(i, 4).toString());
+              insertar.setString(4, ComprasTB.getValueAt(i, 5).toString());
+              insertar.setString(5, ComprasTB.getValueAt(i, 6).toString());
               insertar.executeUpdate();
               
           }
@@ -649,11 +695,10 @@ public void RealizarCompra(){
       }
   }
   public void ActualizarExistencia(){
-   int Cantidad=Integer.parseInt(txtCantidad.getText().toString());
-   int Existencia=Integer.parseInt(txtExistencia.getText());
+ 
     try {
          for(int i=0;i<ComprasTB.getRowCount();i++){
-              Actualizar=ConectarBD.prepareStatement("update Productos set Existencia=Existencia+'"+ComprasTB.getValueAt(i, 3)+"' where idProductos='"+ComprasTB.getValueAt(i, 1)+"'");
+              Actualizar=ConectarBD.prepareStatement("update Productos set Existencia=Existencia+'"+ComprasTB.getValueAt(i, 5)+"' where idProductos='"+ComprasTB.getValueAt(i, 1)+"'");
               
               Actualizar.executeUpdate();    
          }
@@ -709,13 +754,33 @@ public void RealizarCompra(){
        txtNombreProducto.setText("");
        txtNombreProveedor.setText("");
        txtPrecioCompra.setText("");
+       
    }
+    void CalcularTotal_Ventas(){
+                
+        int fila = 0;
+        double valorCompra = 0;
+        fila = ComprasTB.getRowCount();
+        for (int f=0; f<fila; f++){
+            valorCompra += Double.parseDouble(String.valueOf(ComprasTB.getModel().getValueAt(f, 6)));            
+        }
+        txtTotalPagar.setText(String.valueOf(valorCompra));
+          
+    }
+    public void CostoTotal(){
+    int Cantida=Integer.parseInt(txtCantidad.getText());
+    float Precio=Float.parseFloat(txtPrecioCompra.getText());
+    
+    float CostoTotalve=Cantida*Precio;
+    String pasarcosto=Float.toString(CostoTotalve);
+    txtCostoTotal.setText(pasarcosto);
+    
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargarPeroducto;
     public static javax.swing.JTextField CodigoProductosCon;
     private rojerusan.RSTableMetro ComprasTB;
     private javax.swing.JButton ProveedorCargar;
-    private javax.swing.JTable TotalTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -734,6 +799,7 @@ public void RealizarCompra(){
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -741,7 +807,6 @@ public void RealizarCompra(){
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField txtCantidad;
     public static javax.swing.JTextField txtCodigoProveedor;
@@ -752,5 +817,6 @@ public void RealizarCompra(){
     public static javax.swing.JTextField txtNombreProveedor;
     private javax.swing.JTextField txtNumeroCompra;
     public static javax.swing.JTextField txtPrecioCompra;
+    private javax.swing.JTextField txtTotalPagar;
     // End of variables declaration//GEN-END:variables
 }

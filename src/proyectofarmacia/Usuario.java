@@ -102,8 +102,8 @@ public class Usuario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ELIMINAR = new javax.swing.JPopupMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         Fondo = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         txtID = new javax.swing.JTextField();
@@ -128,14 +128,14 @@ public class Usuario extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         DatosUsuarios = new rojerusan.RSTableMetro();
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar.png"))); // NOI18N
-        jMenuItem1.setLabel("ELIMINAR USUARIO");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/UsuarioEliminar.png"))); // NOI18N
+        jMenuItem2.setText("ELIMINAR ");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        ELIMINAR.add(jMenuItem1);
+        jPopupMenu1.add(jMenuItem2);
 
         setPreferredSize(new java.awt.Dimension(890, 630));
 
@@ -254,7 +254,7 @@ public class Usuario extends javax.swing.JPanel {
         });
         jPanel1.add(ActualizarBoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 150, -1, 63));
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 240));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 260));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DE LOS USUARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -270,6 +270,7 @@ public class Usuario extends javax.swing.JPanel {
 
             }
         ));
+        DatosUsuarios.setComponentPopupMenu(jPopupMenu1);
         DatosUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DatosUsuariosMouseClicked(evt);
@@ -282,19 +283,19 @@ public class Usuario extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1178, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 1200, 510));
+        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 1240, 460));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -325,14 +326,7 @@ public class Usuario extends javax.swing.JPanel {
         // TODO add your handling code here:
         ActualizarDatos();
     }//GEN-LAST:event_ActualizarBotoActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        if(JOptionPane.showConfirmDialog(null,"Esta Seguro de Eliminar Este usuario","ELIMINAR",JOptionPane.YES_NO_CANCEL_OPTION)==0){
-            EliminarUsuario();
-        }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+ 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
         RegistrarBoto.setEnabled(true);
@@ -373,6 +367,12 @@ public class Usuario extends javax.swing.JPanel {
         this.conEstado.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 6).toString());
         this.conNivel.setSelectedItem(this.DatosUsuarios.getValueAt(filas, 7).toString());
     }//GEN-LAST:event_DatosUsuariosMouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if(JOptionPane.showConfirmDialog(null,"Esta Seguro de Eliminar Este usuario","ELIMINAR",JOptionPane.YES_NO_CANCEL_OPTION)==0){
+            EliminarUsuario();
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 public void EliminarUsuario(){
     try {
         Eliminar=ConectarBD.prepareStatement("Delete from Usuario where idUsuario='"+txtID.getText()+"'");
@@ -487,7 +487,6 @@ public void RegistrarUsuario(){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoto;
     private rojerusan.RSTableMetro DatosUsuarios;
-    private javax.swing.JPopupMenu ELIMINAR;
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton RegistrarBoto;
     private javax.swing.JComboBox<String> conCargo;
@@ -501,9 +500,10 @@ public void RegistrarUsuario(){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JPasswordField txtContra;
