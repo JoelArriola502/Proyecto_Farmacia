@@ -32,31 +32,7 @@ public class LoginInicio extends javax.swing.JFrame {
     public LoginInicio() {
         initComponents();
     }
-public void Validacion(){
-        try (Connection conecatrBD=Conecatar.getConection();){
-            String Usuario=txtUsuario.getText();
-            String contra=txtContra.getText();
-            String Consulta="select u.idUsuario,u.NombreUsuario,u.ApellidoUsuario,u.Usuario,u.Contraseña, tu.NombreTipoUsuario As Cargo ,es.NombreEstado as Estado, cu.NombreAcceso as NivelAcceso\n" +
-"from Usuario u, TipoUsuario tu, EstadoUsuario es, AccesoUsuario cu\n" +
-"where u.idAccesoUsuario=cu.idAccesoUsuario and u.idEstadoUsuario=es.idEstadoUsuario and u.idTipoUsuario=tu.idTipoUsuario and  u.Usuario='"+Usuario+"' and u.Contraseña='"+contra+"'";
-            mostrar=conecatrBD.prepareStatement(Consulta);
-            rs=mostrar.executeQuery();
-            if(rs.next()){
-                setVisible(false);
-                Programa acceder=new Programa();
-                JOptionPane.showMessageDialog(null,"Bienvenido "+Usuario);
-                acceder.setVisible(true);
-                
-             
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Erro"+e.toString());
-        }
-        
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -237,32 +213,7 @@ public void Validacion(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void ValidacionBloqueo(){
-        try (Connection conecatrBD=Conecatar.getConection();){
-            String Usuario=txtUsuario.getText();
-            String contra=txtContra.getText();
-            int Admin=1;
-            String Consulta="select u.idUsuario,u.NombreUsuario,u.ApellidoUsuario,u.Usuario,u.Contraseña, tu.NombreTipoUsuario As Cargo ,es.NombreEstado as Estado, cu.NombreAcceso as NivelAcceso\n" +
-"from Usuario u, TipoUsuario tu, EstadoUsuario es, AccesoUsuario cu\n" +
-"where u.idAccesoUsuario=cu.idAccesoUsuario and u.idEstadoUsuario=es.idEstadoUsuario and u.idTipoUsuario=tu.idTipoUsuario and  u.Usuario='"+Usuario+"' and u.Contraseña='"+contra+"' ";
-            mostrar=conecatrBD.prepareStatement(Consulta);
-            rs=mostrar.executeQuery();
-            if(rs.next()){
-                setVisible(false);
-                Programa acceder=new Programa();
-                JOptionPane.showMessageDialog(null,"Bienvenido "+Usuario);
-                acceder.setVisible(true);
-                
-               acceder.Cajero();
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Erro"+e.toString());
-        }
-        
-    }
+
    
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
         // TODO add your handling code here:

@@ -82,6 +82,7 @@ public void InsertarProveedor(){
         jLabel2 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Proveeedor = new rojerusan.RSTableMetro();
@@ -128,6 +129,11 @@ public void InsertarProveedor(){
         });
         jPanel2.add(ActualizarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 250, 60));
 
+        txtNit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNitActionPerformed(evt);
+            }
+        });
         txtNit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNitKeyTyped(evt);
@@ -178,6 +184,14 @@ public void InsertarProveedor(){
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Telefono Proveedor");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, 190, 57));
+
+        txtBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR PROVEEDOR"));
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 160, 60));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 260));
 
@@ -287,6 +301,14 @@ public void InsertarProveedor(){
         char v=evt.getKeyChar();
         if((v<'a'||v>'z')&&(v<'A'||v>'Z')&&(v<' '||v>' '))evt.consume();
     }//GEN-LAST:event_txtNombreProveedorKeyTyped
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        BuscarProveedor(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtNitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNitActionPerformed
 
     
      public void Proveedor(){
@@ -399,7 +421,34 @@ public void InsertarProveedor(){
             }
         });
     }
-
+      public void BuscarProveedor(String Buscar){
+        DefaultTableModel Modelo=new DefaultTableModel();
+        Modelo.addColumn("Codigo Proveedor");
+        Modelo.addColumn("Nombre Proveedor");
+        Modelo.addColumn("Nit ");
+        Modelo.addColumn("Telefono");
+        Modelo.addColumn("Forma de Pago");
+        Proveeedor.setModel(Modelo);
+        String Datos[]=new String[5];
+        String Consulta="select p.idProveedores,p.Nombre,p.Nit,p.Telefono,fp.TipoPago\n" +
+"from Proveedor p, formaPago fp\n" +
+"where p.idFormaPago=fp.idFormaPago and p.idProveedores like'%"+Buscar+"%' or p.Nombre like'%"+Buscar+"%' or p.Nit like'%"+Buscar+"%' or p.Telefono like'%"+Buscar+"%' order by p.idProveedores asc";
+        
+        try {
+            st=ConectarBD.createStatement();
+            rs=st.executeQuery(Consulta);
+            while(rs.next()){
+                Datos[0]=rs.getString(1);
+                Datos[1]=rs.getString(2);
+                Datos[2]=rs.getString(3);
+                Datos[3]=rs.getString(4);
+                Datos[4]=rs.getString(5);
+                Modelo.addRow(Datos);
+                
+            }
+        } catch (Exception e) {
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarDatos;
     private rojerusan.RSTableMetro Proveeedor;
@@ -414,6 +463,7 @@ public void InsertarProveedor(){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtNombreProveedor;

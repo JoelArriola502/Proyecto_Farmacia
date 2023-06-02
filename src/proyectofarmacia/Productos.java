@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
@@ -39,7 +41,7 @@ public class Productos extends javax.swing.JPanel {
 
     public Productos() {
         initComponents();
-        
+        ProductosVencerMes();
 
     }
 
@@ -60,10 +62,10 @@ public class Productos extends javax.swing.JPanel {
         MenuVentas = new javax.swing.JComboBox<>();
         MenuCompras = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ProductosTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         TotalTabletb = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ProductosTable = new rojerusan.RSTableMetro();
 
         Fondo.setBackground(new java.awt.Color(207, 155, 188));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,7 +84,7 @@ public class Productos extends javax.swing.JPanel {
                 MenuVencerActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuVencer, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, 50));
+        jPanel1.add(MenuVencer, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, 50));
 
         FechaDate.setDateFormatString("yyy-MM-dd");
         jPanel1.add(FechaDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 50));
@@ -93,7 +95,7 @@ public class Productos extends javax.swing.JPanel {
                 MenuVentasActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 210, 50));
+        jPanel1.add(MenuVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 210, 50));
 
         MenuCompras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONSULTAR DE COMPRAS", "POR MES", "POR AÑO", "POR FECHA", " " }));
         MenuCompras.addActionListener(new java.awt.event.ActionListener() {
@@ -101,30 +103,12 @@ public class Productos extends javax.swing.JPanel {
                 MenuComprasActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, -1, 50));
+        jPanel1.add(MenuCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, -1, 50));
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 300));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 490));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRODUCTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 18), new java.awt.Color(255, 255, 255))); // NOI18N
-
-        ProductosTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        ProductosTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ProductosTableMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(ProductosTable);
 
         TotalTabletb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,27 +123,42 @@ public class Productos extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(TotalTabletb);
 
+        ProductosTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(ProductosTable);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(702, 702, 702)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(378, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 890, 230));
+        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 1240, 230));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,11 +171,6 @@ public class Productos extends javax.swing.JPanel {
             .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ProductosTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosTableMouseClicked
-     
-     
-    }//GEN-LAST:event_ProductosTableMouseClicked
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         // TODO add your handling code here:
@@ -292,12 +286,14 @@ public void ProductosVencerMes(){
     Modelo.addColumn("Nombre Marca");
     Modelo.addColumn("Laboratorio");
     
+    int mes=Integer.parseInt(Mes());
+    int mesCaducidad=1+mes;
     
     ProductosTable.setModel(Modelo);
     String FechaA=((JTextField)FechaDate.getDateEditor().getUiComponent()).getText();
     String Consulta="select p.idProductos,p.Nombre,p.Descripcion,p.FechaCaducidad,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre as Laboratorio\n" +
 "from Productos p, Marca m, Laboratorio l \n" +
-"where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio and MONTH(p.FechaCaducidad)='"+FechaA+"'";
+"where p.idMarca=m.idMarca and p.idLaboratorio=l.idLaboratorio and MONTH(p.FechaCaducidad)='"+mesCaducidad+"'";
     
     String Dato[]=new String[9];
     try {
@@ -901,6 +897,12 @@ public void VerTotalPagarComprasAnio(){
     }
     
 } 
+public String Mes(){
+    Date mes=new Date();
+    SimpleDateFormat mesCaducidad=new SimpleDateFormat("M");
+    return mesCaducidad.format(mes);
+}
+
 public void VerTotalPagarComprasFEcha(){
     DefaultTableModel Modelo=new DefaultTableModel();
      String FechaA=((JTextField)FechaDate.getDateEditor().getUiComponent()).getText();
@@ -926,11 +928,11 @@ public void VerTotalPagarComprasFEcha(){
     private javax.swing.JComboBox<String> MenuCompras;
     private javax.swing.JComboBox<String> MenuVencer;
     private javax.swing.JComboBox<String> MenuVentas;
-    private javax.swing.JTable ProductosTable;
+    private rojerusan.RSTableMetro ProductosTable;
     private javax.swing.JTable TotalTabletb;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

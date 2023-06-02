@@ -104,6 +104,7 @@ public class Ventas extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         TotalTable = new rojerusan.RSTableMetro();
 
+        setBackground(new java.awt.Color(110, 207, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(110, 207, 255));
@@ -149,7 +150,7 @@ public class Ventas extends javax.swing.JPanel {
         });
         jPanel4.add(CargarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 260, 40));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 140));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 130));
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -185,7 +186,7 @@ public class Ventas extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Precio");
-        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 60, 30));
+        jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 60, 30));
 
         txtPrecioCompra.setEditable(false);
         txtPrecioCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -198,15 +199,15 @@ public class Ventas extends javax.swing.JPanel {
                 txtPrecioCompraKeyTyped(evt);
             }
         });
-        jPanel5.add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 120, 30));
+        jPanel5.add(txtPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 120, 30));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Existencia");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 70, 30));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 70, 30));
 
         txtExistencia.setEditable(false);
-        jPanel5.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 70, 30));
+        jPanel5.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 70, 30));
 
         CargarProducto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         CargarProducto.setForeground(new java.awt.Color(0, 0, 0));
@@ -220,9 +221,9 @@ public class Ventas extends javax.swing.JPanel {
                 CargarProductoActionPerformed(evt);
             }
         });
-        jPanel5.add(CargarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 250, 40));
+        jPanel5.add(CargarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 250, 40));
 
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 530, 210));
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 530, 180));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -274,7 +275,7 @@ public class Ventas extends javax.swing.JPanel {
                 .addGap(32, 32, 32))
         );
 
-        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 530, -1));
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 340, 530, -1));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -299,7 +300,7 @@ public class Ventas extends javax.swing.JPanel {
         jLabel10.setText("NUMERO  VENTA");
         jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 170, 48));
 
-        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 300, 360));
+        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 300, 330));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -310,14 +311,14 @@ public class Ventas extends javax.swing.JPanel {
         jButton1.setText("AGREGAR");
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton1.setIconTextGap(15);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 128, -1));
+        jPanel8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 60));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 0, 0));
@@ -325,14 +326,14 @@ public class Ventas extends javax.swing.JPanel {
         jButton2.setText("LIMPIAR");
         jButton2.setContentAreaFilled(false);
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton2.setIconTextGap(15);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 14, 109, 70));
+        jPanel8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 180, 60));
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 0, 0));
@@ -340,16 +341,16 @@ public class Ventas extends javax.swing.JPanel {
         jButton3.setText("ELIMINAR");
         jButton3.setContentAreaFilled(false);
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton3.setIconTextGap(15);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 13, 109, 80));
+        jPanel8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 170, 60));
 
-        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 367, 430, 100));
+        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 620, 100));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -407,16 +408,16 @@ public class Ventas extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
 
-        jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 10, 280, 320));
+        jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 280, 330));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, -1));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, -1));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
@@ -454,7 +455,7 @@ public class Ventas extends javax.swing.JPanel {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -467,10 +468,10 @@ public class Ventas extends javax.swing.JPanel {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 151, Short.MAX_VALUE))
+                .addGap(0, 81, Short.MAX_VALUE))
         );
 
-        add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 1200, 330));
+        add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 1240, 260));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCodigoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoClienteActionPerformed

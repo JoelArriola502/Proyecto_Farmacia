@@ -246,7 +246,7 @@ public void BuscarProductos(String Buscar){
 "from Productos p\n" +
 "join Marca m on p.idMarca=m.idMarca\n" +
 "join Laboratorio l on p.idLaboratorio=l.idLaboratorio\n" +
-"where p.idProductos like '%"+Buscar+"%' or p.Nombre like'%"+Buscar+"%'";
+"where p.idProductos like '%"+Buscar+"%' or p.Nombre like'%"+Buscar+"%' or p.Descripcion like'%"+Buscar+"%' or p.Precio like'%"+Buscar+"%'";
     String Datos[]=new String[9];
     
     try {

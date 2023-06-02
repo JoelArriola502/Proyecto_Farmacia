@@ -57,7 +57,7 @@ public class Clientes extends javax.swing.JFrame {
         TipoPago = new javax.swing.JComboBox<>();
         RegistrarBoton = new javax.swing.JButton();
         ActualizarBoton = new javax.swing.JButton();
-        ActualizarBoton1 = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         ClientesTB = new rojerusan.RSTableMetro();
@@ -97,6 +97,11 @@ public class Clientes extends javax.swing.JFrame {
         jLabel5.setText("Telefono");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 179, 100, 40));
 
+        txtNit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNitActionPerformed(evt);
+            }
+        });
         txtNit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNitKeyTyped(evt);
@@ -106,6 +111,15 @@ public class Clientes extends javax.swing.JFrame {
 
         txtCodigoCliente.setEditable(false);
         jPanel1.add(txtCodigoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 15, 170, 40));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 65, 170, 40));
 
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -116,6 +130,11 @@ public class Clientes extends javax.swing.JFrame {
         jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 167, 170, 40));
 
         TipoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        TipoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoPagoActionPerformed(evt);
+            }
+        });
         jPanel1.add(TipoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 239, 170, 40));
 
         RegistrarBoton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -134,7 +153,7 @@ public class Clientes extends javax.swing.JFrame {
                 RegistrarBotonActionPerformed(evt);
             }
         });
-        jPanel1.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 192, 80));
+        jPanel1.add(RegistrarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 192, 80));
 
         ActualizarBoton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ActualizarBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -151,24 +170,20 @@ public class Clientes extends javax.swing.JFrame {
                 ActualizarBotonActionPerformed(evt);
             }
         });
-        jPanel1.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 195, 80));
+        jPanel1.add(ActualizarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 195, 80));
 
-        ActualizarBoton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ActualizarBoton1.setForeground(new java.awt.Color(0, 0, 0));
-        ActualizarBoton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Actualizar (2).png"))); // NOI18N
-        ActualizarBoton1.setText("Actualizar Cliente");
-        ActualizarBoton1.setContentAreaFilled(false);
-        ActualizarBoton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ActualizarBoton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ActualizarBoton1.setIconTextGap(5);
-        ActualizarBoton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        ActualizarBoton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        ActualizarBoton1.addActionListener(new java.awt.event.ActionListener() {
+        txtBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR CLIENTE"));
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ActualizarBoton1ActionPerformed(evt);
+                txtBuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(ActualizarBoton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 195, 80));
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 190, 60));
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 830, 310));
 
@@ -207,10 +222,10 @@ public class Clientes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 830, 280));
+        Fondo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 830, 300));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -248,8 +263,8 @@ public class Clientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void txtNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNitKeyTyped
-        char validar=evt.getKeyChar();
-        if(validar<'0'||validar>'9')evt.consume();
+         char Validar=evt.getKeyChar();
+        if((Validar<'0'||Validar>'9')&&(Validar<'-'||Validar>'-'))evt.consume();
         
     }//GEN-LAST:event_txtNitKeyTyped
 
@@ -257,10 +272,6 @@ public class Clientes extends javax.swing.JFrame {
        char validar=evt.getKeyChar();
        if(validar<'0'||validar>'9')evt.consume();
     }//GEN-LAST:event_txtTelefonoKeyTyped
-
-    private void ActualizarBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBoton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ActualizarBoton1ActionPerformed
 
     private void ClientesTBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ClientesTBMouseClicked
          ActualizarBoton.setEnabled(true);
@@ -272,6 +283,33 @@ public class Clientes extends javax.swing.JFrame {
         this.txtTelefono.setText(this.ClientesTB.getValueAt(fila, 3).toString());
         this.TipoPago.setSelectedItem(this.ClientesTB.getValueAt(fila, 4).toString());
     }//GEN-LAST:event_ClientesTBMouseClicked
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        BuscarCliente(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+      
+        
+    }//GEN-LAST:event_txtNombreKeyReleased
+
+    private void txtNitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNitActionPerformed
+
+    private void TipoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoPagoActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char v=evt.getKeyChar();
+
+        if((v<'a'||v>'z')&&(v<'A'||v>'Z')&&(v<' '||v>' '))evt.consume();
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     /**
      * @param args the command line arguments
@@ -379,9 +417,39 @@ public void Limpiar(){
     TipoPago.setSelectedIndex(0);
     
 }
+  public void BuscarCliente(String Buscar){
+        DefaultTableModel Modelo=new DefaultTableModel();
+        
+        Modelo.addColumn("CodigoClientes");
+        Modelo.addColumn("Nombre Clientes");
+        Modelo.addColumn("Nit Clientes");
+        Modelo.addColumn("Telefono");
+        Modelo.addColumn("Pago");
+        ClientesTB.setModel(Modelo);
+        
+        String Dato[]=new String[5];
+        String Consulta="select c.idClientes, c.Nombre,c.Nit,c.Telefono,fp.TipoPago\n" +
+"from Clientes c join  formaPago fp on \n" +
+"c.idFormaPago=fp.idFormaPago and c.idClientes like'%"+Buscar+"%' or c.Nombre like'%"+Buscar+"%' or c.Nit like'%"+Buscar+"%'";
+        
+        try {
+            st=ConectarBD.createStatement();
+            rs=st.executeQuery(Consulta);
+            while(rs.next()){
+                Dato[0]=rs.getString(1);
+                Dato[1]=rs.getString(2);
+                Dato[2]=rs.getString(3);
+                Dato[3]=rs.getString(4);
+                Dato[4]=rs.getString(5);
+                Modelo.addRow(Dato);
+            }
+        } catch (Exception e) {
+        }
+        
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoton;
-    private javax.swing.JButton ActualizarBoton1;
     private rojerusan.RSTableMetro ClientesTB;
     private javax.swing.JPanel Fondo;
     private javax.swing.JButton RegistrarBoton;
@@ -394,6 +462,7 @@ public void Limpiar(){
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCodigoCliente;
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtNombre;

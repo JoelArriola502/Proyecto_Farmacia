@@ -200,6 +200,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaProductos = new rojerusan.RSTableMetro();
@@ -260,9 +261,22 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 126, 43));
         jPanel2.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 126, 43));
 
+        txtCosto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCostoActionPerformed(evt);
+            }
+        });
         txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCostoKeyTyped(evt);
@@ -308,6 +322,12 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
 
         txtExistencia.setEditable(false);
         jPanel2.add(txtExistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 126, 43));
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 126, 43));
 
         FechaDate.setDateFormatString("yyy-MM-dd");
@@ -343,6 +363,19 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
             }
         });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 150, 70));
+
+        txtBuscar.setBorder(javax.swing.BorderFactory.createTitledBorder("BUSCAR PRODUCTO"));
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarKeyReleased(evt);
+            }
+        });
+        jPanel2.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 190, 60));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 320));
 
@@ -402,10 +435,24 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     }// </editor-fold>//GEN-END:initComponents
 
     private void NuevoProductoBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoProductoBoActionPerformed
+         int costoc=Integer.parseInt(txtCosto.getText());
+            int Precio=Integer.parseInt(txtPrecio.getText());
+        
         if(txtNombre.getText().trim().isEmpty()||txtDescripcion.getText().trim().isEmpty()||txtCosto.getText().trim().isEmpty()||txtPrecio.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null,"LLENAR CAMPOS OBLIGATORIOS","ERROR",JOptionPane.YES_NO_OPTION);
         }else{
-            InsertarNuevoProducto();
+          
+            if(Precio>0){
+            if(costoc>0){
+                InsertarNuevoProducto();
+            } else{
+                 JOptionPane.showMessageDialog(null, "COSTO NO PUEDE SER 0");
+               
+            }
+        
+            }else{
+                JOptionPane.showMessageDialog(null, "PRECIO NO PUEDE SER 0");
+            }
         }
     }//GEN-LAST:event_NuevoProductoBoActionPerformed
 
@@ -418,7 +465,8 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
-        // TODO add your handling code here:
+        char v=evt.getKeyChar();
+         if((v<'0'||v>'9')&&(v<'.'||v>'.'))evt.consume();
     }//GEN-LAST:event_txtCostoKeyTyped
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
@@ -460,6 +508,33 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
        
     }//GEN-LAST:event_TablaProductosMouseClicked
 
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
+        BuscarProductos(txtBuscar.getText());
+    }//GEN-LAST:event_txtBuscarKeyReleased
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+      char v=evt.getKeyChar();
+
+        if((v<'a'||v>'z')&&(v<'A'||v>'Z')&&(v<' '||v>' '))evt.consume();
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCostoActionPerformed
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+      char v=evt.getKeyChar();
+      if((v<'0'||v>'9')&&(v<'.'||v>'.'))evt.consume();
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -494,7 +569,53 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
             }
         });
     }
-
+public void BuscarProductos(String Buscar){
+    DefaultTableModel Modelo=new DefaultTableModel();
+    Modelo.addColumn("idProductos");
+    Modelo.addColumn("Nombre");
+    Modelo.addColumn("Descripción");
+    Modelo.addColumn("Fecha Caducidad");
+    Modelo.addColumn("costo");
+    Modelo.addColumn("Precio");
+    Modelo.addColumn("Existencia");
+    Modelo.addColumn("NombreMarca");
+    Modelo.addColumn("Laboratori");
+   
+    TablaProductos.setModel(Modelo);
+    
+    String Consulta="Select p.idProductos,p.Nombre,p.Descripcion,p.FechaCaducidad,p.Costo,p.Precio,p.Existencia,m.NombreMarca,l.Nombre \n" +
+"from Productos p\n" +
+"join Marca m on p.idMarca=m.idMarca\n" +
+"join Laboratorio l on p.idLaboratorio=l.idLaboratorio\n" +
+"where p.idProductos like '%"+Buscar+"%' or p.Nombre like'%"+Buscar+"%' or p.Descripcion like'%"+Buscar+"%' or p.Precio like'%"+Buscar+"%'";
+    String Datos[]=new String[9];
+    
+    try {
+        st=ConectarBD.createStatement();
+        rs=st.executeQuery(Consulta);
+        while(rs.next()){
+            Datos[0]=rs.getString(1);
+            Datos[1]=rs.getString(2);
+            Datos[2]=rs.getString(3);
+            Datos[3]=rs.getString(4);
+            Datos[4]=rs.getString(5);
+            Datos[5]=rs.getString(6);
+            Datos[6]=rs.getString(7);
+            Datos[7]=rs.getString(8);
+            Datos[8]=rs.getString(9);
+            
+            
+         
+            
+            Modelo.addRow(Datos);
+          
+        }
+        
+        
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null,"Error"+ e.toString());
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ActualizarBoton;
     private com.toedter.calendar.JDateChooser FechaDate;
@@ -516,6 +637,7 @@ public void CargarDatosLaboratorios(JComboBox Laboratorio){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtExistencia;

@@ -252,7 +252,7 @@ public class DatosClientes extends javax.swing.JFrame {
         String Dato[]=new String[5];
         String Consulta="select c.idClientes, c.Nombre,c.Nit,c.Telefono,fp.TipoPago\n" +
 "from Clientes c join  formaPago fp on \n" +
-"c.idFormaPago=fp.idFormaPago and c.idClientes like'%"+Buscar+"%' or c.Nombre like'%"+Buscar+"%'";
+"c.idFormaPago=fp.idFormaPago and c.idClientes like'%"+Buscar+"%' or c.Nombre like'%"+Buscar+"%'or c.Nit like'%"+Buscar+"%'";
         
         try {
             st=ConectarBD.createStatement();

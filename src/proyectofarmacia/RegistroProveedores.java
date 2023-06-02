@@ -289,7 +289,7 @@ public class RegistroProveedores extends javax.swing.JFrame {
         String Datos[]=new String[5];
         String Consulta="select p.idProveedores,p.Nombre,p.Nit,p.Telefono,fp.TipoPago\n" +
 "from Proveedor p, formaPago fp\n" +
-"where p.idFormaPago=fp.idFormaPago and p.idProveedores like'%"+Buscar+"%' or p.Nombre like'%"+Buscar+"%' order by p.idProveedores asc";
+"where p.idFormaPago=fp.idFormaPago and p.idProveedores like'%"+Buscar+"%' or p.Nombre like'%"+Buscar+"%' or p.Nit like'%"+Buscar+"%' or p.Telefono like'%"+Buscar+"%' order by p.idProveedores asc";
         
         try {
             st=ConectarBD.createStatement();

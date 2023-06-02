@@ -36,7 +36,7 @@ public class Programa extends javax.swing.JFrame {
     }
 public void Usuario(){
     Usuario ConsultarDatos=new Usuario();
-    ConsultarDatos.setSize(890,520);
+    ConsultarDatos.setSize(1240,720);
     ConsultarDatos.setLocation(0,0);
     Mostrar.removeAll();
     Mostrar.add(ConsultarDatos,BorderLayout.CENTER);
@@ -45,7 +45,7 @@ public void Usuario(){
 }
 public void Productos(){
     Productos ConsultarDatos=new Productos();
-    ConsultarDatos.setSize(890,529);
+    ConsultarDatos.setSize(1240,720);
     ConsultarDatos.setLocation(0,0);
     Mostrar.removeAll();
     Mostrar.add(ConsultarDatos,BorderLayout.CENTER);
@@ -54,7 +54,7 @@ public void Productos(){
 }
 public void Compras(){
     CompraProductos compras=new CompraProductos();
-    compras.setSize(1201,808);
+    compras.setSize(1240,720);
     compras.setLocation(0,0);
     Mostrar.removeAll();
     Mostrar.add(compras,BorderLayout.CENTER);
@@ -64,7 +64,7 @@ public void Compras(){
 
 public void Ventas(){
     Ventas ventas=new Ventas();
-    ventas.setSize(1201,808);
+    ventas.setSize(1240,720);
     ventas.setLocation(0,0);
     Mostrar.removeAll();
     Mostrar.add(ventas,BorderLayout.CENTER);
@@ -92,6 +92,7 @@ public void Cajero(){
         ComprasBoton = new javax.swing.JButton();
         VentasBoton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        ProductosBoton1 = new javax.swing.JButton();
         Mostrar = new javax.swing.JPanel();
         Escritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
@@ -177,7 +178,7 @@ public void Cajero(){
                 ProductosBotonActionPerformed(evt);
             }
         });
-        opciones.add(ProductosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 223, 213, 55));
+        opciones.add(ProductosBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 213, 55));
 
         ComprasBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ComprasBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -228,6 +229,29 @@ public void Cajero(){
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo_Farmacia-removebg-preview.png"))); // NOI18N
         opciones.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 25, 221, 107));
 
+        ProductosBoton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        ProductosBoton1.setForeground(new java.awt.Color(0, 0, 0));
+        ProductosBoton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Producto.png"))); // NOI18N
+        ProductosBoton1.setText("PRODUCTOS A VENCER");
+        ProductosBoton1.setContentAreaFilled(false);
+        ProductosBoton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ProductosBoton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ProductosBoton1.setIconTextGap(15);
+        ProductosBoton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ProductosBoton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ProductosBoton1MouseExited(evt);
+            }
+        });
+        ProductosBoton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ProductosBoton1ActionPerformed(evt);
+            }
+        });
+        opciones.add(ProductosBoton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 240, 55));
+
         backgrour.add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 810));
 
         Mostrar.setBackground(new java.awt.Color(255, 255, 255));
@@ -254,7 +278,7 @@ public void Cajero(){
         );
         MostrarLayout.setVerticalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio)
+            .addComponent(Escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         backgrour.add(Mostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 91, 1240, 720));
@@ -292,9 +316,7 @@ public void Cajero(){
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(backgrour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+            .addComponent(backgrour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,6 +432,18 @@ public void Cajero(){
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    private void ProductosBoton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBoton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductosBoton1MouseEntered
+
+    private void ProductosBoton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBoton1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductosBoton1MouseExited
+
+    private void ProductosBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosBoton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ProductosBoton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,6 +476,7 @@ public void Cajero(){
     public static javax.swing.JDesktopPane Escritorio;
     private javax.swing.JPanel Mostrar;
     private javax.swing.JButton ProductosBoton;
+    private javax.swing.JButton ProductosBoton1;
     private javax.swing.JButton UsuarioBoton;
     private javax.swing.JButton VentasBoton;
     private javax.swing.JPanel backgrour;
