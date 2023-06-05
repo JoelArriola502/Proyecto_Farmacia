@@ -84,7 +84,7 @@ public class Productos extends javax.swing.JPanel {
                 MenuVencerActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuVencer, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, 50));
+        jPanel1.add(MenuVencer, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, 50));
 
         FechaDate.setDateFormatString("yyy-MM-dd");
         jPanel1.add(FechaDate, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 50));
@@ -95,7 +95,7 @@ public class Productos extends javax.swing.JPanel {
                 MenuVentasActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 210, 50));
+        jPanel1.add(MenuVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, 210, 50));
 
         MenuCompras.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CONSULTAR DE COMPRAS", "POR MES", "POR AÑO", "POR FECHA", " " }));
         MenuCompras.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +103,7 @@ public class Productos extends javax.swing.JPanel {
                 MenuComprasActionPerformed(evt);
             }
         });
-        jPanel1.add(MenuCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, -1, 50));
+        jPanel1.add(MenuCompras, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, -1, 50));
 
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1240, 490));
 

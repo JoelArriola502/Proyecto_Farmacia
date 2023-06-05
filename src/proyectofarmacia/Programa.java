@@ -15,6 +15,10 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -22,9 +26,8 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  */
 public class Programa extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Programa
-     */
+    Conexion conectar=new Conexion();
+    Connection ConectarBD=conectar.getConection();
     public Programa() {
         initComponents();
        // UsuarioBoton.putClientProperty( "FlatLaf.styleClass", "h1" );
@@ -75,6 +78,10 @@ public void Cajero(){
     
     UsuarioBoton.setVisible(false);
     RegistrosMenu.setVisible(false);
+    ComprasBoton.setVisible(false);
+}
+public void Gerente(){
+    UsuarioBoton.setVisible(false);
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,6 +92,7 @@ public void Cajero(){
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu4 = new javax.swing.JMenu();
         backgrour = new javax.swing.JPanel();
         opciones = new javax.swing.JPanel();
         UsuarioBoton = new javax.swing.JButton();
@@ -93,7 +101,6 @@ public void Cajero(){
         ComprasBoton = new javax.swing.JButton();
         VentasBoton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        ProductosBoton1 = new javax.swing.JButton();
         Mostrar = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -102,8 +109,10 @@ public void Cajero(){
         jMenuBar1 = new javax.swing.JMenuBar();
         RegistrosMenu = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+
+        jMenu4.setText("jMenu4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -160,7 +169,7 @@ public void Cajero(){
                 CerrarActionPerformed(evt);
             }
         });
-        opciones.add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 739, 213, 55));
+        opciones.add(Cerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 710, 213, 55));
 
         ProductosBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ProductosBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -206,7 +215,7 @@ public void Cajero(){
                 ComprasBotonActionPerformed(evt);
             }
         });
-        opciones.add(ComprasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 571, 213, 55));
+        opciones.add(ComprasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 213, 55));
 
         VentasBoton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         VentasBoton.setForeground(new java.awt.Color(0, 0, 0));
@@ -229,33 +238,10 @@ public void Cajero(){
                 VentasBotonActionPerformed(evt);
             }
         });
-        opciones.add(VentasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 486, 213, 55));
+        opciones.add(VentasBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 213, 55));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo_Farmacia-removebg-preview.png"))); // NOI18N
         opciones.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 25, 221, 107));
-
-        ProductosBoton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        ProductosBoton1.setForeground(new java.awt.Color(0, 0, 0));
-        ProductosBoton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Producto.png"))); // NOI18N
-        ProductosBoton1.setText("PRODUCTOS A VENCER");
-        ProductosBoton1.setContentAreaFilled(false);
-        ProductosBoton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ProductosBoton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ProductosBoton1.setIconTextGap(15);
-        ProductosBoton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                ProductosBoton1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ProductosBoton1MouseExited(evt);
-            }
-        });
-        ProductosBoton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ProductosBoton1ActionPerformed(evt);
-            }
-        });
-        opciones.add(ProductosBoton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 240, 55));
 
         backgrour.add(opciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 810));
 
@@ -317,14 +303,23 @@ public void Cajero(){
         });
         RegistrosMenu.add(jMenuItem2);
 
+        jMenuItem3.setText("PROVEEDORES");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        RegistrosMenu.add(jMenuItem3);
+
+        jMenuItem4.setText("PRODUCTOS");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        RegistrosMenu.add(jMenuItem4);
+
         jMenuBar1.add(RegistrosMenu);
-
-        jMenu2.setText("REPORTES");
-
-        jMenuItem1.setText("CLIENTE");
-        jMenu2.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -427,22 +422,20 @@ public void Cajero(){
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 
-    private void ProductosBoton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBoton1MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductosBoton1MouseEntered
-
-    private void ProductosBoton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ProductosBoton1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductosBoton1MouseExited
-
-    private void ProductosBoton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosBoton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ProductosBoton1ActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         Clientes cliente=new Clientes();
         cliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       Proveedor prove=new Proveedor();
+       prove.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        NuevoProductos producto=new NuevoProductos();
+        producto.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -475,7 +468,6 @@ public void Cajero(){
     private javax.swing.JButton ComprasBoton;
     private javax.swing.JPanel Mostrar;
     private javax.swing.JButton ProductosBoton;
-    private javax.swing.JButton ProductosBoton1;
     private javax.swing.JMenu RegistrosMenu;
     private javax.swing.JButton UsuarioBoton;
     private javax.swing.JButton VentasBoton;
@@ -484,10 +476,11 @@ public void Cajero(){
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel opciones;
     // End of variables declaration//GEN-END:variables

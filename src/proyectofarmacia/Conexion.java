@@ -16,7 +16,7 @@ import java.sql.*;
 public class Conexion {
     ResultSet rs;
     PreparedStatement Actualizar;
-     public Connection getConection(){
+     public static Connection getConection(){
     {
      Connection Conectar=null;
         try {
@@ -27,31 +27,12 @@ public class Conexion {
                // JOptionPane.showMessageDialog(null,"Conexion Exitosa");
                
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e){
             JOptionPane.showMessageDialog(null,"ERRO AL CONECTAR A LA BASE DE DATOS"+ e.toString());
         }
         return Conectar;
     } 
      
  }
-    public String CodigoVenta(){
-       String id=null;
-       
-       try {
-           String consulta="select MAX(idVentas)as Ventas from Ventas";
-           Actualizar=getConection().prepareStatement(consulta);
-           rs=Actualizar.executeQuery();
-           if(rs.next()){
-               String idCodigo=rs.getString("Ventas");
-               id=(idCodigo);
-               
-            
-           
-           }
-       } catch (Exception e) {
-           System.out.println("Error "+e.toString());
-       }
-      return id;
-      
-   }
+
 }

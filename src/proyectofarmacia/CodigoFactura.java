@@ -32,10 +32,42 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
   Statement st;
     public CodigoFactura() {
         initComponents();
-       
-        
+       pasar();
+         VerTotalPagr();
+        DatosFactura();
+      txtNombre.setText(ClienteDato(txtID.getText()));
+      txtNit.setText(ClienteDatoNit(txtID.getText()));
     }
-
+public String ClienteDato(String ID){
+    String Cliente=null;
+    String Consulta="select c.Nombre from Clientes c, Ventas v\n" +
+"where v.idClientes=c.idClientes and v.idVentas='"+ID+"'";
+    try {
+        PreparedStatement Cargar=ConectarBD.prepareStatement(Consulta);
+        ResultSet rs=Cargar.executeQuery();
+        if(rs.next()){
+            String Nombre=rs.getString("c.Nombre");
+            Cliente=(Nombre);
+        }
+    } catch (Exception e) {
+    }
+    return  Cliente;
+}
+public String ClienteDatoNit(String ID){
+    String Cliente=null;
+    String Consulta="select c.Nit from Clientes c, Ventas v\n" +
+"where v.idClientes=c.idClientes and v.idVentas='"+ID+"'";
+    try {
+        PreparedStatement Cargar=ConectarBD.prepareStatement(Consulta);
+        ResultSet rs=Cargar.executeQuery();
+        if(rs.next()){
+            String Nombre=rs.getString("c.Nit");
+            Cliente=(Nombre);
+        }
+    } catch (Exception e) {
+    }
+    return  Cliente;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +77,8 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        rSTableMetro1 = new rojerusan.RSTableMetro();
         Fondo = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -58,10 +92,23 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TablaFactura = new rojerusan.RSTableMetro();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaFactura = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        CodigoVentas = new javax.swing.JTable();
+        CodigoVentas = new rojerusan.RSTableMetro();
+
+        rSTableMetro1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(rSTableMetro1);
 
         Fondo.setBackground(new java.awt.Color(255, 255, 255));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,7 +155,7 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
                 txtNitActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 100, 30));
+        jPanel1.add(txtNit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 100, 30));
 
         txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
@@ -117,7 +164,7 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
                 txtNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 100, 30));
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 150, 30));
 
         jLabel5.setText("4° Calle, 3° ave. Comunidad Agraria ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 35));
@@ -128,7 +175,7 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
         jLabel4.setText("Retalhuleu, Champerico.");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 147, 35));
 
-        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 230, 200));
+        Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 290, 200));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo_Farmacia-removebg-preview.png"))); // NOI18N
         Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 200, 60));
@@ -144,9 +191,9 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
 
             }
         ));
-        jScrollPane1.setViewportView(TablaFactura);
+        jScrollPane4.setViewportView(TablaFactura);
 
-        Fondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 460, 190));
+        Fondo.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 550, 140));
 
         CodigoVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,15 +206,15 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
 
             }
         ));
-        jScrollPane2.setViewportView(CodigoVentas);
+        jScrollPane1.setViewportView(CodigoVentas);
 
-        Fondo.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, 100, 70));
+        Fondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 480, 190, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,7 +231,7 @@ public class CodigoFactura extends javax.swing.JPanel implements Printable{
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIDMouseClicked
-        VerTotalPagr();
+       VerTotalPagr();
         DatosFactura();
     }//GEN-LAST:event_txtIDMouseClicked
 
@@ -240,14 +287,19 @@ public void VerTotalPagr(){
     }
     
 }  
-
+public void pasar(){
+    Ventas venta=new Ventas();
+    venta.idVenta();
+    String Venta=venta.idVenta();
+    txtID.setText(Venta);
+}
 public void Mostrar(){
     
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable CodigoVentas;
+    private rojerusan.RSTableMetro CodigoVentas;
     private javax.swing.JPanel Fondo;
-    private javax.swing.JTable TablaFactura;
+    private rojerusan.RSTableMetro TablaFactura;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -257,8 +309,10 @@ public void Mostrar(){
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private rojerusan.RSTableMetro rSTableMetro1;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNit;
     private javax.swing.JTextField txtNombre;

@@ -12,8 +12,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 
 /**
@@ -47,6 +50,11 @@ public class Ventas extends javax.swing.JPanel {
         txtFecha.setEnabled(false);//para que no se edite la fecha
       CargarNumeroVenta();
       bloquear();
+      VentaBoton.setEnabled(false);
+      AgregarBoton.setEnabled(false);
+      ImprimirBT.setVisible(false);
+      CancelarBoton.setEnabled(false);
+      EliminarBoton.setEnabled(false);
     }
 
     public void CargarNumeroVenta(){
@@ -96,12 +104,12 @@ public class Ventas extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         AgregarBoton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        CancelarBoton = new javax.swing.JButton();
+        EliminarBoton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        ImprimirBT = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        VentaBoton = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         VentasTB = new rojerusan.RSTableMetro();
@@ -331,50 +339,55 @@ public class Ventas extends javax.swing.JPanel {
         });
         jPanel8.add(AgregarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 60));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar.png"))); // NOI18N
-        jButton2.setText("LIMPIAR");
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton2.setIconTextGap(15);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CancelarBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CancelarBoton.setForeground(new java.awt.Color(0, 0, 0));
+        CancelarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar.png"))); // NOI18N
+        CancelarBoton.setText("LIMPIAR");
+        CancelarBoton.setContentAreaFilled(false);
+        CancelarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelarBoton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        CancelarBoton.setIconTextGap(15);
+        CancelarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CancelarBotonActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 180, 60));
+        jPanel8.add(CancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 180, 60));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Elimina48.png"))); // NOI18N
-        jButton3.setText("ELIMINAR");
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton3.setIconTextGap(15);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Elimina32.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        EliminarBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EliminarBoton.setForeground(new java.awt.Color(0, 0, 0));
+        EliminarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Elimina48.png"))); // NOI18N
+        EliminarBoton.setText("ELIMINAR");
+        EliminarBoton.setContentAreaFilled(false);
+        EliminarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        EliminarBoton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        EliminarBoton.setIconTextGap(15);
+        EliminarBoton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Elimina32.png"))); // NOI18N
+        EliminarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EliminarBotonActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 170, 60));
+        jPanel8.add(EliminarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 170, 60));
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 620, 100));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Imprimir (2).png"))); // NOI18N
-        jButton4.setText("IMPRIMIR");
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton4.setIconTextGap(15);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Imprimir32.png"))); // NOI18N
+        ImprimirBT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ImprimirBT.setForeground(new java.awt.Color(0, 0, 0));
+        ImprimirBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Imprimir (2).png"))); // NOI18N
+        ImprimirBT.setText("IMPRIMIR");
+        ImprimirBT.setContentAreaFilled(false);
+        ImprimirBT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ImprimirBT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ImprimirBT.setIconTextGap(15);
+        ImprimirBT.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Imprimir32.png"))); // NOI18N
+        ImprimirBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirBTActionPerformed(evt);
+            }
+        });
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 0, 0));
@@ -391,18 +404,18 @@ public class Ventas extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Guardar48.png"))); // NOI18N
-        jButton6.setText("REALIZAR VENTA");
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton6.setIconTextGap(15);
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/guardar32.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        VentaBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        VentaBoton.setForeground(new java.awt.Color(0, 0, 0));
+        VentaBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Guardar48.png"))); // NOI18N
+        VentaBoton.setText("REALIZAR VENTA");
+        VentaBoton.setContentAreaFilled(false);
+        VentaBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        VentaBoton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        VentaBoton.setIconTextGap(15);
+        VentaBoton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/guardar32.png"))); // NOI18N
+        VentaBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                VentaBotonActionPerformed(evt);
             }
         });
 
@@ -417,10 +430,10 @@ public class Ventas extends javax.swing.JPanel {
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(VentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ImprimirBT, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
@@ -429,9 +442,9 @@ public class Ventas extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(VentaBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ImprimirBT, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
 
@@ -581,6 +594,7 @@ public void Desbloquear(){
                 CalcularTotal_Ventas();
                txtCantidad.setText("");
                txtCostoTotal.setText("");
+               VentaBoton.setEnabled(true);
             }
             } else {
                 JOptionPane.showMessageDialog(null, "La Cantidad No puede ser 0");
@@ -590,7 +604,7 @@ public void Desbloquear(){
        
     }//GEN-LAST:event_AgregarBotonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void VentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentaBotonActionPerformed
 if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA VENTA" ,"",JOptionPane.YES_NO_OPTION)==0){
         if(txtNombreCliente.getText().trim().isEmpty()||txtCodigoCliente.getText().trim().isEmpty()||txtNombreProducto.getText().trim().isEmpty()||txtPrecioVenta.getText().trim().isEmpty()){
     JOptionPane.showMessageDialog(null,"LLENE TODO LOS CAMPOS OBLIGATORIOS");
@@ -600,28 +614,32 @@ if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA VENTA" ,"",JOptionPane.
         ActualizarExistencia();
 }
 }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_VentaBotonActionPerformed
 
     private void CargarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarClientesActionPerformed
         DatosClientes clientes=new DatosClientes();
         clientes.setVisible(true);
     }//GEN-LAST:event_CargarClientesActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void EliminarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBotonActionPerformed
        Eliminar();
        CalcularTotal_Ventas();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_EliminarBotonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBotonActionPerformed
         EliminarAgregados();
         Limpiar();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CancelarBotonActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        CargarNumeroVenta();
        EliminarAgregados();
        Desbloquear();
        Limpiar();
+       ImprimirBT.setVisible(true);
+      AgregarBoton.setEnabled(true);
+      CancelarBoton.setEnabled(true);
+      EliminarBoton.setEnabled(true);
        
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -642,6 +660,12 @@ if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA VENTA" ,"",JOptionPane.
       
        
     }//GEN-LAST:event_txtPrecioVentaKeyReleased
+
+    private void ImprimirBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBTActionPerformed
+   
+        ClientesInforme cliente=new ClientesInforme();
+           cliente.ImprimirInforme();
+    }//GEN-LAST:event_ImprimirBTActionPerformed
 public void llamar(){
     String idVenta=idVenta();
     int codiV=Integer.parseInt(idVenta);
@@ -787,15 +811,15 @@ public void LimpiarAgregar(){
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AgregarBoton;
+    private javax.swing.JButton CancelarBoton;
     private javax.swing.JButton CargarClientes;
     private javax.swing.JButton CargarProducto;
     public static javax.swing.JTextField CodigoProductosCon;
+    private javax.swing.JButton EliminarBoton;
+    private javax.swing.JButton ImprimirBT;
+    private javax.swing.JButton VentaBoton;
     private rojerusan.RSTableMetro VentasTB;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

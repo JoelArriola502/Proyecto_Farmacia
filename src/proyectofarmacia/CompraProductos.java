@@ -41,6 +41,12 @@ public class CompraProductos extends javax.swing.JPanel {
         txtFecha.setEnabled(false);//para que no se edite la fecha
         Bloquear();
         CargarNumeroCompra();
+        ImprimirBT.setVisible(false);
+        CompraBT.setEnabled(false);
+        AgregarBoton.setEnabled(false);
+        EliminarBT.setEnabled(false);
+        CancelarBoton.setEnabled(false);
+        
     }
 public void CargarNumeroCompra(){
     String CodigoFactura=idCompras(); //cargamos el id de venta 
@@ -98,13 +104,13 @@ public void Desbloquear(){
         txtNumeroCompra = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        AgregarBoton = new javax.swing.JButton();
+        CancelarBoton = new javax.swing.JButton();
+        EliminarBT = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        ImprimirBT = new javax.swing.JButton();
+        NuevaCompraBoton = new javax.swing.JButton();
+        CompraBT = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         ComprasTB = new rojerusan.RSTableMetro();
@@ -309,94 +315,99 @@ public void Desbloquear(){
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Agregar.png"))); // NOI18N
-        jButton1.setText("AGREGAR");
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton1.setIconTextGap(15);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Agregar30.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AgregarBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        AgregarBoton.setForeground(new java.awt.Color(0, 0, 0));
+        AgregarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Agregar.png"))); // NOI18N
+        AgregarBoton.setText("AGREGAR");
+        AgregarBoton.setContentAreaFilled(false);
+        AgregarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AgregarBoton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        AgregarBoton.setIconTextGap(15);
+        AgregarBoton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Agregar30.png"))); // NOI18N
+        AgregarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AgregarBotonActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 180, 60));
+        jPanel8.add(AgregarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 180, 60));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar.png"))); // NOI18N
-        jButton2.setText("LIMPIAR");
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton2.setIconTextGap(15);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        CancelarBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CancelarBoton.setForeground(new java.awt.Color(0, 0, 0));
+        CancelarBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Limpiar.png"))); // NOI18N
+        CancelarBoton.setText("LIMPIAR");
+        CancelarBoton.setContentAreaFilled(false);
+        CancelarBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelarBoton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        CancelarBoton.setIconTextGap(15);
+        CancelarBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                CancelarBotonActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 180, 60));
+        jPanel8.add(CancelarBoton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 180, 60));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Elimina48.png"))); // NOI18N
-        jButton3.setText("ELIMINAR");
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton3.setIconTextGap(15);
-        jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Elimina32.png"))); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        EliminarBT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        EliminarBT.setForeground(new java.awt.Color(0, 0, 0));
+        EliminarBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Elimina48.png"))); // NOI18N
+        EliminarBT.setText("ELIMINAR");
+        EliminarBT.setContentAreaFilled(false);
+        EliminarBT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        EliminarBT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        EliminarBT.setIconTextGap(15);
+        EliminarBT.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Elimina32.png"))); // NOI18N
+        EliminarBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                EliminarBTActionPerformed(evt);
             }
         });
-        jPanel8.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 180, 60));
+        jPanel8.add(EliminarBT, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 180, 60));
 
         jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, 620, 90));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Imprimir (2).png"))); // NOI18N
-        jButton4.setText("IMPRIMIR");
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton4.setIconTextGap(15);
-        jButton4.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Imprimir32.png"))); // NOI18N
-
-        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/NuevaVC.png"))); // NOI18N
-        jButton5.setText("NUEVA COMPRA");
-        jButton5.setContentAreaFilled(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton5.setIconTextGap(15);
-        jButton5.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Nueva32.png"))); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        ImprimirBT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ImprimirBT.setForeground(new java.awt.Color(0, 0, 0));
+        ImprimirBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Imprimir (2).png"))); // NOI18N
+        ImprimirBT.setText("IMPRIMIR");
+        ImprimirBT.setContentAreaFilled(false);
+        ImprimirBT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ImprimirBT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ImprimirBT.setIconTextGap(15);
+        ImprimirBT.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Imprimir32.png"))); // NOI18N
+        ImprimirBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                ImprimirBTActionPerformed(evt);
             }
         });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(0, 0, 0));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Guardar48.png"))); // NOI18N
-        jButton6.setText("REALIZAR COMPRA");
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton6.setIconTextGap(15);
-        jButton6.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/guardar32.png"))); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        NuevaCompraBoton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        NuevaCompraBoton.setForeground(new java.awt.Color(0, 0, 0));
+        NuevaCompraBoton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/NuevaVC.png"))); // NOI18N
+        NuevaCompraBoton.setText("NUEVA COMPRA");
+        NuevaCompraBoton.setContentAreaFilled(false);
+        NuevaCompraBoton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NuevaCompraBoton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        NuevaCompraBoton.setIconTextGap(15);
+        NuevaCompraBoton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/Nueva32.png"))); // NOI18N
+        NuevaCompraBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                NuevaCompraBotonActionPerformed(evt);
+            }
+        });
+
+        CompraBT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        CompraBT.setForeground(new java.awt.Color(0, 0, 0));
+        CompraBT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconG/Guardar48.png"))); // NOI18N
+        CompraBT.setText("REALIZAR COMPRA");
+        CompraBT.setContentAreaFilled(false);
+        CompraBT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CompraBT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        CompraBT.setIconTextGap(15);
+        CompraBT.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/IconP/guardar32.png"))); // NOI18N
+        CompraBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CompraBTActionPerformed(evt);
             }
         });
 
@@ -409,23 +420,23 @@ public void Desbloquear(){
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(CompraBT, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NuevaCompraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ImprimirBT, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(NuevaCompraBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(CompraBT, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(ImprimirBT, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 280, 330));
@@ -574,7 +585,7 @@ public void Desbloquear(){
         if(c<'0'||c>'9')evt.consume();
     }//GEN-LAST:event_txtCantidadKeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AgregarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBotonActionPerformed
 
         if(txtCantidad.getText().trim().isEmpty()||txtExistencia.getText().trim().isEmpty()||txtPrecioCompra.getText().trim().isEmpty()||CodigoProductosCon.getText().trim().isEmpty()||txtNombreProducto.getText().trim().isEmpty()||txtNombreProveedor.getText().trim().isEmpty()){
             JOptionPane.showMessageDialog(null, "POR FAVOR LLENE LOS CAMPOS");
@@ -587,14 +598,15 @@ public void Desbloquear(){
                   CalcularTotal_Ventas();
                   txtCantidad.setText("");
                   txtCostoTotal.setText("");
+                   CompraBT.setEnabled(true);
                 
             } else {
                 JOptionPane.showMessageDialog(null, "La Cantidad No puede ser 0");
             }
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_AgregarBotonActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void CompraBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompraBTActionPerformed
 if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA COMPRA" ,"",JOptionPane.YES_NO_OPTION)==0){
         if(txtNombreProveedor.getText().trim().isEmpty()||txtCodigoProveedor.getText().trim().isEmpty()||txtNombreProducto.getText().trim().isEmpty()||txtPrecioCompra.getText().trim().isEmpty()){
         JOptionPane.showMessageDialog(null, "POR FAVOR LLENE LOS CAMPOS");
@@ -604,23 +616,27 @@ if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA COMPRA" ,"",JOptionPane
         ActualizarExistencia();
 }
 }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_CompraBTActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void EliminarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBTActionPerformed
      eliminar();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_EliminarBTActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void CancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBotonActionPerformed
        EliminarAgregados();
        Limpiar();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_CancelarBotonActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void NuevaCompraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCompraBotonActionPerformed
        EliminarAgregados();
        CargarNumeroCompra();
        Desbloquear();
        Limpiar();
-    }//GEN-LAST:event_jButton5ActionPerformed
+       
+        AgregarBoton.setEnabled(true);
+        EliminarBT.setEnabled(true);
+        CancelarBoton.setEnabled(true);
+    }//GEN-LAST:event_NuevaCompraBotonActionPerformed
 
     private void txtTotalPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalPagarActionPerformed
         // TODO add your handling code here:
@@ -633,6 +649,10 @@ if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA COMPRA" ,"",JOptionPane
         CostoTotal();
     }
     }//GEN-LAST:event_txtCantidadKeyReleased
+
+    private void ImprimirBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ImprimirBTActionPerformed
 
     public void llamar(){
     String idVenta=idCompras();
@@ -777,16 +797,16 @@ public void RealizarCompra(){
     
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarBoton;
+    private javax.swing.JButton CancelarBoton;
     private javax.swing.JButton CargarPeroducto;
     public static javax.swing.JTextField CodigoProductosCon;
+    private javax.swing.JButton CompraBT;
     private rojerusan.RSTableMetro ComprasTB;
+    private javax.swing.JButton EliminarBT;
+    private javax.swing.JButton ImprimirBT;
+    private javax.swing.JButton NuevaCompraBoton;
     private javax.swing.JButton ProveedorCargar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

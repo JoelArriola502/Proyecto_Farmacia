@@ -224,6 +224,7 @@ public class LoginInicio extends javax.swing.JFrame {
         
         String admin= ValidadUsuarioAdministrador(txtUsuario.getText(), txtContra.getText());
         String Cajero=ValidadUsuarioCajero(txtUsuario.getText(), txtContra.getText());
+        String Gerente=ValidadUsuarioGerente(txtUsuario.getText(), txtContra.getText());
         if(txtUsuario.getText().trim().isEmpty()||txtContra.getText().trim().isEmpty()){
            JOptionPane.showMessageDialog(null, "LLENE LOS CAMPOS");
        }else {
@@ -242,7 +243,15 @@ public class LoginInicio extends javax.swing.JFrame {
                acceder.Cajero();
                 acceder.setVisible(true);
               dispose();
+       }else if(Gerente.equals("USUARIO VALIDADO")){
+            Programa acceder=new Programa();
+                String DatosUsuario=BuscarNombreUsuario(txtUsuario.getText());
+                JOptionPane.showMessageDialog(null,"Bienvenido "+DatosUsuario);
+               acceder.Gerente();
+                acceder.setVisible(true);
+              dispose();
        }else{
+
            JOptionPane.showMessageDialog(null, "CONTRASEÑA O USUARIO INCORRECTO");
        }
        }
@@ -304,6 +313,28 @@ public class LoginInicio extends javax.swing.JFrame {
         }
        
        return Valida; 
+    }
+     public String ValidadUsuarioGerente(String Usuario, String Contra){
+        Connection ConectarBD=Conecatar.getConection();
+        String Validar=null;
+       String admin="Gerente";
+        String Consulta="select u.idUsuario,u.NombreUsuario,u.ApellidoUsuario,u.Usuario,u.Contraseña, tu.NombreTipoUsuario As Cargo ,es.NombreEstado as Estado, cu.NombreAcceso as NivelAcceso\n" +
+"from Usuario u, TipoUsuario tu, EstadoUsuario es, AccesoUsuario cu\n" +
+"where u.idAccesoUsuario=cu.idAccesoUsuario and u.idEstadoUsuario=es.idEstadoUsuario and u.idTipoUsuario=tu.idTipoUsuario and  u.Usuario='"+Usuario+"' and u.Contraseña='"+Contra+"' and tu.NombreTipoUsuario='"+admin+"'";
+        
+        try {
+            mostrar=ConectarBD.prepareStatement(Consulta);
+            rs=mostrar.executeQuery();
+            if(rs.next()){
+               
+         Validar="USUARIO VALIDADO";
+            } else{
+                Validar="USUARIO NO VALIDADO";
+            }
+        } catch (Exception e) {
+        }
+       
+       return Validar;
     }
      //METODO PARA BSUACR EL NOMBRE DEL USUARIO 
     public String BuscarNombreUsuario(String Usuario){
