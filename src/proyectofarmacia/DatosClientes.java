@@ -172,6 +172,7 @@ public class DatosClientes extends javax.swing.JFrame {
        int fila=this.ClientesTB.getSelectedRow();
        Ventas.txtNombreCliente.setText(this.ClientesTB.getValueAt(fila, 1).toString());
        Ventas.txtCodigoCliente.setText(this.ClientesTB.getValueAt(fila, 0).toString());
+       dispose();
     }//GEN-LAST:event_ClientesTBMouseClicked
 
     /**

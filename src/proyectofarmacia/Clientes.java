@@ -282,6 +282,7 @@ public class Clientes extends javax.swing.JFrame {
         this.txtNit.setText(this.ClientesTB.getValueAt(fila, 2).toString());
         this.txtTelefono.setText(this.ClientesTB.getValueAt(fila, 3).toString());
         this.TipoPago.setSelectedItem(this.ClientesTB.getValueAt(fila, 4).toString());
+       
     }//GEN-LAST:event_ClientesTBMouseClicked
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed

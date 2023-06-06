@@ -173,6 +173,7 @@ VerDatosProductos();
         Ventas.CodigoProductosCon.setText(this.TablaProductos.getValueAt(fila, 0).toString());
         Ventas.txtExistencia.setText(this.TablaProductos.getValueAt(fila, 6).toString());
         //Ventas.txtCostoTotal.setText(this.TablaProductos.getValueAt(fila,4 ).toString());
+       dispose();
        
      
     }//GEN-LAST:event_TablaProductosMouseClicked

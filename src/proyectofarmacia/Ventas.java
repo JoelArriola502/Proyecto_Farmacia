@@ -5,6 +5,7 @@
 package proyectofarmacia;
 
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -636,7 +637,8 @@ if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA VENTA" ,"",JOptionPane.
        EliminarAgregados();
        Desbloquear();
        Limpiar();
-       ImprimirBT.setVisible(true);
+     
+      
       AgregarBoton.setEnabled(true);
       CancelarBoton.setEnabled(true);
       EliminarBoton.setEnabled(true);
@@ -663,8 +665,9 @@ if(JOptionPane.showConfirmDialog(null,"DESEA REALIZAR LA VENTA" ,"",JOptionPane.
 
     private void ImprimirBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirBTActionPerformed
    
-        ClientesInforme cliente=new ClientesInforme();
-           cliente.ImprimirInforme();
+
+
+     
     }//GEN-LAST:event_ImprimirBTActionPerformed
 public void llamar(){
     String idVenta=idVenta();

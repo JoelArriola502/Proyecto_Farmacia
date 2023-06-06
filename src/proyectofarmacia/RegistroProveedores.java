@@ -202,6 +202,7 @@ public class RegistroProveedores extends javax.swing.JFrame {
         int fila=this.ProveedorTB.getSelectedRow();
         CompraProductos.txtNombreProveedor.setText(this.ProveedorTB.getValueAt(fila, 1).toString());
         CompraProductos.txtCodigoProveedor.setText(this.ProveedorTB.getValueAt(fila, 0).toString());
+        dispose();
     }//GEN-LAST:event_ProveedorTBMouseClicked
 
     private void txtProveedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProveedorKeyReleased

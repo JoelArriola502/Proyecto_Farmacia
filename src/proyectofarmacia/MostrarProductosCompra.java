@@ -178,7 +178,7 @@ public class MostrarProductosCompra extends javax.swing.JFrame {
         CompraProductos.CodigoProductosCon.setText(this.TablaProductos.getValueAt(fila, 0).toString());
         CompraProductos.txtExistencia.setText(this.TablaProductos.getValueAt(fila, 6).toString());
        //  CompraProductos.txtCostoTotal.setText(this.TablaProductos.getValueAt(fila, 4).toString());
-
+      dispose();
     }//GEN-LAST:event_TablaProductosMouseClicked
 
     private void txtBuscaProKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaProKeyReleased
